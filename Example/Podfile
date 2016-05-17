@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Mockit_Example' do
+  pod 'Mockit', :path => '../'
+
+  target 'Mockit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

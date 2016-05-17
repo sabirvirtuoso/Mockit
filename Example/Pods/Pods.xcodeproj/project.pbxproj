@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */; };
 		135B555FC6AE38EF84627C1ECD737324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		62F0C699A8AF8249F3FECC8624993F53 /* Mockit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C3EF77309216C5A543B0CBC858AC994 /* Mockit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C698411F1B041206CC53C7614B506B /* Stub.swift */; };
+		701559D262630A41B8AF8BF3D38B0AE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		999A38FB6953FF67B4CACD13C38B8C06 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C076CBB806411488802F7964F459C847 /* Mock.swift */; };
 		9C414BAF0434F1162BE6798A71102222 /* Pods-Mockit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1957D3A2E16599A2D04BC663116CAB93 /* Pods-Mockit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B4BCC6869934CA35EFD1D73A80B3DC19 /* Pods-Mockit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB80518C9C90CF3AA2D3B706958DA0E /* Pods-Mockit_Example-dummy.m */; };
-		DBB6B6D215EED7E2E947A93232C76806 /* Mockit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C6A8D54EE97AEF6D7A78920DA13C37 /* Mockit-dummy.m */; };
-		DDDA6DFD7F4A1AF6B9B23BF3E9D29AA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		D1C3C85DF3D7436CD5365850872F223A /* Mockit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C6A8D54EE97AEF6D7A78920DA13C37 /* Mockit-dummy.m */; };
 		E51A844E9D98376053AFFBD40C4EE55A /* Pods-Mockit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A69EAB440462BB2622C5567F53D7018 /* Pods-Mockit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDFFB455CD3885D288062063C72958C7 /* Pods-Mockit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 840009C309CC3963513C10FFB9D8A129 /* Pods-Mockit_Tests-dummy.m */; };
 		F13E5E81972C2B6CB4FC9AFF70A83066 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		F2B4626AE496A60CD2D626829D823B1F /* Mockit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C3EF77309216C5A543B0CBC858AC994 /* Mockit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +27,13 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 77FA2FB0DDA20E900E79B75B70D33FBD;
+			remoteGlobalIDString = 5EB0125E6965BC2CC2355B403B7EEB23;
 			remoteInfo = Mockit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallHandlerImpl.swift; sourceTree = "<group>"; };
 		0FFD39BA83AC141F5C45E7046991F836 /* Mockit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Mockit.modulemap; sourceTree = "<group>"; };
 		1957D3A2E16599A2D04BC663116CAB93 /* Pods-Mockit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Mockit_Example-umbrella.h"; sourceTree = "<group>"; };
 		199594EC1E4A8A4F452361D1045423E5 /* Pods-Mockit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 		3248B0CA7CA754392E15FE61CC0C0F9A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F48FFC847906EA36EBF33003E6E2097 /* Pods_Mockit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mockit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3EF77309216C5A543B0CBC858AC994 /* Mockit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Mockit-umbrella.h"; sourceTree = "<group>"; };
+		4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallHandler.swift; sourceTree = "<group>"; };
 		691C4562F5EDE2FFAA58E077E05E52D6 /* Pods-Mockit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Mockit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6E801926E1665657FBDD5D772A07A892 /* Mockit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Mockit.xcconfig; sourceTree = "<group>"; };
 		702AFCD7851ACC217658E88535009111 /* Pods-Mockit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Mockit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -48,11 +54,13 @@
 		932098B79B96C87E576B448CB9D8C61F /* Pods-Mockit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97AAF95C259C858FF017F911E520F974 /* Pods-Mockit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Mockit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		97C698411F1B041206CC53C7614B506B /* Stub.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		9FB3559222CEDF91952D160602385B0F /* Pods-Mockit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A14D58555DF0B7D31245F006EA415AA9 /* Pods-Mockit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		AB01465436272370E14E28E64EA25355 /* Pods-Mockit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Mockit_Tests.modulemap"; sourceTree = "<group>"; };
 		BCB80518C9C90CF3AA2D3B706958DA0E /* Pods-Mockit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Mockit_Example-dummy.m"; sourceTree = "<group>"; };
 		C02664FD97D2EA06029DAAA3786E6A4A /* Mockit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mockit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C076CBB806411488802F7964F459C847 /* Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		C3E43E02535AA178FD03F183A67DEF9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D95D845916C4AA33C922DAA63CF81B28 /* Pods_Mockit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mockit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +71,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F1B9BE587596E52F7322713725B26C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701559D262630A41B8AF8BF3D38B0AE2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607C730D599CC705A4CA8435B0EFE859 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,14 +92,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F13E5E81972C2B6CB4FC9AFF70A83066 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ECBE18551E44E061200258CE012CAAD0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DDDA6DFD7F4A1AF6B9B23BF3E9D29AA1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,13 +130,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		70AA716CBCC97236C390242F8211C6D3 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -158,20 +159,23 @@
 			path = "Target Support Files/Pods-Mockit_Tests";
 			sourceTree = "<group>";
 		};
-		969320D8E7254821DC8C07E87076C024 /* Mockit */ = {
-			isa = PBXGroup;
-			children = (
-				70AA716CBCC97236C390242F8211C6D3 /* Classes */,
-			);
-			path = Mockit;
-			sourceTree = "<group>";
-		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C119C37CC47DEF155B67A3E0B0106E62 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */,
+				036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */,
+				C076CBB806411488802F7964F459C847 /* Mock.swift */,
+				97C698411F1B041206CC53C7614B506B /* Stub.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		C956141C5CEC43AD287290779E4EB348 /* Development Pods */ = {
@@ -185,7 +189,7 @@
 		CD4FF6BDF5704115494674275B2FDFAA /* Mockit */ = {
 			isa = PBXGroup;
 			children = (
-				969320D8E7254821DC8C07E87076C024 /* Mockit */,
+				DFF048629C7ED0E86B68A82EF5C08BD9 /* Mockit */,
 				0F55829D2BAB9BD13CAE82082660FD52 /* Support Files */,
 			);
 			name = Mockit;
@@ -199,6 +203,14 @@
 				941E64C2BE99FE330DA84979CF057F18 /* Pods-Mockit_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		DFF048629C7ED0E86B68A82EF5C08BD9 /* Mockit */ = {
+			isa = PBXGroup;
+			children = (
+				C119C37CC47DEF155B67A3E0B0106E62 /* Classes */,
+			);
+			path = Mockit;
 			sourceTree = "<group>";
 		};
 		E822AA6ADD70958DC21E709C9980B414 /* Pods-Mockit_Example */ = {
@@ -222,19 +234,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		19149C676B768BF0A9C4DA2891147850 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2B4626AE496A60CD2D626829D823B1F /* Mockit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39138D13609026D23B59BA8F085BD9A6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9C414BAF0434F1162BE6798A71102222 /* Pods-Mockit_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7457CD01F7FBEAD339A1EFCDF4F1EB02 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				62F0C699A8AF8249F3FECC8624993F53 /* Mockit-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,13 +261,13 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		77FA2FB0DDA20E900E79B75B70D33FBD /* Mockit */ = {
+		5EB0125E6965BC2CC2355B403B7EEB23 /* Mockit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28986C24D9E74F432B4864462D9895FB /* Build configuration list for PBXNativeTarget "Mockit" */;
+			buildConfigurationList = 82B2A4F606C2F432A3BFC7DBF6B8F529 /* Build configuration list for PBXNativeTarget "Mockit" */;
 			buildPhases = (
-				E51B3B0F6CCE342E7F595B800BBF23C0 /* Sources */,
-				ECBE18551E44E061200258CE012CAAD0 /* Frameworks */,
-				7457CD01F7FBEAD339A1EFCDF4F1EB02 /* Headers */,
+				64A78B671D64AECD6EF74570049C2CB8 /* Sources */,
+				4F1B9BE587596E52F7322713725B26C7 /* Frameworks */,
+				19149C676B768BF0A9C4DA2891147850 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -322,7 +334,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77FA2FB0DDA20E900E79B75B70D33FBD /* Mockit */,
+				5EB0125E6965BC2CC2355B403B7EEB23 /* Mockit */,
 				7868E60BB321EDCCE515DEF36CA05A6F /* Pods-Mockit_Example */,
 				811015429B84BDEF2B8A084178F18DE3 /* Pods-Mockit_Tests */,
 			);
@@ -330,19 +342,23 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		64A78B671D64AECD6EF74570049C2CB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */,
+				0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */,
+				999A38FB6953FF67B4CACD13C38B8C06 /* Mock.swift in Sources */,
+				D1C3C85DF3D7436CD5365850872F223A /* Mockit-dummy.m in Sources */,
+				4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87228066E73D9E42F4BF1F2B7C4CEA6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B4BCC6869934CA35EFD1D73A80B3DC19 /* Pods-Mockit_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E51B3B0F6CCE342E7F595B800BBF23C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBB6B6D215EED7E2E947A93232C76806 /* Mockit-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +376,7 @@
 		590B406557D056FF136B0EDBF14B4558 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Mockit;
-			target = 77FA2FB0DDA20E900E79B75B70D33FBD /* Mockit */;
+			target = 5EB0125E6965BC2CC2355B403B7EEB23 /* Mockit */;
 			targetProxy = 2E887FC0A67FB6B35E8FFBC56183E941 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -404,35 +420,6 @@
 			};
 			name = Release;
 		};
-		4182E6F566300DABC232C5CAC6575486 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E801926E1665657FBDD5D772A07A892 /* Mockit.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Mockit/Mockit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Mockit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Mockit/Mockit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Mockit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		578171E73D7394BD25D481D33AA135E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A14D58555DF0B7D31245F006EA415AA9 /* Pods-Mockit_Example.release.xcconfig */;
@@ -466,7 +453,41 @@
 			};
 			name = Release;
 		};
-		8D97FA1225A87FFC4CDAD6514748673A /* Debug */ = {
+		5B26A0F3A77D43837F205DE0A84BE497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E801926E1665657FBDD5D772A07A892 /* Mockit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PLATFORM_DIR)/Developer/Library/Frameworks\"",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Mockit/Mockit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Mockit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Mockit/Mockit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = Mockit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6D803B5125E7BA09D2DE5504A42F1D7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E801926E1665657FBDD5D772A07A892 /* Mockit.xcconfig */;
 			buildSettings = {
@@ -478,6 +499,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PLATFORM_DIR)/Developer/Library/Frameworks\"",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Mockit/Mockit-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Mockit/Info.plist";
@@ -486,6 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Mockit/Mockit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = Mockit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -641,20 +667,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		28986C24D9E74F432B4864462D9895FB /* Build configuration list for PBXNativeTarget "Mockit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8D97FA1225A87FFC4CDAD6514748673A /* Debug */,
-				4182E6F566300DABC232C5CAC6575486 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */,
 				0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82B2A4F606C2F432A3BFC7DBF6B8F529 /* Build configuration list for PBXNativeTarget "Mockit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D803B5125E7BA09D2DE5504A42F1D7B /* Debug */,
+				5B26A0F3A77D43837F205DE0A84BE497 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

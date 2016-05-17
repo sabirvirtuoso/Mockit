@@ -1,0 +1,16 @@
+PODS:
+  - Mockit (0.1.0)
+
+DEPENDENCIES:
+  - Mockit (from `../`)
+
+EXTERNAL SOURCES:
+  Mockit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Mockit: c24d20c18831df2ea4bab8155fff122fab3eb52f
+
+PODFILE CHECKSUM: afda2f318d5a4f7d1925a9e8694c07b1815eb9a9
+
+COCOAPODS: 1.0.0.rc.2

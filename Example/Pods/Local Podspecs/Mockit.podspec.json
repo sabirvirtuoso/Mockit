@@ -1,0 +1,19 @@
+{
+  "name": "Mockit",
+  "version": "0.1.0",
+  "summary": "A short description of Mockit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Mockit",
+  "license": "MIT",
+  "authors": {
+    "Syed Sabir Salman-Al-Musawi": "sabirvirtuoso@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Mockit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Mockit/Classes/**/*"
+}

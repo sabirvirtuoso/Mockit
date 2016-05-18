@@ -31,6 +31,8 @@ import XCTest
 
 public class CallHandlerImpl: CallHandler {
 
+  private let mockFailer: MockFailer
+
   // this is the stub which is currenly being configured (if any)
   private var stub: Stub!
   
@@ -38,9 +40,15 @@ public class CallHandlerImpl: CallHandler {
   private var verificationMode: VerificationMode!
 
   public init(_ testCase: XCTestCase) {
+    mockFailer = MockFailerImpl(withTestCase: testCase)
+  }
+
+  public init(_ failer: MockFailer) {
+    mockFailer = failer
   }
 
   public func when() -> Stub {
+    transtion(toState: .When)
     stub = Stub()
     
     return stub

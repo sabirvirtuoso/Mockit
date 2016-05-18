@@ -30,7 +30,7 @@ import Foundation
  * - When : Register stub.
  * - Verify: Verify method call.
  * - GetArgs: Return arguments of specific method call.
-*/
+ */
 public enum State {
 
   case None, When, Verify, GetArgs

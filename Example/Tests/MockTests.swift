@@ -36,6 +36,7 @@ class TestCallHandler: CallHandler {
 
   var whenCalled = false
   var verifyCalled = false
+  var getArgsCalled = false
 
   init(withTestCase testCase: XCTestCase) {
     self.testCase = testCase
@@ -50,6 +51,10 @@ class TestCallHandler: CallHandler {
 
   func verify(verificationMode mode: VerificationMode) {
     verifyCalled = true
+  }
+
+  func getArgs(callOrder order: Int) {
+    getArgsCalled = true
   }
 }
 
@@ -128,6 +133,32 @@ class MockTests: XCTestCase {
 
     //when
     let mock = sut.verify(verificationMode: TestVerificationMode())
+
+    //then
+    XCTAssertTrue((mock as! AnyObject) === sut)
+  }
+
+  func testGetArgsIsCalled() {
+    //given
+    let handler = TestCallHandler(withTestCase: self)
+    let sut = TestMockImplementation(withCallHandler: handler)
+
+    XCTAssertFalse(handler.getArgsCalled)
+
+    //when
+    sut.getArgs(callOrder: 1)
+
+    //then
+    XCTAssertTrue(handler.getArgsCalled)
+  }
+
+  func testCallingGetArgsReturnsCorrectMock() {
+    //given
+    let handler = TestCallHandler(withTestCase: self)
+    let sut = TestMockImplementation(withCallHandler: handler)
+
+    //when
+    let mock = sut.getArgs(callOrder: 1)
 
     //then
     XCTAssertTrue((mock as! AnyObject) === sut)

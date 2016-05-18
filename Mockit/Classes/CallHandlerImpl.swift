@@ -58,6 +58,10 @@ public class CallHandlerImpl: CallHandler {
     transtion(toState: .Verify)
   }
 
+  public func getArgs(callOrder order: Int) {
+    transtion(toState: .GetArgs)
+  }
+
   private func transtion(toState state: State) {
     self.state = state
   }

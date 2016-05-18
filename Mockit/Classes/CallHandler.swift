@@ -34,4 +34,6 @@ public protocol CallHandler {
 
   func verify(verificationMode mode: VerificationMode)
 
+  func getArgs(callOrder order: Int)
+
 }

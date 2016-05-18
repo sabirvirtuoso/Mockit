@@ -34,6 +34,8 @@ public protocol Mock {
 
   func verify(verificationMode mode: VerificationMode) -> Mock
 
+  func getArgs(callOrder order: Int) -> Mock
+
 }
 
 
@@ -48,6 +50,12 @@ public extension Mock {
   
   func verify(verificationMode mode: VerificationMode) -> Mock {
     callHandler.verify(verificationMode: mode)
+
+    return self
+  }
+
+  func getArgs(callOrder order: Int) -> Mock {
+    callHandler.getArgs(callOrder: order)
 
     return self
   }

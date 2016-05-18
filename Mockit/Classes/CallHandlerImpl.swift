@@ -31,6 +31,8 @@ import XCTest
 
 public class CallHandlerImpl: CallHandler {
 
+  public var argumentsOfSpecificCall: [Any?]?
+  
   private let mockFailer: MockFailer
 
   // this is the stub which is currenly being configured (if any)
@@ -60,6 +62,13 @@ public class CallHandlerImpl: CallHandler {
 
   public func getArgs(callOrder order: Int) {
     transtion(toState: .GetArgs)
+  }
+  
+  public func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+                     inLine line: UInt, withArgs args: Any?...) -> Any? {
+    argumentsOfSpecificCall = args
+    
+    return returnValue
   }
 
   private func transtion(toState state: State) {

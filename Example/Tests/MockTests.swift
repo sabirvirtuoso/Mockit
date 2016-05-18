@@ -31,6 +31,8 @@ import Mockit
 
 class TestCallHandler: CallHandler {
 
+  var argumentsOfSpecificCall: [Any?]?
+  
   let testCase: XCTestCase
   var stub: Stub!
 
@@ -56,6 +58,13 @@ class TestCallHandler: CallHandler {
   func getArgs(callOrder order: Int) {
     getArgsCalled = true
   }
+
+  func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+                     inLine line: UInt, withArgs args: Any?...) -> Any? {
+    argumentsOfSpecificCall = args
+    
+    return returnValue
+  }
 }
 
 
@@ -79,6 +88,18 @@ class TestMockImplementation: Mock {
 
   init(withCallHandler callHandler: CallHandler) {
     self.callHandler = callHandler
+  }
+
+  func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) {
+    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
+  }
+  
+  func doSomethingWithNoArguments() {
+    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+  }
+  
+  func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
+    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
 }
 

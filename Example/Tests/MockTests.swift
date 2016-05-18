@@ -72,7 +72,7 @@ class MockTests: XCTestCase {
     XCTAssertFalse(handler.whenCalled)
     
     //when
-    handler.when()
+    sut.when()
     
     //then
     XCTAssertTrue(handler.whenCalled)
@@ -86,7 +86,7 @@ class MockTests: XCTestCase {
     XCTAssertNil(handler.stub)
     
     //when
-    let stub = handler.when()
+    let stub = sut.when()
     
     //then
     XCTAssertTrue(stub === handler.stub)

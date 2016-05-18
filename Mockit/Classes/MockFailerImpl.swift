@@ -23,12 +23,21 @@
 //
 
 import Foundation
+import XCTest
 
-/**
- * `MockFailer` is used to record failure message, file and line of a specific test case.
- */
-public protocol MockFailer {
 
-  func doFail(message: String, file: String, line: UInt)
+// MARK:- MockFailer implementation
 
+
+public class MockFailerImpl: MockFailer {
+
+  let testCase: XCTestCase
+
+  public init(withTestCase testCase: XCTestCase) {
+    self.testCase = testCase
+  }
+
+  public func doFail(message: String, file: String, line: UInt) {
+    testCase.recordFailureWithDescription(message, inFile: file, atLine: line, expected: true)
+  }
 }

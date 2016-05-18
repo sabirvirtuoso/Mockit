@@ -31,6 +31,8 @@ import Mockit
 
 class TestCallHandler: CallHandler {
 
+  var argumentsOfSpecificCall: [Any?]!
+  
   let testCase: XCTestCase
   var stub: Stub!
 
@@ -56,6 +58,13 @@ class TestCallHandler: CallHandler {
   func getArgs(callOrder order: Int) {
     getArgsCalled = true
   }
+
+  func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+                     inLine line: UInt, withArgs args: Any?...) -> Any? {
+    argumentsOfSpecificCall = args
+    
+    return returnValue
+  }
 }
 
 
@@ -80,29 +89,47 @@ class TestMockImplementation: Mock {
   init(withCallHandler callHandler: CallHandler) {
     self.callHandler = callHandler
   }
+
+  func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) -> Int {
+    return callHandler.accept(0, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2) as! Int
+  }
+
+  func doSomethingWithNoArguments() {
+    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+  }
+
+  func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
+    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
+  }
 }
+
+
+// MARK:- Test cases for Mock protocol and its extension
+
 
 class MockTests: XCTestCase {
 
+  var handler: TestCallHandler!
+  var sut: TestMockImplementation!
+
+  override func setUp() {
+    handler = TestCallHandler(withTestCase: self)
+    sut = TestMockImplementation(withCallHandler: handler)
+  }
+
   func testWhenIsCalled() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
-    
     XCTAssertFalse(handler.whenCalled)
-    
+
     //when
     sut.when()
-    
+
     //then
     XCTAssertTrue(handler.whenCalled)
   }
 
   func testCallingWhenReturnsCorrectStub() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
-
     XCTAssertNil(handler.stub)
 
     //when
@@ -114,9 +141,6 @@ class MockTests: XCTestCase {
 
   func testVerifyIsCalled() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
-
     XCTAssertFalse(handler.verifyCalled)
 
     //when
@@ -128,8 +152,6 @@ class MockTests: XCTestCase {
 
   func testCallingVerifyReturnsCorrectMock() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
 
     //when
     let mock = sut.verify(verificationMode: TestVerificationMode())
@@ -140,9 +162,6 @@ class MockTests: XCTestCase {
 
   func testGetArgsIsCalled() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
-
     XCTAssertFalse(handler.getArgsCalled)
 
     //when
@@ -154,13 +173,46 @@ class MockTests: XCTestCase {
 
   func testCallingGetArgsReturnsCorrectMock() {
     //given
-    let handler = TestCallHandler(withTestCase: self)
-    let sut = TestMockImplementation(withCallHandler: handler)
 
     //when
     let mock = sut.getArgs(callOrder: 1)
 
     //then
     XCTAssertTrue((mock as! AnyObject) === sut)
+  }
+
+  func testCallingOfReturnsCorrectlyForNonOptionalArguments() {
+    //given
+    let testArgumentOne = "testArgument"
+    let testArgumentTwo = 0
+
+    //when
+    let arguments = sut.of(sut.doSomethingWithNonOptionalArguments(testArgumentOne, arg2: testArgumentTwo))
+
+    //then
+    XCTAssertEqual((arguments[0] as! String), testArgumentOne)
+    XCTAssertEqual((arguments[1] as! Int), testArgumentTwo)
+  }
+
+  func testCallingOfReturnsCorrectlyForNoArguments() {
+    //given
+
+    //when
+    let arguments = sut.of(sut.doSomethingWithNoArguments() as Any)
+
+    //then
+    XCTAssertNil(arguments[0])
+  }
+
+  func testCallingOfReturnsCorrectlyForSomeOptionalArguments() {
+    //given
+    let testArgument = 0
+
+    //when
+    let arguments = sut.of(sut.doSomethingWithSomeOptionalArguments(nil, arg2: testArgument) as Any)
+
+    //then
+    XCTAssertNil(arguments[0])
+    XCTAssertEqual((arguments[1] as! Int), testArgument)
   }
 }

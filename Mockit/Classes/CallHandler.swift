@@ -30,10 +30,15 @@
  */
 public protocol CallHandler {
 
+  var argumentsOfSpecificCall: [Any?]! { get }
+
   func when() -> Stub
 
   func verify(verificationMode mode: VerificationMode)
 
   func getArgs(callOrder order: Int)
+
+  func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+                     inLine line: UInt, withArgs args: Any?...) -> Any?
 
 }

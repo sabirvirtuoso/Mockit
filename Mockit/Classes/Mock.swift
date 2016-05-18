@@ -31,7 +31,9 @@ public protocol Mock {
   var callHandler: CallHandler { get }
   
   func when() -> Stub
-  
+
+  func verify(verificationMode mode: VerificationMode) -> Mock
+
 }
 
 
@@ -42,5 +44,11 @@ public extension Mock {
   
   func when() -> Stub {
     return callHandler.when()
+  }
+  
+  func verify(verificationMode mode: VerificationMode) -> Mock {
+    callHandler.verify(verificationMode: mode)
+
+    return self
   }
 }

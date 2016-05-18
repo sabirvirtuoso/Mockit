@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */; };
 		135B555FC6AE38EF84627C1ECD737324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A11CEC31CD0016B4E1 /* State.swift */; };
+		1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */; };
+		1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */; };
+		1B3F87A81CEC40310016B4E1 /* MockFailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A71CEC40310016B4E1 /* MockFailer.swift */; };
+		1B3F87AA1CEC49160016B4E1 /* MockFailerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A91CEC49160016B4E1 /* MockFailerImpl.swift */; };
 		4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C698411F1B041206CC53C7614B506B /* Stub.swift */; };
 		701559D262630A41B8AF8BF3D38B0AE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		999A38FB6953FF67B4CACD13C38B8C06 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C076CBB806411488802F7964F459C847 /* Mock.swift */; };
@@ -37,6 +42,11 @@
 		0FFD39BA83AC141F5C45E7046991F836 /* Mockit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Mockit.modulemap; sourceTree = "<group>"; };
 		1957D3A2E16599A2D04BC663116CAB93 /* Pods-Mockit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Mockit_Example-umbrella.h"; sourceTree = "<group>"; };
 		199594EC1E4A8A4F452361D1045423E5 /* Pods-Mockit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1B3F87A11CEC31CD0016B4E1 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationMode.swift; sourceTree = "<group>"; };
+		1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationData.swift; sourceTree = "<group>"; };
+		1B3F87A71CEC40310016B4E1 /* MockFailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFailer.swift; sourceTree = "<group>"; };
+		1B3F87A91CEC49160016B4E1 /* MockFailerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFailerImpl.swift; sourceTree = "<group>"; };
 		1D9567645986C9F0AF1A00E682409BD1 /* Pods-Mockit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Mockit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		23C6A8D54EE97AEF6D7A78920DA13C37 /* Mockit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Mockit-dummy.m"; sourceTree = "<group>"; };
 		285B95621524275A6D497637A5E69EDB /* Pods-Mockit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Mockit_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -174,6 +184,11 @@
 				036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */,
 				C076CBB806411488802F7964F459C847 /* Mock.swift */,
 				97C698411F1B041206CC53C7614B506B /* Stub.swift */,
+				1B3F87A11CEC31CD0016B4E1 /* State.swift */,
+				1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */,
+				1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */,
+				1B3F87A71CEC40310016B4E1 /* MockFailer.swift */,
+				1B3F87A91CEC49160016B4E1 /* MockFailerImpl.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -348,9 +363,14 @@
 			files = (
 				FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */,
 				0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */,
+				1B3F87A81CEC40310016B4E1 /* MockFailer.swift in Sources */,
 				999A38FB6953FF67B4CACD13C38B8C06 /* Mock.swift in Sources */,
 				D1C3C85DF3D7436CD5365850872F223A /* Mockit-dummy.m in Sources */,
 				4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */,
+				1B3F87AA1CEC49160016B4E1 /* MockFailerImpl.swift in Sources */,
+				1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */,
+				1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */,
+				1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

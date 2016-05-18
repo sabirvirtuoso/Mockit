@@ -30,17 +30,27 @@ import XCTest
 
 
 public class CallHandlerImpl: CallHandler {
-  
+
   // this is the stub which is currenly being configured (if any)
   private var stub: Stub!
   
+  private var state: State!
+  private var verificationMode: VerificationMode!
+
   public init(_ testCase: XCTestCase) {
   }
-  
+
   public func when() -> Stub {
     stub = Stub()
     
     return stub
   }
-  
+
+  public func verify(verificationMode mode: VerificationMode) {
+    transtion(toState: .Verify)
+  }
+
+  private func transtion(toState state: State) {
+    self.state = state
+  }
 }

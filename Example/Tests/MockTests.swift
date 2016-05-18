@@ -30,23 +30,38 @@ import Mockit
 
 
 class TestCallHandler: CallHandler {
-  
+
   let testCase: XCTestCase
   var stub: Stub!
-  
+
   var whenCalled = false
-  
+  var verifyCalled = false
+
   init(withTestCase testCase: XCTestCase) {
     self.testCase = testCase
   }
-  
+
   func when() -> Stub {
     whenCalled = true
     stub = Stub()
     
     return stub
   }
-  
+
+  func verify(verificationMode mode: VerificationMode) {
+    verifyCalled = true
+  }
+}
+
+
+// MARK:- A test implementation of VerificationMode
+
+
+class TestVerificationMode: VerificationMode {
+
+  func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    // Dummy, do nothing
+  }
 }
 
 
@@ -54,16 +69,16 @@ class TestCallHandler: CallHandler {
 
 
 class TestMockImplementation: Mock {
-  
+
   var callHandler: CallHandler
-  
+
   init(withCallHandler callHandler: CallHandler) {
     self.callHandler = callHandler
   }
 }
 
 class MockTests: XCTestCase {
-  
+
   func testWhenIsCalled() {
     //given
     let handler = TestCallHandler(withTestCase: self)
@@ -77,18 +92,44 @@ class MockTests: XCTestCase {
     //then
     XCTAssertTrue(handler.whenCalled)
   }
-  
+
   func testCallingWhenReturnsCorrectStub() {
     //given
     let handler = TestCallHandler(withTestCase: self)
     let sut = TestMockImplementation(withCallHandler: handler)
-    
+
     XCTAssertNil(handler.stub)
-    
+
     //when
     let stub = sut.when()
-    
+
     //then
     XCTAssertTrue(stub === handler.stub)
+  }
+
+  func testVerifyIsCalled() {
+    //given
+    let handler = TestCallHandler(withTestCase: self)
+    let sut = TestMockImplementation(withCallHandler: handler)
+
+    XCTAssertFalse(handler.verifyCalled)
+
+    //when
+    sut.verify(verificationMode: TestVerificationMode())
+
+    //then
+    XCTAssertTrue(handler.verifyCalled)
+  }
+
+  func testCallingVerifyReturnsCorrectMock() {
+    //given
+    let handler = TestCallHandler(withTestCase: self)
+    let sut = TestMockImplementation(withCallHandler: handler)
+
+    //when
+    let mock = sut.verify(verificationMode: TestVerificationMode())
+
+    //then
+    XCTAssertTrue((mock as! AnyObject) === sut)
   }
 }

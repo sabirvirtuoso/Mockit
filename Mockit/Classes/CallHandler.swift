@@ -29,6 +29,9 @@
  * call handler which defaults to None. The mock interface interacts with the call handler to set this state.
  */
 public protocol CallHandler {
-  
+
   func when() -> Stub
+
+  func verify(verificationMode mode: VerificationMode)
+
 }

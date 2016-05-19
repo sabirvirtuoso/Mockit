@@ -29,15 +29,15 @@ import Foundation
  */
 public class VerificationData {
 
-  var functionName = ""
-  var timesInvoked = 0
-  var calledOnly = false
-  var file = ""
-  var line: UInt = 0
+  public var functionName = ""
+  public var timesInvoked = 0
+  public var calledOnly = false
+  public var file = ""
+  public var line: UInt = 0
 
-  typealias buildVerificationDataClosure = (VerificationData) -> Void
+  public typealias buildVerificationDataClosure = (VerificationData) -> Void
 
-  init(build: buildVerificationDataClosure) {
+  public init(build: buildVerificationDataClosure) {
     build(self)
   }
 }

@@ -438,3 +438,47 @@ extension VerificationModeTests {
     XCTAssertEqual(mockFailer.line, 1)
   }
 }
+
+
+// MARK:- Test cases for custom verification mode `Never`
+
+
+extension VerificationModeTests {
+
+  func testVerificationModeNeverSucceedsWhenMethodIsNotCalled() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 0)
+    let sut = Never()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeNeverFailsWhenMethodIsCalled() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 1)
+    let sut = Never()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeNever,
+      verificationData.functionName, verificationData.timesInvoked))
+    XCTAssertEqual(mockFailer.file, "thisFile")
+    XCTAssertEqual(mockFailer.line, 1)
+  }
+}

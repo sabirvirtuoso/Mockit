@@ -164,3 +164,24 @@ public class AtMostTimes: VerificationMode {
     }
   }
 }
+
+
+// MARK:- Custom Verification Mode `Never` implementation
+
+
+public class Never: VerificationMode {
+
+  public init() {
+
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.timesInvoked == 0 else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeNever,
+                                 verificationData.functionName, verificationData.timesInvoked)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
+}

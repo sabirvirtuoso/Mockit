@@ -185,3 +185,24 @@ public class Never: VerificationMode {
     }
   }
 }
+
+
+// MARK:- Custom Verification Mode `Only` implementation
+
+
+public class Only: VerificationMode {
+
+  public init() {
+
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.calledOnly else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeOnly,
+                                 verificationData.functionName)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
+}

@@ -482,3 +482,47 @@ extension VerificationModeTests {
     XCTAssertEqual(mockFailer.line, 1)
   }
 }
+
+
+// MARK:- Test cases for custom verification mode `Only`
+
+
+extension VerificationModeTests {
+
+  func testVerificationModeOnlySucceedsWhenMethodIsOnlyCalled() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 2, calledOnly: true)
+    let sut = Only()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeOnlyFailsWhenMethodIsNotOnlyCalled() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 1, calledOnly: false)
+    let sut = Only()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeOnly,
+      verificationData.functionName))
+    XCTAssertEqual(mockFailer.file, "thisFile")
+    XCTAssertEqual(mockFailer.line, 1)
+  }
+}

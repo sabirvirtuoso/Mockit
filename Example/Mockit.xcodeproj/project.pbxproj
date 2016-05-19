@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		121877DC51B55C97C8FB1AD5 /* Pods_Mockit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B5C8CDA3A1655DD2A2F938 /* Pods_Mockit_Tests.framework */; };
+		1B17C7551CED89880079F43B /* VerificationModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C7531CED87F20079F43B /* VerificationModeTests.swift */; };
 		1B564F351CEB287400532E8F /* MockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B564F341CEB287400532E8F /* MockTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B17C7531CED87F20079F43B /* VerificationModeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationModeTests.swift; sourceTree = "<group>"; };
 		1B564F341CEB287400532E8F /* MockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTests.swift; sourceTree = "<group>"; };
 		1EC4B4C6108E7A29B3B67049 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		20BAD18806E78FF6250117C5 /* Pods-Mockit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mockit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mockit_Example/Pods-Mockit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				1B564F341CEB287400532E8F /* MockTests.swift */,
+				1B17C7531CED87F20079F43B /* VerificationModeTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B564F351CEB287400532E8F /* MockTests.swift in Sources */,
+				1B17C7551CED89880079F43B /* VerificationModeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

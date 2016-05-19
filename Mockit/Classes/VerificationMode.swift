@@ -24,8 +24,32 @@
 
 import Foundation
 
+/**
+ * `VerificationMode` provides an API for custom verification modes to implement.
+ */
 public protocol VerificationMode {
 
   func verify(verificationData: VerificationData, mockFailer: MockFailer)
 
+}
+
+
+// MARK:- Custom Verification Mode `Once` implementation
+
+
+public class Once: VerificationMode {
+
+  public init() {
+  
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.timesInvoked == 1 else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeOnce,
+                                        verificationData.functionName, verificationData.timesInvoked)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
 }

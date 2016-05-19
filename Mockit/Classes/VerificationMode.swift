@@ -141,3 +141,26 @@ public class AtLeastTimes: VerificationMode {
     }
   }
 }
+
+
+// MARK:- Custom Verification Mode `AtMostTimes` implementation
+
+
+public class AtMostTimes: VerificationMode {
+
+  var times = 0
+
+  public init(times: Times) {
+    self.times = times.times
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.timesInvoked <= times else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtMostTimes,
+                                 verificationData.functionName, times, verificationData.timesInvoked)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
+}

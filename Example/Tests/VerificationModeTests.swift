@@ -376,3 +376,65 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.line)
   }
 }
+
+
+// MARK:- Test cases for custom verification mode `AtMostTimes`
+
+
+extension VerificationModeTests {
+
+  func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledGivenTimes() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 3)
+    let sut = AtMostTimes(times: Times(times: 3))
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledLessThanGivenTimes() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 2)
+    let sut = AtMostTimes(times: Times(times: 3))
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeAtMostTimesFailsWhenMethodIsCalledMoreThanGivenTimes() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 4)
+    let sut = AtMostTimes(times: Times(times: 3))
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtMostTimes,
+      verificationData.functionName, 3, verificationData.timesInvoked))
+    XCTAssertEqual(mockFailer.file, "thisFile")
+    XCTAssertEqual(mockFailer.line, 1)
+  }
+}

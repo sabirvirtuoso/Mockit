@@ -22,47 +22,29 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+
 /**
- * `Mock` and its extension acts as a proxy to the real workhorse, CallHandler.
- * It's here to reduce the amount of boiler-plate code when creating mock objects.
+ * `AnyValue` provides dummy parameter values especially during verification of a method call.
+ * To add custom dummy values, simply create an extension of AnyValue and add respective
+ * values as shown below :
+ *
+ *  extension AnyValue {
+ *
+ *    static let login = LoginDummy()
+ *
+ *  }
  */
-public protocol Mock {
-  
-  var callHandler: CallHandler { get }
-  
-  func when() -> Stub
+public struct AnyValue {
 
-  func verify(verificationMode mode: VerificationMode) -> Mock
+  static let string = ""
+  static let bool = false
 
-  func getArgs(callOrder order: Int) -> Mock
+  static let int = 0
+  static let double: Double = 0
+  static let float: Float = 0
 
-  func of(returnValue: Any) -> [Any?]
+  static let array = []
+  static let dictionary = [:]
 
-}
-
-
-// MARK:- Mock extension to implement protocol methods
-
-
-public extension Mock {
-  
-  func when() -> Stub {
-    return callHandler.when()
-  }
-  
-  func verify(verificationMode mode: VerificationMode) -> Mock {
-    callHandler.verify(verificationMode: mode)
-
-    return self
-  }
-
-  func getArgs(callOrder order: Int) -> Mock {
-    callHandler.getArgs(callOrder: order)
-
-    return self
-  }
-
-  func of(returnValue: Any) -> [Any?] {
-    return callHandler.argumentsOfSpecificCall
-  }
 }

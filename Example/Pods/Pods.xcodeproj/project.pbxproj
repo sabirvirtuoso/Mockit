@@ -24,6 +24,7 @@
 		EDFFB455CD3885D288062063C72958C7 /* Pods-Mockit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 840009C309CC3963513C10FFB9D8A129 /* Pods-Mockit_Tests-dummy.m */; };
 		F13E5E81972C2B6CB4FC9AFF70A83066 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		F2B4626AE496A60CD2D626829D823B1F /* Mockit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C3EF77309216C5A543B0CBC858AC994 /* Mockit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB75A4E31CECE1B000F2EA8E /* AnyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */; };
 		FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		E37E318473C206C83EA2FECE0BB9DBF3 /* Pods-Mockit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Mockit_Tests-resources.sh"; sourceTree = "<group>"; };
 		E53F0C03CDE0AF53983B162A7CDC887B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9431A4E1D342176567EC85A5954E61B /* Pods-Mockit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Mockit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */,
 				1B3F87A71CEC40310016B4E1 /* MockFailer.swift */,
 				1B3F87A91CEC49160016B4E1 /* MockFailerImpl.swift */,
+				FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				1B3F87AA1CEC49160016B4E1 /* MockFailerImpl.swift in Sources */,
 				1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */,
 				1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */,
+				FB75A4E31CECE1B000F2EA8E /* AnyValue.swift in Sources */,
 				1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

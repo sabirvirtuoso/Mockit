@@ -30,7 +30,7 @@
  */
 public protocol CallHandler {
 
-  var argumentsOfSpecificCall: [Any?]? { get }
+  var argumentsOfSpecificCall: [Any?]! { get }
 
   func when() -> Stub
 

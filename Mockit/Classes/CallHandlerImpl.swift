@@ -31,7 +31,7 @@ import XCTest
 
 public class CallHandlerImpl: CallHandler {
 
-  public var argumentsOfSpecificCall: [Any?]?
+  public var argumentsOfSpecificCall: [Any?]!
   
   private let mockFailer: MockFailer
 

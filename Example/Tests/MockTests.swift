@@ -198,7 +198,7 @@ class MockTests: XCTestCase {
     //given
 
     //when
-    let arguments = sut.of(sut.doSomethingWithNoArguments() as Any)
+    let arguments = sut.of(sut.doSomethingWithNoArguments())
 
     //then
     XCTAssertNil(arguments[0])
@@ -209,7 +209,7 @@ class MockTests: XCTestCase {
     let testArgument = 0
 
     //when
-    let arguments = sut.of(sut.doSomethingWithSomeOptionalArguments(nil, arg2: testArgument) as Any)
+    let arguments = sut.of(sut.doSomethingWithSomeOptionalArguments(nil, arg2: testArgument))
 
     //then
     XCTAssertNil(arguments[0])

@@ -74,3 +74,24 @@ public class AtLeastOnce: VerificationMode {
     }
   }
 }
+
+
+// MARK:- Custom Verification Mode `AtMostOnce` implementation
+
+
+public class AtMostOnce: VerificationMode {
+
+  public init() {
+
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.timesInvoked <= 1 else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtMostOnce,
+                                 verificationData.functionName, verificationData.timesInvoked)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
+}

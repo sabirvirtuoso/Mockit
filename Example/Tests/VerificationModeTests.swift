@@ -191,5 +191,63 @@ extension VerificationModeTests {
 }
 
 
+// MARK:- Test cases for custom verification mode `AtMostOnce`
 
 
+extension VerificationModeTests {
+
+  func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledLessThanOnce() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 0)
+    let sut = AtMostOnce()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledOnce() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 1)
+    let sut = AtMostOnce()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+  }
+
+  func testVerificationModeAtMostOnceFailsWhenMethodIsCalledMoreThanOnce() {
+    //given
+    let verificationData = dummyVerificationData(timesInvoked: 3)
+    let sut = AtMostOnce()
+
+    XCTAssertNil(mockFailer.message)
+    XCTAssertNil(mockFailer.file)
+    XCTAssertNil(mockFailer.line)
+
+    //when
+    sut.verify(verificationData, mockFailer: mockFailer)
+
+    //then
+    XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtMostOnce,
+      verificationData.functionName, verificationData.timesInvoked))
+    XCTAssertEqual(mockFailer.file, "thisFile")
+    XCTAssertEqual(mockFailer.line, 1)
+  }
+}

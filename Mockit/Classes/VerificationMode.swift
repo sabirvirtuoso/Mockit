@@ -95,3 +95,26 @@ public class AtMostOnce: VerificationMode {
     }
   }
 }
+
+
+// MARK:- Custom Verification Mode `Times` implementation
+
+
+public class Times: VerificationMode {
+
+  var times = 0
+
+  public init(times: Int) {
+    self.times = times
+  }
+
+  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+    guard verificationData.timesInvoked == times else {
+      let failerMessage = String(format: StringConstants.FailureMessages.verificationModeTimes,
+                                 verificationData.functionName, times, verificationData.timesInvoked)
+      mockFailer.doFail(failerMessage, file: verificationData.file, line: verificationData.line)
+
+      return
+    }
+  }
+}

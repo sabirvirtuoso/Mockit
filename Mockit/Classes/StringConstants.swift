@@ -26,18 +26,18 @@ import Foundation
 
 public struct StringConstants {
 
-  struct FailureMessages {
+  public struct FailureMessages {
 
-    static let verificationModeOnce = "Expected %@ to be called Once. It is actually called %d times"
-    static let verificationModeAtLeastOnce = "Expected %@ to be called At Least Once. It is actually called %d times"
-    static let verificationModeAtMostOnce = "Expected %@ to be called At Most Once. It is actually called %d times"
+    public static let verificationModeOnce = "Expected %@ to be called Once. It is actually called %d times"
+    public static let verificationModeAtLeastOnce = "Expected %@ to be called At Least Once. It is actually called %d times"
+    public static let verificationModeAtMostOnce = "Expected %@ to be called At Most Once. It is actually called %d times"
 
-    static let verificationModeTimes = "Expected %@ to be called %d times. It is actually called %d times"
-    static let verificationModeAtLeastTimes = "Expected %@ to be called At Least %d times. It is actually called %d times"
-    static let verificationModeAtMostTimes = "Expected %@ to be called At Most %d times. It is actually called %d times"
+    public static let verificationModeTimes = "Expected %@ to be called %d times. It is actually called %d times"
+    public static let verificationModeAtLeastTimes = "Expected %@ to be called At Least %d times. It is actually called %d times"
+    public static let verificationModeAtMostTimes = "Expected %@ to be called At Most %d times. It is actually called %d times"
 
-    static let verificationModeOnly = "Expected only %@ to be called."
-    static let verificationModeNever = "Expected %@ to be never called. It is actually called %d times"
+    public static let verificationModeOnly = "Expected only %@ to be called."
+    public static let verificationModeNever = "Expected %@ to be never called. It is actually called %d times"
 
   }
 

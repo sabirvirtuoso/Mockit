@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+
 /**
  * `CallHandler` is the main workhorse. It intercepts all calls and performs necessary actions
  * like registering a stub, performing actions on a specific stub, recording a call, verifying a call as well as

@@ -22,6 +22,8 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+
 /**
  * `Mock` and its extension acts as a proxy to the real workhorse, CallHandler.
  * It's here to reduce the amount of boiler-plate code when creating mock objects.

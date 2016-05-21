@@ -26,6 +26,9 @@
 		F13E5E81972C2B6CB4FC9AFF70A83066 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		F2B4626AE496A60CD2D626829D823B1F /* Mockit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C3EF77309216C5A543B0CBC858AC994 /* Mockit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB75A4E31CECE1B000F2EA8E /* AnyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */; };
+		FB8703261CEDF73100A68A68 /* MockMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8703251CEDF73100A68A68 /* MockMatcher.swift */; };
+		FB8703281CEDF8C300A68A68 /* TypeMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8703271CEDF8C300A68A68 /* TypeMatcher.swift */; };
+		FBA5A27B1CF1084A0011CEE2 /* ArgumentMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA5A27A1CF1084A0011CEE2 /* ArgumentMatcher.swift */; };
 		FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +85,9 @@
 		E53F0C03CDE0AF53983B162A7CDC887B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9431A4E1D342176567EC85A5954E61B /* Pods-Mockit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Mockit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyValue.swift; sourceTree = "<group>"; };
+		FB8703251CEDF73100A68A68 /* MockMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMatcher.swift; sourceTree = "<group>"; };
+		FB8703271CEDF8C300A68A68 /* TypeMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeMatcher.swift; sourceTree = "<group>"; };
+		FBA5A27A1CF1084A0011CEE2 /* ArgumentMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentMatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +201,9 @@
 				1B3F87A91CEC49160016B4E1 /* MockFailerImpl.swift */,
 				FB75A4E21CECE1B000F2EA8E /* AnyValue.swift */,
 				1B17C7581CEDA7580079F43B /* StringConstants.swift */,
+				FB8703251CEDF73100A68A68 /* MockMatcher.swift */,
+				FB8703271CEDF8C300A68A68 /* TypeMatcher.swift */,
+				FBA5A27A1CF1084A0011CEE2 /* ArgumentMatcher.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -367,15 +376,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8703281CEDF8C300A68A68 /* TypeMatcher.swift in Sources */,
 				FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */,
 				0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */,
 				1B3F87A81CEC40310016B4E1 /* MockFailer.swift in Sources */,
 				999A38FB6953FF67B4CACD13C38B8C06 /* Mock.swift in Sources */,
 				D1C3C85DF3D7436CD5365850872F223A /* Mockit-dummy.m in Sources */,
 				4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */,
+				FB8703261CEDF73100A68A68 /* MockMatcher.swift in Sources */,
 				1B3F87AA1CEC49160016B4E1 /* MockFailerImpl.swift in Sources */,
 				1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */,
 				1B17C7591CEDA7580079F43B /* StringConstants.swift in Sources */,
+				FBA5A27B1CF1084A0011CEE2 /* ArgumentMatcher.swift in Sources */,
 				1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */,
 				FB75A4E31CECE1B000F2EA8E /* AnyValue.swift in Sources */,
 				1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */,

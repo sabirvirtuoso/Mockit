@@ -462,3 +462,220 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `NonOptionalArrayMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameStringArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two"]
+    let secondArgument: [Any?] = ["one", "two"]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentStringArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two"]
+    let secondArgument: [Any?] = ["one", "three"]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfStringArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two"]
+    let secondArgument: [Any?] = ["one"]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testSameIntArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [1, 2]
+    let secondArgument: [Any?] = [1, 2]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentIntArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [2, 1]
+    let secondArgument: [Any?] = [2, 2]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfIntArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [2, 1]
+    let secondArgument: [Any?] = [2]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testSameBoolArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [true, false]
+    let secondArgument: [Any?] = [true, false]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentBoolArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [true, false]
+    let secondArgument: [Any?] = [false, true]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfBoolArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [true, true]
+    let secondArgument: [Any?] = [true]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testSameDoubleArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [10.120, 10.130]
+    let secondArgument: [Any?] = [10.120, 10.130]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentDoubleArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.12, 10.5]
+    let secondArgument: [Any?] = [10.4, 10.12]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfDoubleArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.2]
+    let secondArgument: [Any?] = [10.5]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testSameFloatArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.6]
+    let secondArgument: [Any?] = [10.5, 10.6]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentFloatArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.7]
+    let secondArgument: [Any?] = [10.4, 10.2]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfFloatArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.2]
+    let secondArgument: [Any?] = [10.5]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

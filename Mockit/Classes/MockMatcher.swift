@@ -30,7 +30,7 @@ import Foundation
  */
 public class MockMatcher {
 
-  static let sharedInstance = MockMatcher()
+  public static let sharedInstance = MockMatcher()
 
   private var typeMatchers = [String: TypeMatcher]()
 

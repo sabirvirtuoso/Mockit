@@ -16,6 +16,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		E1AAC537588450AF918A14CA /* Pods_Mockit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC41313B822C6296799CFDD4 /* Pods_Mockit_Example.framework */; };
+		FBA5A27D1CF10DB20011CEE2 /* MockMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA5A27C1CF10DB20011CEE2 /* MockMatcherTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BC41313B822C6296799CFDD4 /* Pods_Mockit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mockit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9D5EB4DA910CACD00BED5F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DE718CDB6C72F31CFDC44F0C /* Pods-Mockit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mockit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mockit_Tests/Pods-Mockit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FBA5A27C1CF10DB20011CEE2 /* MockMatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMatcherTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				1B564F341CEB287400532E8F /* MockTests.swift */,
 				1B17C7531CED87F20079F43B /* VerificationModeTests.swift */,
+				FBA5A27C1CF10DB20011CEE2 /* MockMatcherTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B564F351CEB287400532E8F /* MockTests.swift in Sources */,
+				FBA5A27D1CF10DB20011CEE2 /* MockMatcherTests.swift in Sources */,
 				1B17C7551CED89880079F43B /* VerificationModeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

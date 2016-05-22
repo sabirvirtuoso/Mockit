@@ -105,3 +105,38 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `BoolMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameBoolArgumentsMatch() {
+    //given
+    let firstArgument = true
+    let secondArgument = true
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentBoolArgumentsDoNotMatch() {
+    //given
+    let firstArgument = true
+    let secondArgument = false
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

@@ -293,4 +293,46 @@ extension MockMatcherTests {
     //then
     XCTAssertFalse(result)
   }
+  
+  func testSameOptionalIntArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [1, 2, nil]
+    let secondArgument: [Any?] = [1, 2, nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentOptionalIntArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [2, 1, nil]
+    let secondArgument: [Any?] = [2, 2, nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfOptionalIntArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [2, 1, nil]
+    let secondArgument: [Any?] = [2, nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
 }

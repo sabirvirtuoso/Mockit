@@ -210,3 +210,38 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `FloatMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameFloatArgumentsMatch() {
+    //given
+    let firstArgument = 10.5
+    let secondArgument = 10.5
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentFloatArgumentsDoNotMatch() {
+    //given
+    let firstArgument = 10.6
+    let secondArgument = 10.7
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

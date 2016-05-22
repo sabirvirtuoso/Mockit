@@ -419,4 +419,46 @@ extension MockMatcherTests {
     //then
     XCTAssertFalse(result)
   }
+
+  func testSameOptionalFloatArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.6, nil]
+    let secondArgument: [Any?] = [10.5, 10.6, nil]
+
+    let sut = mockMatcher
+    
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentOptionalFloatArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.7, nil]
+    let secondArgument: [Any?] = [10.4, 10.2, nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfOptionalFloatArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = [10.5, 10.2, nil]
+    let secondArgument: [Any?] = [10.5, nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
 }

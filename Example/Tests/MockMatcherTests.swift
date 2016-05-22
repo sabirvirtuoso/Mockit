@@ -140,3 +140,38 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `IntMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameIntArgumentsMatch() {
+    //given
+    let firstArgument = 10
+    let secondArgument = 10
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentIntArgumentsDoNotMatch() {
+    //given
+    let firstArgument = 10
+    let secondArgument = 15
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

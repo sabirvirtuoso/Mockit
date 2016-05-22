@@ -175,3 +175,38 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `DoubleMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameDoubleArgumentsMatch() {
+    //given
+    let firstArgument = 10.120
+    let secondArgument = 10.120
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentDoubleArgumentsDoNotMatch() {
+    //given
+    let firstArgument = 10.130
+    let secondArgument = 10.120
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

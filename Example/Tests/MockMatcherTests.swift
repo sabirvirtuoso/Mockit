@@ -245,3 +245,52 @@ extension MockMatcherTests {
     XCTAssertFalse(result)
   }
 }
+
+
+// MARK:- Test cases for `OptionalArrayMatcher`
+
+
+extension MockMatcherTests {
+
+  func testSameOptionalStringArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two", nil]
+    let secondArgument: [Any?] = ["one", "two", nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testDifferentOptionalStringArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two", nil]
+    let secondArgument: [Any?] = ["one", "three", nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testDifferentNumberOfOptionalStringArrayArgumentsDoNotMatch() {
+    //given
+    let firstArgument: [Any?] = ["one", "two", nil]
+    let secondArgument: [Any?] = ["one", nil]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertFalse(result)
+  }
+}

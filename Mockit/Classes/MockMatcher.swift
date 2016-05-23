@@ -35,14 +35,15 @@ public class MockMatcher {
   private var typeMatchers = [String: TypeMatcher]()
 
   private init() {
+    typeMatchers[String(OptionalArrayMatcher.self)] = OptionalArrayMatcher()
+    typeMatchers[String(NonOptionalArrayMatcher.self)] = NonOptionalArrayMatcher()
+    typeMatchers[String(OptionalDictionaryMatcher.self)] = OptionalDictionaryMatcher()
+    typeMatchers[String(NonOptionalDictionaryMatcher.self)] = NonOptionalDictionaryMatcher()
     typeMatchers[String(StringMatcher.self)] = StringMatcher()
-    typeMatchers[String(BoolMatcher.self)] = BoolMatcher()
     typeMatchers[String(IntMatcher.self)] = IntMatcher()
     typeMatchers[String(DoubleMatcher.self)] = DoubleMatcher()
     typeMatchers[String(FloatMatcher.self)] = FloatMatcher()
-    typeMatchers[String(OptionalArrayMatcher.self)] = OptionalArrayMatcher()
-    typeMatchers[String(NonOptionalArrayMatcher.self)] = NonOptionalArrayMatcher()
-    typeMatchers[String(DictionaryMatcher.self)] = DictionaryMatcher()
+    typeMatchers[String(BoolMatcher.self)] = BoolMatcher()
   }
 
   public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {

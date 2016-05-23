@@ -121,21 +121,31 @@ public class OptionalArrayMatcher: TypeMatcher {
 
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
-      case (let firstArg as Array<Any?>, let secondArg as Array<Any?>):
-        return match(firstArg, withOptionalArray: secondArg)
-      default:
-        return false
+    case (let firstArg as Array<Any?>, let secondArg as Array<Any?>):
+      return match(firstArg, withArray: secondArg)
+    case (let firstArg as Array<String?>, let secondArg as Array<String?>):
+      return match(firstArg, withArray: secondArg)
+    case (let firstArg as Array<Int?>, let secondArg as Array<Int?>):
+      return match(firstArg, withArray: secondArg)
+    case (let firstArg as Array<Bool?>, let secondArg as Array<Bool?>):
+      return match(firstArg, withArray: secondArg)
+    case (let firstArg as Array<Float?>, let secondArg as Array<Float?>):
+      return match(firstArg, withArray: secondArg)
+    case (let firstArg as Array<Double?>, let secondArg as Array<Double?>):
+      return match(firstArg, withArray: secondArg)
+    default:
+      return false
     }
   }
 
-  private func match(optionalArray: Array<Any?>, withOptionalArray withArray: Array<Any?>) -> Bool {
-    guard optionalArray.count == withArray.count else {
+  private func match<T: Any>(array: Array<T?>, withArray: Array<T?>) -> Bool {
+    guard array.count == withArray.count else {
       return false
     }
 
-    return Array(zip(optionalArray, withArray)).filter({
+    return Array(zip(array, withArray)).filter({
       MockMatcher.sharedInstance.match(arguments: $0, withArguments: $1)
-    }).count == optionalArray.count
+    }).count == array.count
   }
 }
 
@@ -149,12 +159,22 @@ public class NonOptionalArrayMatcher: TypeMatcher {
     switch (arg, withArg) {
       case (let firstArg as Array<Any>, let secondArg as Array<Any>):
         return match(firstArg, withArray: secondArg)
+      case (let firstArg as Array<String>, let secondArg as Array<String>):
+        return match(firstArg, withArray: secondArg)
+      case (let firstArg as Array<Int>, let secondArg as Array<Int>):
+        return match(firstArg, withArray: secondArg)
+      case (let firstArg as Array<Bool>, let secondArg as Array<Bool>):
+        return match(firstArg, withArray: secondArg)
+      case (let firstArg as Array<Float>, let secondArg as Array<Float>):
+        return match(firstArg, withArray: secondArg)
+      case (let firstArg as Array<Double>, let secondArg as Array<Double>):
+        return match(firstArg, withArray: secondArg)
       default:
         return false
     }
   }
 
-  private func match(array: Array<Any>, withArray: Array<Any>) -> Bool {
+  private func match<T: Any>(array: Array<T>, withArray: Array<T>) -> Bool {
     guard array.count == withArray.count else {
       return false
     }
@@ -166,29 +186,51 @@ public class NonOptionalArrayMatcher: TypeMatcher {
 }
 
 
-// MARK:- `Dictionary` matcher implementation
+// MARK:- `OptionalDictionary` matcher implementation
 
 
-public class DictionaryMatcher: TypeMatcher {
+public class OptionalDictionaryMatcher: TypeMatcher {
 
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
-      case (let firstArg as NSDictionary, let secondArg as NSDictionary):
+      case (let firstArg as Dictionary<String, Any?>, let secondArg as Dictionary<String, Any?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, String?>, let secondArg as Dictionary<String, String?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Int?>, let secondArg as Dictionary<String, Int?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Bool?>, let secondArg as Dictionary<String, Bool?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Float?>, let secondArg as Dictionary<String, Float?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Double?>, let secondArg as Dictionary<String, Double?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Any?>, let secondArg as Dictionary<Int, Any?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, String?>, let secondArg as Dictionary<Int, String?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Int?>, let secondArg as Dictionary<Int, Int?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Bool?>, let secondArg as Dictionary<Int, Bool?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Float?>, let secondArg as Dictionary<Int, Float?>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Double?>, let secondArg as Dictionary<Int, Double?>):
         return match(firstArg, withDictionary: secondArg)
       default:
         return false
     }
   }
 
-  private func match(dictionary: NSDictionary, withDictionary: NSDictionary) -> Bool {
-    var firstDictionaryKeys = Array<Any>()
-    var secondDictionaryKeys = Array<Any>()
+  private func match<T1: Any, T2: Any>(dictionary: Dictionary<T1, T2?>, withDictionary: Dictionary<T1, T2?>) -> Bool {
+    var firstDictionaryKeys = Array<T1>()
+    var secondDictionaryKeys = Array<T1>()
 
-    dictionary.keyEnumerator().forEach({ (key) -> () in
+    dictionary.keys.forEach({ (key) -> () in
       firstDictionaryKeys.append(key)
     })
 
-    withDictionary.keyEnumerator().forEach({ (key) -> () in
+    withDictionary.keys.forEach({ (key) -> () in
       secondDictionaryKeys.append(key)
     })
 
@@ -197,7 +239,66 @@ public class DictionaryMatcher: TypeMatcher {
     }
 
     return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter({
-      MockMatcher.sharedInstance.match(arguments: dictionary[$0 as! NSCopying], withArguments: withDictionary[$1 as! NSCopying])
+      MockMatcher.sharedInstance.match(arguments: dictionary[$0]!, withArguments: withDictionary[$1]!)
+    }).count == firstDictionaryKeys.count
+  }
+}
+
+
+// MARK:- `NonOptionalDictionary` matcher implementation
+
+
+public class NonOptionalDictionaryMatcher: TypeMatcher {
+
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+    switch (arg, withArg) {
+    case (let firstArg as Dictionary<String, Any>, let secondArg as Dictionary<String, Any>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<String, String>, let secondArg as Dictionary<String, String>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<String, Int>, let secondArg as Dictionary<String, Int>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<String, Bool>, let secondArg as Dictionary<String, Bool>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<String, Float>, let secondArg as Dictionary<String, Float>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<String, Double>, let secondArg as Dictionary<String, Double>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, Any>, let secondArg as Dictionary<Int, Any>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, String>, let secondArg as Dictionary<Int, String>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, Int>, let secondArg as Dictionary<Int, Int>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, Bool>, let secondArg as Dictionary<Int, Bool>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, Float>, let secondArg as Dictionary<Int, Float>):
+      return match(firstArg, withDictionary: secondArg)
+    case (let firstArg as Dictionary<Int, Double>, let secondArg as Dictionary<Int, Double>):
+      return match(firstArg, withDictionary: secondArg)
+    default:
+      return false
+    }
+  }
+
+  private func match<T1: Any, T2: Any>(dictionary: Dictionary<T1, T2>, withDictionary: Dictionary<T1, T2>) -> Bool {
+    var firstDictionaryKeys = Array<T1>()
+    var secondDictionaryKeys = Array<T1>()
+
+    dictionary.keys.forEach({ (key) -> () in
+      firstDictionaryKeys.append(key)
+    })
+
+    withDictionary.keys.forEach({ (key) -> () in
+      secondDictionaryKeys.append(key)
+    })
+
+    guard MockMatcher.sharedInstance.match(arguments: firstDictionaryKeys, withArguments: secondDictionaryKeys) else {
+      return false
+    }
+
+    return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter({
+      MockMatcher.sharedInstance.match(arguments: dictionary[$0], withArguments: withDictionary[$1])
     }).count == firstDictionaryKeys.count
   }
 }

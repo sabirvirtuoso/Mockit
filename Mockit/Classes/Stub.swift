@@ -30,6 +30,10 @@ import Foundation
  */
 public class Stub {
 
+  public var actualArgs = [Any?]()
+
+  public var callCount = 0
+
   public init() {
   }
 }

@@ -10,6 +10,7 @@
 		0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */; };
 		135B555FC6AE38EF84627C1ECD737324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		1B17C7591CEDA7580079F43B /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C7581CEDA7580079F43B /* StringConstants.swift */; };
+		1B17C75D1CF44B7D0079F43B /* ActionPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */; };
 		1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A11CEC31CD0016B4E1 /* State.swift */; };
 		1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */; };
 		1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */; };
@@ -48,6 +49,7 @@
 		1957D3A2E16599A2D04BC663116CAB93 /* Pods-Mockit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Mockit_Example-umbrella.h"; sourceTree = "<group>"; };
 		199594EC1E4A8A4F452361D1045423E5 /* Pods-Mockit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B17C7581CEDA7580079F43B /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionPerformer.swift; sourceTree = "<group>"; };
 		1B3F87A11CEC31CD0016B4E1 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationMode.swift; sourceTree = "<group>"; };
 		1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationData.swift; sourceTree = "<group>"; };
@@ -190,11 +192,12 @@
 		C119C37CC47DEF155B67A3E0B0106E62 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C076CBB806411488802F7964F459C847 /* Mock.swift */,
 				4CA67B2552603C004DA0B624E3C9569A /* CallHandler.swift */,
 				036FED38712F6CBAF2595F9B3CECC078 /* CallHandlerImpl.swift */,
-				C076CBB806411488802F7964F459C847 /* Mock.swift */,
-				97C698411F1B041206CC53C7614B506B /* Stub.swift */,
 				1B3F87A11CEC31CD0016B4E1 /* State.swift */,
+				97C698411F1B041206CC53C7614B506B /* Stub.swift */,
+				1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */,
 				1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */,
 				1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */,
 				1B3F87A71CEC40310016B4E1 /* MockFailer.swift */,
@@ -376,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B17C75D1CF44B7D0079F43B /* ActionPerformer.swift in Sources */,
 				FB8703281CEDF8C300A68A68 /* TypeMatcher.swift in Sources */,
 				FC38B7E6C19EA7649EABD6FDBD69609C /* CallHandler.swift in Sources */,
 				0D8CDAE180C279E7BC4CBC2080A00266 /* CallHandlerImpl.swift in Sources */,

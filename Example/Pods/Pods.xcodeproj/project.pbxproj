@@ -11,6 +11,7 @@
 		135B555FC6AE38EF84627C1ECD737324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		1B17C7591CEDA7580079F43B /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C7581CEDA7580079F43B /* StringConstants.swift */; };
 		1B17C75D1CF44B7D0079F43B /* ActionPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */; };
+		1B17C75F1CF44D470079F43B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17C75E1CF44D470079F43B /* Action.swift */; };
 		1B3F87A21CEC31CD0016B4E1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A11CEC31CD0016B4E1 /* State.swift */; };
 		1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */; };
 		1B3F87A61CEC3C0D0016B4E1 /* VerificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */; };
@@ -50,6 +51,7 @@
 		199594EC1E4A8A4F452361D1045423E5 /* Pods-Mockit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Mockit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B17C7581CEDA7580079F43B /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionPerformer.swift; sourceTree = "<group>"; };
+		1B17C75E1CF44D470079F43B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		1B3F87A11CEC31CD0016B4E1 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationMode.swift; sourceTree = "<group>"; };
 		1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationData.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				1B3F87A11CEC31CD0016B4E1 /* State.swift */,
 				97C698411F1B041206CC53C7614B506B /* Stub.swift */,
 				1B17C75C1CF44B7D0079F43B /* ActionPerformer.swift */,
+				1B17C75E1CF44D470079F43B /* Action.swift */,
 				1B3F87A31CEC365D0016B4E1 /* VerificationMode.swift */,
 				1B3F87A51CEC3C0D0016B4E1 /* VerificationData.swift */,
 				1B3F87A71CEC40310016B4E1 /* MockFailer.swift */,
@@ -388,6 +391,7 @@
 				D1C3C85DF3D7436CD5365850872F223A /* Mockit-dummy.m in Sources */,
 				4F75ABD3101C385491ACC80C03FFFAEA /* Stub.swift in Sources */,
 				FB8703261CEDF73100A68A68 /* MockMatcher.swift in Sources */,
+				1B17C75F1CF44D470079F43B /* Action.swift in Sources */,
 				1B3F87AA1CEC49160016B4E1 /* MockFailerImpl.swift in Sources */,
 				1B3F87A41CEC365D0016B4E1 /* VerificationMode.swift in Sources */,
 				1B17C7591CEDA7580079F43B /* StringConstants.swift in Sources */,

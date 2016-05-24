@@ -252,32 +252,32 @@ public class NonOptionalDictionaryMatcher: TypeMatcher {
 
   public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
-    case (let firstArg as Dictionary<String, Any>, let secondArg as Dictionary<String, Any>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<String, String>, let secondArg as Dictionary<String, String>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<String, Int>, let secondArg as Dictionary<String, Int>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<String, Bool>, let secondArg as Dictionary<String, Bool>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<String, Float>, let secondArg as Dictionary<String, Float>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<String, Double>, let secondArg as Dictionary<String, Double>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, Any>, let secondArg as Dictionary<Int, Any>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, String>, let secondArg as Dictionary<Int, String>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, Int>, let secondArg as Dictionary<Int, Int>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, Bool>, let secondArg as Dictionary<Int, Bool>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, Float>, let secondArg as Dictionary<Int, Float>):
-      return match(firstArg, withDictionary: secondArg)
-    case (let firstArg as Dictionary<Int, Double>, let secondArg as Dictionary<Int, Double>):
-      return match(firstArg, withDictionary: secondArg)
-    default:
-      return false
+      case (let firstArg as Dictionary<String, Any>, let secondArg as Dictionary<String, Any>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, String>, let secondArg as Dictionary<String, String>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Int>, let secondArg as Dictionary<String, Int>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Bool>, let secondArg as Dictionary<String, Bool>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Float>, let secondArg as Dictionary<String, Float>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<String, Double>, let secondArg as Dictionary<String, Double>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Any>, let secondArg as Dictionary<Int, Any>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, String>, let secondArg as Dictionary<Int, String>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Int>, let secondArg as Dictionary<Int, Int>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Bool>, let secondArg as Dictionary<Int, Bool>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Float>, let secondArg as Dictionary<Int, Float>):
+        return match(firstArg, withDictionary: secondArg)
+      case (let firstArg as Dictionary<Int, Double>, let secondArg as Dictionary<Int, Double>):
+        return match(firstArg, withDictionary: secondArg)
+      default:
+        return false
     }
   }
 

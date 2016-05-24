@@ -33,7 +33,7 @@ public class Action<T> {
   private var closure: () -> T
   private var returnsValue: Bool
 
-  init(withBlock closure: () -> T, returnsValue: Bool = false) {
+  public init(withBlock closure: () -> T, returnsValue: Bool = false) {
     self.closure = closure
     self.returnsValue = returnsValue
   }

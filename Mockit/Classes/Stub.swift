@@ -67,6 +67,7 @@ public class Stub {
   }
 
   public func satisfyStub(withActualArgs actualArgs: [Any?]) -> Bool {
+    callCount += 1
     self.actualArgs = actualArgs
 
     guard argumentMatchers.count > 0 else {

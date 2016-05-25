@@ -28,7 +28,7 @@ import Foundation
  */
 public protocol ArgumentMatcher {
 
-  func match(arguments args: [Any?], withArguments withArgs: [Any?]) -> Bool
+  func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool
 
 }
 
@@ -40,7 +40,7 @@ public protocol ArgumentMatcher {
  */
 public class Anything: ArgumentMatcher {
 
-  public func match(arguments args: [Any?], withArguments withArgs: [Any?]) -> Bool {
+  public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return true
   }
 }
@@ -53,7 +53,7 @@ public class Anything: ArgumentMatcher {
  */
 public class Exact: ArgumentMatcher {
 
-  public func match(arguments args: [Any?], withArguments withArgs: [Any?]) -> Bool {
+  public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return MockMatcher.sharedInstance.match(arguments: args, withArguments: withArgs)
   }
 }

@@ -37,14 +37,14 @@ import Foundation
  */
 public struct AnyValue {
 
-  static let string = ""
-  static let bool = false
+  public static let string = ""
+  public static let bool = false
 
-  static let int = 0
-  static let double: Double = 0
-  static let float: Float = 0
+  public static let int = 0
+  public static let double: Double = 0
+  public static let float: Float = 0
 
-  static let array = []
-  static let dictionary = [:]
+  public static let array = []
+  public static let dictionary = [:]
 
 }

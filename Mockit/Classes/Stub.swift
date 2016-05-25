@@ -31,9 +31,64 @@ import Foundation
 public class Stub {
 
   public var actualArgs = [Any?]()
-
   public var callCount = 0
 
+  private var expectedArgs = [Any?]()
+  private var functionName: String!
+  private var argumentMatchers = [ArgumentMatcher]()
+
+  private var actionPerformer: ActionPerformer!
+
   public init() {
+
+  }
+
+  public func call<T: Any>(withReturnValue returnValue: T,
+                   andArgumentMatching argumentMatchers: [ArgumentMatcher] = []) -> Actionable<T> {
+    guard assertArgumentMatcherCount() else {
+      fatalError("There is a mismatch between number of expected arguments and its corresponding matcher")
+    }
+
+    self.argumentMatchers = argumentMatchers
+
+    let actionable = Actionable(ofStub: self, withReturnValue: returnValue)
+    actionPerformer = actionable
+
+    return actionable
+  }
+
+  public func acceptStub(withFunctionName functionName: String, andExpectedArgs expectedArgs: [Any?]) {
+    self.functionName = functionName
+    self.expectedArgs = expectedArgs
+  }
+
+  public func satisfyStub(withFunctionName functionName: String) -> Bool {
+    return self.functionName == functionName
+  }
+
+  public func satisfyStub(withActualArgs actualArgs: [Any?]) -> Bool {
+    var argumentsMatched = true
+
+    for (index, argumentMatcher) in argumentMatchers.enumerate() {
+      if !argumentMatcher.match(arguments: expectedArgs[index], withArguments: actualArgs[index]) {
+        argumentsMatched = false
+
+        break
+      }
+    }
+
+    return argumentsMatched
+  }
+
+  public func performActions() -> Any? {
+    return actionPerformer.performActions()
+  }
+
+  private func assertArgumentMatcherCount() -> Bool {
+    if argumentMatchers.count > 0 && argumentMatchers.count != expectedArgs.count {
+      return false
+    }
+
+    return true
   }
 }

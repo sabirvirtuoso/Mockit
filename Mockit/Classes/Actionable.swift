@@ -92,7 +92,7 @@ public class Actionable<T>: ActionPerformer {
   }
 
   private func indexOfAction() -> Int {
-    return actions.count > stub.callCount ? actions.count - 1 : stub.callCount - 1
+    return stub.callCount > actions.count ? actions.count - 1 : stub.callCount - 1
   }
 
   private func performAction(action: Action<T>) -> Any? {

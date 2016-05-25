@@ -45,11 +45,11 @@ public class Stub {
 
   public func call<T: Any>(withReturnValue returnValue: T,
                    andArgumentMatching argumentMatchers: [ArgumentMatcher] = []) -> Actionable<T> {
+    self.argumentMatchers = argumentMatchers
+
     guard assertArgumentMatcherCount() else {
       fatalError("There is a mismatch between number of expected arguments and its corresponding matcher")
     }
-
-    self.argumentMatchers = argumentMatchers
 
     let actionable = Actionable(ofStub: self, withReturnValue: returnValue)
     actionPerformer = actionable
@@ -67,6 +67,16 @@ public class Stub {
   }
 
   public func satisfyStub(withActualArgs actualArgs: [Any?]) -> Bool {
+    self.actualArgs = actualArgs
+
+    guard argumentMatchers.count > 0 else {
+      return MockMatcher.sharedInstance.match(arguments: expectedArgs, withArguments: actualArgs)
+    }
+
+    return satisfyArgumentMatcher()
+  }
+
+  private func satisfyArgumentMatcher() -> Bool {
     var argumentsMatched = true
 
     for (index, argumentMatcher) in argumentMatchers.enumerate() {

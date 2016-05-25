@@ -27,7 +27,7 @@ import Foundation
  * `Actionable<T>` is responsible for registering actions on a particular stub and
  * performing them when a real call is made.
  */
-public class Actionable<T> {
+public class Actionable<T>: ActionPerformer {
 
   private var actions = [Action<T>]()
 

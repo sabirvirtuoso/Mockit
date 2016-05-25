@@ -252,6 +252,20 @@ extension MockMatcherTests {
 
 extension MockMatcherTests {
 
+  func testEmptyOptionalArrayArgumentsMatch() {
+    //given
+    let firstArgument: [Any?] = []
+    let secondArgument: [Any?] = []
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
   func testSameOptionalStringArrayArgumentsMatch() {
     //given
     let firstArgument: [String?] = ["one", "two", nil]
@@ -468,6 +482,20 @@ extension MockMatcherTests {
 
 
 extension MockMatcherTests {
+
+  func testEmptyArrayArgumentsMatch() {
+    //given
+    let firstArgument = []
+    let secondArgument = []
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
 
   func testSameStringArrayArgumentsMatch() {
     //given
@@ -686,6 +714,20 @@ extension MockMatcherTests {
 
 extension MockMatcherTests {
 
+  func testEmptyDictionaryWithStringKeysArgumentsMatch() {
+    //given
+    let firstArgument: [String: Any] = [:]
+    let secondArgument: [String: Any] = [:]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
   func testDictionaryWithSameStringKeysAndSameIntValuesMatch() {
     //given
     let firstArgument = ["one" : 1, "two" : 2, "three" : 3]
@@ -902,6 +944,20 @@ extension MockMatcherTests {
 
 
 extension MockMatcherTests {
+
+  func testEmptyDictionaryWithIntKeysArgumentsMatch() {
+    //given
+    let firstArgument: [Int: Any] = [:]
+    let secondArgument: [Int: Any] = [:]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
 
   func testDictionaryWithSameIntKeysAndSameIntValuesMatch() {
     //given
@@ -1120,6 +1176,20 @@ extension MockMatcherTests {
 
 extension MockMatcherTests {
 
+  func testEmptyOptionalDictionaryWithStringKeysArgumentsMatch() {
+    //given
+    let firstArgument: [String: Any?] = [:]
+    let secondArgument: [String: Any?] = [:]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
   func testDictionaryWithSameStringKeysAndSameOptionalIntValuesMatch() {
     //given
     let firstArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
@@ -1336,6 +1406,20 @@ extension MockMatcherTests {
 
 
 extension MockMatcherTests {
+
+  func testEmptyOptionalDictionaryWithIntKeysArgumentsMatch() {
+    //given
+    let firstArgument: [Int: Any?] = [:]
+    let secondArgument: [Int: Any?] = [:]
+
+    let sut = mockMatcher
+
+    //when
+    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+
+    //then
+    XCTAssertTrue(result)
+  }
 
   func testDictionaryWithSameIntKeysAndSameOptionalIntValuesMatch() {
     //given

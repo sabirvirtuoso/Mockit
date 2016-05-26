@@ -31,7 +31,7 @@ import Mockit
 
 class TestCallHandler: CallHandler {
 
-  var argumentsOfSpecificCall: [Any?]!
+  var argumentsOfSpecificCall: [Any?]?
   
   let testCase: XCTestCase
   var stub: Stub!
@@ -190,8 +190,8 @@ class MockTests: XCTestCase {
     let arguments = sut.of(sut.doSomethingWithNonOptionalArguments(testArgumentOne, arg2: testArgumentTwo))
 
     //then
-    XCTAssertEqual((arguments[0] as! String), testArgumentOne)
-    XCTAssertEqual((arguments[1] as! Int), testArgumentTwo)
+    XCTAssertEqual((arguments![0] as! String), testArgumentOne)
+    XCTAssertEqual((arguments![1] as! Int), testArgumentTwo)
   }
 
   func testCallingOfReturnsCorrectlyForNoArguments() {
@@ -201,7 +201,7 @@ class MockTests: XCTestCase {
     let arguments = sut.of(sut.doSomethingWithNoArguments())
 
     //then
-    XCTAssertNil(arguments[0])
+    XCTAssertNil(arguments![0])
   }
 
   func testCallingOfReturnsCorrectlyForSomeOptionalArguments() {
@@ -212,7 +212,7 @@ class MockTests: XCTestCase {
     let arguments = sut.of(sut.doSomethingWithSomeOptionalArguments(nil, arg2: testArgument))
 
     //then
-    XCTAssertNil(arguments[0])
-    XCTAssertEqual((arguments[1] as! Int), testArgument)
+    XCTAssertNil(arguments![0])
+    XCTAssertEqual((arguments![1] as! Int), testArgument)
   }
 }

@@ -35,7 +35,7 @@ public class CallHandlerImpl: CallHandler {
   
   private let mockFailer: MockFailer
 
-  // this is the stub which is currenly being configured (if any)
+  // this is the stub which is currenly being configured or called
   private var stub: Stub!
   private var stubs = [Stub]()
   
@@ -61,6 +61,7 @@ public class CallHandlerImpl: CallHandler {
   }
 
   public func verify(verificationMode mode: VerificationMode) {
+    verificationMode = mode
     transtion(toState: .Verify)
   }
 
@@ -86,14 +87,16 @@ public class CallHandlerImpl: CallHandler {
         registerStub(ofFunction: function, withArgs: args)
 
         transtion(toState: .None)
-//      case .Verify: break
+      case .Verify:
+        verifyCall(ofFunction: function, atFile: file, inLine: line)
+
+        transtion(toState: .None)
       case .GetArgs:
         assignArguments(ofFunction: function)
 
         transtion(toState: .None)
-      default: break
     }
-    
+
     return returnValue
   }
 
@@ -141,6 +144,45 @@ extension CallHandlerImpl {
     stub.acceptStub(withFunctionName: function, andExpectedArgs: args)
 
     stubs.append(stub)
+  }
+}
+
+
+// MARK:- CallHandler state `Verify` functionalities
+
+
+extension CallHandlerImpl {
+
+  private func verifyCall(ofFunction function: String, atFile file: String,
+                                     inLine line: UInt) {
+    let timesCalled = timesInvoked(function)
+    let calledOnly = invokedOnly(function)
+
+    let verificationData = VerificationData(build: {
+      $0.functionName = function
+      $0.calledOnly = calledOnly
+      $0.timesInvoked = timesCalled
+      $0.file = file
+      $0.line = line
+    })
+
+    verificationMode.verify(verificationData, mockFailer: mockFailer)
+  }
+
+  private func timesInvoked(function: String) -> Int {
+    guard let arguments = callHistory[function] else {
+      return 0
+    }
+
+    return arguments.count
+  }
+
+  private func invokedOnly(function: String) -> Bool {
+    guard let _ = callHistory[function] else {
+      return false
+    }
+
+    return callHistory.count == 1
   }
 }
 

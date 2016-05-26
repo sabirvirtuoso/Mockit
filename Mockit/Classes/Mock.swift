@@ -38,7 +38,7 @@ public protocol Mock {
 
   func getArgs(callOrder order: Int) -> Mock
 
-  func of(returnValue: Any) -> [Any?]
+  func of(returnValue: Any?) -> [Any?]
 
 }
 
@@ -64,7 +64,7 @@ public extension Mock {
     return self
   }
 
-  func of(returnValue: Any) -> [Any?] {
+  func of(returnValue: Any?) -> [Any?] {
     return callHandler.argumentsOfSpecificCall
   }
 }

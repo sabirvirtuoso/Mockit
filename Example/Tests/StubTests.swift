@@ -37,12 +37,34 @@ class StubTests: XCTestCase {
     stub = Stub()
   }
 
-  func testCallCreatesActionable() {
+  func testCallWithNonNilReturnValueCreatesActionable() {
     //Given
     let sut = stub
 
     //When
     let actionable = sut.call(withReturnValue: 13)
+
+    //Then
+    XCTAssertNotNil(actionable)
+  }
+
+  func testCallWithVoidReturnValueCreatesActionable() {
+    //Given
+    let sut = stub
+
+    //When
+    let actionable = sut.call(withReturnValue: ())
+
+    //Then
+    XCTAssertNotNil(actionable)
+  }
+
+  func testCallWithNilReturnValueCreatesActionable() {
+    //Given
+    let sut = stub
+
+    //When
+    let actionable: Actionable<Any?> = sut.call(withReturnValue: nil)
 
     //Then
     XCTAssertNotNil(actionable)

@@ -39,7 +39,7 @@ public class CallHandlerImpl: CallHandler {
   private var stub: Stub!
   private var stubs = [Stub]()
   
-  private var state: State!
+  private var state = State.None
   private var verificationMode: VerificationMode!
 
   private var callHistory = [String: [[Any?]]]()
@@ -76,7 +76,10 @@ public class CallHandlerImpl: CallHandler {
         if stubCalled(ofFunction: function, withArgs: args) {
             return stub.performActions()
         }
-//      case .When: break
+      case .When:
+        registerStub(ofFunction: function, withArgs: args)
+
+        transtion(toState: .None)
 //      case .Verify: break
 //      case .GetArgs: break
       default: break
@@ -118,5 +121,18 @@ extension CallHandlerImpl {
 
   private func match(stub: Stub, withFunctionName functionName: String, andArgs args: [Any?]) -> Bool {
     return stub.satisfyStub(withFunctionName: functionName) && stub.satisfyStub(withActualArgs: args)
+  }
+}
+
+
+// MARK:- CallHandler state `When` functionalities
+
+
+extension CallHandlerImpl {
+
+  private func registerStub(ofFunction function: String, withArgs args: [Any?]) {
+    stub.acceptStub(withFunctionName: function, andExpectedArgs: args)
+
+    stubs.append(stub)
   }
 }

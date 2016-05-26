@@ -43,8 +43,8 @@ public class Stub {
 
   }
 
-  public func call<T: Any>(withReturnValue returnValue: T,
-                   andArgumentMatching argumentMatchers: [ArgumentMatcher] = []) -> Actionable<T> {
+  public func call<T: Any>(withReturnValue returnValue: T?,
+                   andArgumentMatching argumentMatchers: [ArgumentMatcher] = []) -> Actionable<T?> {
     self.argumentMatchers = argumentMatchers
 
     guard assertArgumentMatcherCount() else {

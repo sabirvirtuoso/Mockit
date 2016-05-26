@@ -37,9 +37,12 @@ public class CallHandlerImpl: CallHandler {
 
   // this is the stub which is currenly being configured (if any)
   private var stub: Stub!
+  private var stubs = [Stub]()
   
   private var state: State!
   private var verificationMode: VerificationMode!
+
+  private var callHistory = [String: [[Any?]]]()
 
   public init(_ testCase: XCTestCase) {
     mockFailer = MockFailerImpl(withTestCase: testCase)
@@ -66,6 +69,19 @@ public class CallHandlerImpl: CallHandler {
   
   public func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
+    switch(state) {
+      case .None:
+        recordCallHistory(ofFunction: function, withArgs: args)
+
+        if stubCalled(ofFunction: function, withArgs: args) {
+            return stub.performActions()
+        }
+//      case .When: break
+//      case .Verify: break
+//      case .GetArgs: break
+      default: break
+    }
+
     argumentsOfSpecificCall = args
     
     return returnValue
@@ -73,5 +89,34 @@ public class CallHandlerImpl: CallHandler {
 
   private func transtion(toState state: State) {
     self.state = state
+  }
+}
+
+
+// MARK:- CallHandler state `None` functionalities
+
+
+extension CallHandlerImpl {
+
+  private func recordCallHistory(ofFunction function: String, withArgs args: [Any?]) {
+    callHistory[function] = callHistory[function] ?? []
+
+    callHistory[function]!.append(args)
+  }
+
+  private func stubCalled(ofFunction function: String, withArgs args: [Any?]) -> Bool {
+    for stub in stubs {
+      if match(stub, withFunctionName: function, andArgs: args) {
+        self.stub = stub
+
+        return true
+      }
+    }
+
+    return false
+  }
+
+  private func match(stub: Stub, withFunctionName functionName: String, andArgs args: [Any?]) -> Bool {
+    return stub.satisfyStub(withFunctionName: functionName) && stub.satisfyStub(withActualArgs: args)
   }
 }

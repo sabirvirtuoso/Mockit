@@ -31,7 +31,7 @@ import XCTest
 
 public class CallHandlerImpl: CallHandler {
 
-  public var argumentsOfSpecificCall: [Any?]!
+  public var argumentsOfSpecificCall: [Any?]?
   
   private let mockFailer: MockFailer
 
@@ -43,6 +43,7 @@ public class CallHandlerImpl: CallHandler {
   private var verificationMode: VerificationMode!
 
   private var callHistory = [String: [[Any?]]]()
+  private var callOrder = 1
 
   public init(_ testCase: XCTestCase) {
     mockFailer = MockFailerImpl(withTestCase: testCase)
@@ -64,6 +65,11 @@ public class CallHandlerImpl: CallHandler {
   }
 
   public func getArgs(callOrder order: Int) {
+    guard order > 0 else {
+      fatalError("Call Order of a method must be greater than 0")
+    }
+
+    callOrder = order
     transtion(toState: .GetArgs)
   }
   
@@ -81,11 +87,12 @@ public class CallHandlerImpl: CallHandler {
 
         transtion(toState: .None)
 //      case .Verify: break
-//      case .GetArgs: break
+      case .GetArgs:
+        assignArguments(ofFunction: function)
+
+        transtion(toState: .None)
       default: break
     }
-
-    argumentsOfSpecificCall = args
     
     return returnValue
   }
@@ -134,5 +141,24 @@ extension CallHandlerImpl {
     stub.acceptStub(withFunctionName: function, andExpectedArgs: args)
 
     stubs.append(stub)
+  }
+}
+
+
+// MARK:- CallHandler state `GetArgs` functionalities
+
+
+extension CallHandlerImpl {
+
+  private func assignArguments(ofFunction functionName: String) {
+    guard let arguments = callHistory[functionName] else {
+      fatalError("No arguments are recorded for method \(functionName)")
+    }
+
+    guard callOrder <= arguments.count else {
+      fatalError("Call Order for method \(functionName) is greater than number of times method is called")
+    }
+
+    argumentsOfSpecificCall = arguments[callOrder - 1]
   }
 }

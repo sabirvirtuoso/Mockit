@@ -616,3 +616,177 @@ extension StubTests {
     XCTAssertEqual(array.count, 3)
   }
 }
+
+
+// MARK:- Test cases for `Stub` actionable thenAnswer
+
+
+extension StubTests {
+
+  func testCallingStubOnceWithSuccessfulArgumentMatchingThenAnswerValue() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValue = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValue, 2)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingThenAnswerLastValueForNonCorrespondingCalls() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 4)
+    XCTAssertEqual(returnValueOfSecondCall, 4)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingThenAnswerCorrespondingValues() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 3
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 4
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 4)
+    XCTAssertEqual(returnValueOfSecondCall, 6)
+    XCTAssertEqual(returnValueOfThirdCall, 8)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingInSomeCallsThenAnswerCorrespondingValues() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 3
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 4
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: [2, "two", true, nil])
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 4)
+    XCTAssertEqual(returnValueOfThirdCall, 8)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingInSomeCallsThenAnswerLastValueForNonCorrespondingCalls() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 3
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 4
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: [2, "two", true, nil])
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFourthCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 4)
+    XCTAssertEqual(returnValueOfSecondCall, 6)
+    XCTAssertEqual(returnValueOfFourthCall, 8)
+  }
+}

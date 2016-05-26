@@ -790,3 +790,94 @@ extension StubTests {
     XCTAssertEqual(returnValueOfFourthCall, 8)
   }
 }
+
+
+// MARK:- Test cases for `Stub` actionable chaining
+
+
+extension StubTests {
+
+  func testCallingStubByChainingDifferentActionablesIncludingSingleThenReturn() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var flag = false
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenReturn(42).thenDo({
+      (args: [Any?]) -> Void in
+
+      flag = true
+    }).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 42)
+
+    XCTAssertNil(returnValueOfSecondCall)
+    XCTAssertTrue(flag)
+
+    XCTAssertEqual(returnValueOfThirdCall, 4)
+  }
+
+  func testCallingStubByChainingDifferentActionablesIncludingMultipleThenReturn() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [2, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var flag = false
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      flag = true
+    }).thenReturn(42, 17).thenAnswer({
+      (args: [Any?]) -> Int in
+
+      return (args[0] as! Int) * 2
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions() as! Int
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFourthCall = actionable.performActions() as! Int
+
+    //Then
+    XCTAssertNil(returnValueOfFirstCall)
+    XCTAssertTrue(flag)
+
+    XCTAssertEqual(returnValueOfSecondCall, 42)
+    XCTAssertEqual(returnValueOfThirdCall, 17)
+
+    XCTAssertEqual(returnValueOfFourthCall, 4)
+  }
+}

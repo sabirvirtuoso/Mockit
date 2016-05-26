@@ -275,7 +275,7 @@ class StubTests: XCTestCase {
 }
 
 
-// MARK:- Test cases for `Stub` actionable and performing actions
+// MARK:- Test cases for `Stub` actionable thenReturn
 
 
 extension StubTests {
@@ -415,5 +415,204 @@ extension StubTests {
     XCTAssertEqual(returnValueOfFirstCall, 42)
     XCTAssertEqual(returnValueOfSecondCall, 17)
     XCTAssertEqual(returnValueOfFourthCall, 18)
+  }
+}
+
+
+// MARK:- Test cases for `Stub` actionable thenDo
+
+
+extension StubTests {
+
+  func testCallingStubOnceWithSuccessfulArgumentMatchingThenDoAction() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var flag = false
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      flag = true
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValue = actionable.performActions()
+
+    //Then
+    XCTAssertNil(returnValue)
+    XCTAssertTrue(flag)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingThenDoLastActionForNonCorrespondingCalls() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var array = [Bool]()
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      array.append(true)
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions()
+
+    //Then
+    XCTAssertNil(returnValueOfFirstCall)
+    XCTAssertNil(returnValueOfSecondCall)
+
+    XCTAssertEqual(array.count, 2)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingThenDoCorrespondingActions() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var array = [0, 0, 0]
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[0] = 1
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[1] = 2
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[2] = 3
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions()
+
+    //Then
+    XCTAssertNil(returnValueOfFirstCall)
+    XCTAssertEqual(array[0], 1)
+
+    XCTAssertNil(returnValueOfSecondCall)
+    XCTAssertEqual(array[1], 2)
+
+    XCTAssertNil(returnValueOfThirdCall)
+    XCTAssertEqual(array[2], 3)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingInSomeCallsThenDoCorrespondingActions() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var array = [0, 0, 0]
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[0] = 1
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[1] = 2
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[2] = 3
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: [2, "two", true, nil])
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfThirdCall = actionable.performActions()
+
+    //Then
+    XCTAssertNil(returnValueOfFirstCall)
+    XCTAssertEqual(array[0], 1)
+
+    XCTAssertEqual(array[1], 0)
+
+    XCTAssertNil(returnValueOfThirdCall)
+    XCTAssertEqual(array[2], 3)
+  }
+
+  func testCallingStubMultipleTimesWithSuccessfulArgumentMatchingInSomeCallsThenDoLastActionForNonCorrespondingCalls() {
+    //Given
+    let sut = stub
+
+    let functionName = "func"
+    let args: [Any?] = [1, "one", true, nil]
+    let dummyReturnValue = 13
+
+    var array = [Bool]()
+
+    sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo({
+      (args: [Any?]) -> Void in
+
+      array.append(true)
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array.append(true)
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array.append(true)
+    })
+
+    //When
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFirstCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfSecondCall = actionable.performActions()
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: [2, "two", true, nil])
+
+    let _ = sut.satisfyStub(withFunctionName: functionName) && sut.satisfyStub(withActualArgs: args)
+    let returnValueOfFourthCall = actionable.performActions()
+
+    //Then
+    XCTAssertNil(returnValueOfFirstCall)
+    XCTAssertNil(returnValueOfSecondCall)
+    XCTAssertNil(returnValueOfFourthCall)
+
+    XCTAssertEqual(array.count, 3)
   }
 }

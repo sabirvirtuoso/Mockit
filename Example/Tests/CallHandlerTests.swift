@@ -144,7 +144,6 @@ extension CallHandlerTests {
       array[1] = 2
     })
 
-
     //When
     mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)
     mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)
@@ -565,5 +564,70 @@ extension CallHandlerTests {
     XCTAssertNotNil(failer.message)
     XCTAssertNotNil(failer.file)
     XCTAssertNotNil(failer.line)
+  }
+}
+
+
+// MARK:- Test cases for CallHandler state `GetArgs`
+
+
+extension CallHandlerTests {
+
+  func testGetArgsReturnsCorrectNonNilArgumentsWhenMethodIsCalledOnce() {
+    //Given
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 2)
+
+    //When
+    let arguments = mockImplementation.getArgs(callOrder: 1).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    //Then
+    XCTAssertEqual(arguments![0] as? String, "one")
+    XCTAssertEqual(arguments![1] as? Int, 2)
+  }
+
+  func testGetArgsReturnsCorrectNilArgumentsWhenMethodIsCalledOnce() {
+    //Given
+    mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 2)
+
+    //When
+    let arguments = mockImplementation.getArgs(callOrder: 1).of(mockImplementation.doSomethingWithSomeOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    //Then
+    XCTAssertNil(arguments![0])
+    XCTAssertEqual(arguments![1] as? Int, 2)
+  }
+
+  func testGetArgsReturnsCorrectNonNilArgumentsWhenMethodIsCalledMultipleTimes() {
+    //Given
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 2)
+    mockImplementation.doSomethingWithNonOptionalArguments("two", arg2: 3)
+
+    //When
+    let argumentsOfFirstCall = mockImplementation.getArgs(callOrder: 1).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+    let argumentsOfSecondCall = mockImplementation.getArgs(callOrder: 2).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    //Then
+    XCTAssertEqual(argumentsOfFirstCall![0] as? String, "one")
+    XCTAssertEqual(argumentsOfFirstCall![1] as? Int, 2)
+
+    XCTAssertEqual(argumentsOfSecondCall![0] as? String, "two")
+    XCTAssertEqual(argumentsOfSecondCall![1] as? Int, 3)
+  }
+
+  func testGetArgsReturnsCorrectNonNilArgumentsWhenMultipleMethodsAreCalled() {
+    //Given
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 2)
+    mockImplementation.doSomethingWithSomeOptionalArguments("two", arg2: 4)
+
+    //When
+    let argumentsOfFirstMethod = mockImplementation.getArgs(callOrder: 1).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+    let argumentsOfSecondMethod = mockImplementation.getArgs(callOrder: 1).of(mockImplementation.doSomethingWithSomeOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    //Then
+    XCTAssertEqual(argumentsOfFirstMethod![0] as? String, "one")
+    XCTAssertEqual(argumentsOfFirstMethod![1] as? Int, 2)
+
+    XCTAssertEqual(argumentsOfSecondMethod![0] as? String, "two")
+    XCTAssertEqual(argumentsOfSecondMethod![1] as? Int, 4)
   }
 }

@@ -64,3 +64,96 @@ class CallHandlerTests: XCTestCase {
     mockImplementation = MockImplementation(withCallHandler: sut)
   }
 }
+
+
+// MARK:- Test cases for CallHandler state `When`
+
+
+extension CallHandlerTests {
+
+  func testCallingStubOnceWithNonOptionalArgumentsReturnsValueByPerformingActionsOnSuccessfulStubMatching() {
+    //Given
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)).thenReturn(42)
+
+    //When
+    let returnValue = mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //Then
+    XCTAssertEqual(returnValue, 42)
+  }
+
+  func testCallingStubMultipleTimesWithNonOptionalArgumentsReturnsValueByPerformingActionsOnSuccessfulStubMatching() {
+    //Given
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)).thenReturn(42, 18)
+
+    //When
+    let returnValueOfFirstCall = mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    let returnValueOfSecondCall = mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //Then
+    XCTAssertEqual(returnValueOfFirstCall, 42)
+    XCTAssertEqual(returnValueOfSecondCall, 18)
+  }
+
+  func testCallingStubOnceWithOptionalArgumentsReturnsValueByPerformingActionsOnSuccessfulStubMatching() {
+    //Given
+    var flag = false
+
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo({
+      (args: [Any?]) -> Void in
+
+      flag = true
+    })
+
+    //When
+    mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)
+
+    //Then
+    XCTAssertTrue(flag)
+  }
+
+  func testCallingStubMultipleTimesWithOptionalArgumentsReturnsValueByPerformingActionsOnSuccessfulStubMatching() {
+    //Given
+    var array = [0, 0]
+
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[0] = 1
+    }).thenDo({
+      (args: [Any?]) -> Void in
+
+      array[1] = 2
+    })
+
+
+    //When
+    mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)
+    mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)
+
+    //Then
+    XCTAssertEqual(array[0], 1)
+    XCTAssertEqual(array[1], 2)
+  }
+
+  func testCallingStubReturnsDefaultValueOnUnsuccessfulStubMatching() {
+    //Given
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)).thenReturn(42)
+
+    //When
+    let returnValue = mockImplementation.doSomethingWithNonOptionalArguments("two", arg2: 1)
+
+    //Then
+    XCTAssertEqual(returnValue, 0)
+  }
+
+  func testCallingMethodForWhichNoStubIsRegisteredReturnsDefaultValue() {
+    //Given
+
+    //When
+    let returnValue = mockImplementation.doSomethingWithNonOptionalArguments("two", arg2: 1)
+
+    //Then
+    XCTAssertEqual(returnValue, 0)
+  }
+}

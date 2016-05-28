@@ -263,7 +263,302 @@ extension CallHandlerTests {
     XCTAssertNil(failer.line)
 
     //When
-    (mockImplementation.verify(verificationMode: Once()) as!
+    (mockImplementation.verify(verificationMode: AtLeastOnce()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledOnce() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledLessThanOnce() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeAtMostOnceFailsWhenMethodIsCalledMoreThanOnce() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeTimesSucceedsWhenMethodIsCalledGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeTimesFailsWhenMethodIsCalledLessThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeTimesFailsWhenMethodIsCalledMoreThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeAtLeastTimesSucceedsWhenMethodIsCalledGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeAtLeastTimesSucceedsWhenMethodIsCalledMoreThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeAtLeastTimesFailsWhenMethodIsCalledLessThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeAtMostTimesFailsWhenMethodIsCalledMoreThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledLessThanGivenTimes() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeNeverSucceedsWhenMethodIsNeverCalled() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    //When
+    (mockImplementation.verify(verificationMode: Never()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeNeverFailWhenMethodIsCalled() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Never()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testVerificationModeOnlySucceedsWhenMethodIsOnlyCalled() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Only()) as!
+      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+
+    //Then
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+  }
+
+  func testVerificationModeOnlyFailsWhenMethodIsNotOnlyCalled() {
+    //Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNoArguments()
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    //When
+    (mockImplementation.verify(verificationMode: Only()) as!
       MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then

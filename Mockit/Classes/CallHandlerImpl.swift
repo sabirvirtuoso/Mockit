@@ -45,11 +45,11 @@ public class CallHandlerImpl: CallHandler {
   private var callHistory = [String: [[Any?]]]()
   private var callOrder = 1
 
-  public init(_ testCase: XCTestCase) {
+  public init(withTestCase testCase: XCTestCase) {
     mockFailer = MockFailerImpl(withTestCase: testCase)
   }
 
-  public init(_ failer: MockFailer) {
+  public init(withFailer failer: MockFailer) {
     mockFailer = failer
   }
 

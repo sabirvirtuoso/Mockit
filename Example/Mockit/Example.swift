@@ -83,4 +83,12 @@ class Example {
     collaborator.methodThree()
     collaborator.methodThree()
   }
+
+  func ExpectMethodTwoAtLeast() {
+    collaborator.methodTwo()
+  }
+
+  func ExpectOnlyMethodOne() {
+    collaborator.methodOne()
+  }
 }

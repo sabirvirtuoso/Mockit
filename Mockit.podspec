@@ -28,14 +28,14 @@ Mockit is a first attempt at a mocking/stubbing framework for Swift 2.2. It's AP
   s.source           = { :git => "https://github.com/sabirvirtuoso/Mockit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://www.facebook.com/syed.musawi'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Mockit/Classes/**/*'
 
-  s.resource_bundles = {
-    'Mockit' => ['Pod/Assets/*.png']
-  }
+  #s.resource_bundles = {
+  #  'Mockit' => ['Mockit/Assets/*.png']
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'XCTest'

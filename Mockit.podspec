@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "Mockit"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of Mockit."
+  s.version          = "1.0.0"
+  s.summary          = "Mocking framework for unit tests written in Swift."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,25 +18,26 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Mockit is a first attempt at a mocking/stubbing framework for Swift 2.2. It's API is inspired by "Mockito", the famous mocking framework for Java. Mockit is in the very earliest stage of development, but its current features are almost completely usable.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Mockit"
+  s.homepage         = "https://github.com/sabirvirtuoso/Mockit"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Syed Sabir Salman-Al-Musawi" => "sabirvirtuoso@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/Mockit.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/sabirvirtuoso/Mockit.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://www.facebook.com/syed.musawi'
 
-  s.ios.deployment_target = '8.0'
+  s.platform     = :ios, '8.0'
+  s.requires_arc = true
 
-  s.source_files = 'Mockit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'Mockit' => ['Mockit/Assets/*.png']
-  # }
+  s.source_files = 'Pod/Classes/**/*'
+
+  s.resource_bundles = {
+    'Mockit' => ['Pod/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'XCTest'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -40,6 +40,10 @@ class MockExampleCollaborator: ExampleCollaborator, Mock {
     callHandler = CallHandlerImpl(withTestCase: testCase)
   }
 
+  func instanceType() -> MockExampleCollaborator {
+    return self
+  }
+
   override func voidFunction() {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }

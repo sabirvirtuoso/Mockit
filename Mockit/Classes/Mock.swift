@@ -29,14 +29,18 @@ import Foundation
  * It's here to reduce the amount of boiler-plate code when creating mock objects.
  */
 public protocol Mock {
-  
+
+  associatedtype InstanceType
+
   var callHandler: CallHandler { get }
-  
+
+  func instanceType() -> InstanceType
+
   func when() -> Stub
 
-  func verify(verificationMode mode: VerificationMode) -> Mock
+  func verify(verificationMode mode: VerificationMode) -> InstanceType
 
-  func getArgs(callOrder order: Int) -> Mock
+  func getArgs(callOrder order: Int) -> InstanceType
 
   func of(returnValue: Any?) -> [Any?]?
 
@@ -47,21 +51,21 @@ public protocol Mock {
 
 
 public extension Mock {
-  
+
   func when() -> Stub {
     return callHandler.when()
   }
-  
-  func verify(verificationMode mode: VerificationMode) -> Mock {
+
+  func verify(verificationMode mode: VerificationMode) -> InstanceType {
     callHandler.verify(verificationMode: mode)
 
-    return self
+    return instanceType()
   }
 
-  func getArgs(callOrder order: Int) -> Mock {
+  func getArgs(callOrder order: Int) -> InstanceType {
     callHandler.getArgs(callOrder: order)
 
-    return self
+    return instanceType()
   }
 
   func of(returnValue: Any?) -> [Any?]? {

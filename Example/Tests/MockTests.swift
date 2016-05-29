@@ -90,6 +90,10 @@ class TestMockImplementation: Mock {
     self.callHandler = callHandler
   }
 
+  func instanceType() -> TestMockImplementation {
+    return self
+  }
+
   func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) -> Int {
     return callHandler.accept(0, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2) as! Int
   }
@@ -157,7 +161,7 @@ class MockTests: XCTestCase {
     let mock = sut.verify(verificationMode: TestVerificationMode())
 
     //then
-    XCTAssertTrue((mock as! AnyObject) === sut)
+    XCTAssertTrue((mock as AnyObject) === sut)
   }
 
   func testGetArgsIsCalled() {
@@ -178,7 +182,7 @@ class MockTests: XCTestCase {
     let mock = sut.getArgs(callOrder: 1)
 
     //then
-    XCTAssertTrue((mock as! AnyObject) === sut)
+    XCTAssertTrue((mock as AnyObject) === sut)
   }
 
   func testCallingOfReturnsCorrectlyForNonOptionalArguments() {

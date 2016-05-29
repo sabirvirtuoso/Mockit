@@ -37,6 +37,10 @@ class MockImplementation: Mock {
     self.callHandler = callHandler
   }
 
+  func instanceType() -> MockImplementation {
+    return self
+  }
+
   func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) -> Int {
     return callHandler.accept(0, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2) as! Int
   }
@@ -190,8 +194,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Once()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Once()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -209,8 +212,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Once()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    (mockImplementation.verify(verificationMode: Once())).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -227,8 +229,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtLeastOnce()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -246,8 +247,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments("one", arg2: 1)
+    mockImplementation.verify(verificationMode: AtLeastOnce()).doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //Then
     XCTAssertNil(failer.message)
@@ -262,8 +262,7 @@ extension CallHandlerTests {
     XCTAssertNil(failer.line)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtLeastOnce()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -280,8 +279,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostOnce()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -296,8 +294,7 @@ extension CallHandlerTests {
     XCTAssertNil(failer.line)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostOnce()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -315,8 +312,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostOnce()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostOnce()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -334,8 +330,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Times(times: 2)).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -352,8 +347,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Times(times: 2)).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -372,8 +366,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Times(times: 2)) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Times(times: 2)).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -391,8 +384,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -411,8 +403,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -429,8 +420,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtLeastTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -448,8 +438,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -468,8 +457,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -486,8 +474,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: AtMostTimes(times: Times(times: 2))).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -502,8 +489,7 @@ extension CallHandlerTests {
     XCTAssertNil(failer.line)
 
     //When
-    (mockImplementation.verify(verificationMode: Never()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Never()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -520,8 +506,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Never()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Never()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)
@@ -538,8 +523,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Only()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Only()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNil(failer.message)
@@ -557,8 +541,7 @@ extension CallHandlerTests {
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
 
     //When
-    (mockImplementation.verify(verificationMode: Only()) as!
-      MockImplementation).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
+    mockImplementation.verify(verificationMode: Only()).doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int)
 
     //Then
     XCTAssertNotNil(failer.message)

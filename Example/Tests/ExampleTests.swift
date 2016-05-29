@@ -48,7 +48,7 @@ class ExampleTests: XCTestCase {
     sut.doSomething()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Once()) as! MockExampleCollaborator).voidFunction()
+    mockCollaborator.verify(verificationMode: Once()).voidFunction()
   }
 
   func testDoSomethingWithParameters() {
@@ -138,9 +138,9 @@ class ExampleTests: XCTestCase {
     sut.ExpectMethodOneAndThree()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Once()) as! MockExampleCollaborator).methodOne()
-    (mockCollaborator.verify(verificationMode: Never()) as! MockExampleCollaborator).methodTwo()
-    (mockCollaborator.verify(verificationMode: Once()) as! MockExampleCollaborator).methodThree()
+    (mockCollaborator.verify(verificationMode: Once())).methodOne()
+    mockCollaborator.verify(verificationMode: Never()).methodTwo()
+    mockCollaborator.verify(verificationMode: Once()).methodThree()
   }
 
   func testExpectMethodOneTwice() {
@@ -150,7 +150,7 @@ class ExampleTests: XCTestCase {
     sut.ExpectMethodOneTwice()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Times(times: 2)) as! MockExampleCollaborator).methodOne()
+    mockCollaborator.verify(verificationMode: Times(times: 2)).methodOne()
   }
 
   func testExpectOnlyMethodThree() {
@@ -160,7 +160,7 @@ class ExampleTests: XCTestCase {
     sut.ExpectOnlyMethodThree()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Only()) as! MockExampleCollaborator).methodThree()
+    mockCollaborator.verify(verificationMode: Only()).methodThree()
   }
 
   func testExpectAllThreeMethods() {
@@ -170,9 +170,9 @@ class ExampleTests: XCTestCase {
     sut.ExpectAllThreeMethods()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Once()) as! MockExampleCollaborator).methodOne()
-    (mockCollaborator.verify(verificationMode: AtLeastOnce()) as! MockExampleCollaborator).methodTwo()
-    (mockCollaborator.verify(verificationMode: AtMostOnce()) as! MockExampleCollaborator).methodThree()
+    mockCollaborator.verify(verificationMode: Once()).methodOne()
+    mockCollaborator.verify(verificationMode: AtLeastOnce()).methodTwo()
+    mockCollaborator.verify(verificationMode: AtMostOnce()).methodThree()
   }
 
   func testExpectNoMethod() {
@@ -182,9 +182,9 @@ class ExampleTests: XCTestCase {
     sut.ExpectNoMethod()
 
     //Then
-    (mockCollaborator.verify(verificationMode: Never()) as! MockExampleCollaborator).methodOne()
-    (mockCollaborator.verify(verificationMode: Never()) as! MockExampleCollaborator).methodTwo()
-    (mockCollaborator.verify(verificationMode: Never()) as! MockExampleCollaborator).methodThree()
+    mockCollaborator.verify(verificationMode: Never()).methodOne()
+    mockCollaborator.verify(verificationMode: Never()).methodTwo()
+    mockCollaborator.verify(verificationMode: Never()).methodThree()
   }
 
   func testExpectMethodTwoAndThree() {
@@ -194,8 +194,8 @@ class ExampleTests: XCTestCase {
     sut.ExpectMethodTwoAndThree()
 
     //Then
-    (mockCollaborator.verify(verificationMode: AtLeastTimes(times: Times(times: 1))) as! MockExampleCollaborator).methodTwo()
-    (mockCollaborator.verify(verificationMode: Never()) as! MockExampleCollaborator).methodOne()
-    (mockCollaborator.verify(verificationMode: AtMostTimes(times: Times(times: 3))) as! MockExampleCollaborator).methodThree()
+    mockCollaborator.verify(verificationMode: AtLeastTimes(times: Times(times: 1))).methodTwo()
+    mockCollaborator.verify(verificationMode: Never()).methodOne()
+    mockCollaborator.verify(verificationMode: AtMostTimes(times: Times(times: 3))).methodThree()
   }
 }

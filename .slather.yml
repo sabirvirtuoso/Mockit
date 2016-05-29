@@ -1,4 +1,5 @@
 ci_service: travis_ci
 coverage_service: coveralls
+workspace: Example/Mockit.xcworkspace
 xcodeproj: Example/Mockit.xcodeproj
 source_directory: Mockit

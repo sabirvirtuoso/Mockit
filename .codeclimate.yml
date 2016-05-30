@@ -1,6 +1,9 @@
 engines:
   tailor:
     enabled: true
+    checks:
+      forced-type-cast:
+	enabled: false
   duplication:
     enabled: true
     config:

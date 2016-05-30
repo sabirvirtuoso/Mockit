@@ -50,21 +50,21 @@ class Example {
     return collaborator.stringDictFunction(dict)
   }
 
-  func ExpectMethodOneAndThree() {
+  func expectMethodOneAndThree() {
     collaborator.methodOne()
     collaborator.methodThree()
   }
 
-  func ExpectMethodOneTwice() {
+  func expectMethodOneTwice() {
     collaborator.methodOne()
     collaborator.methodOne()
   }
 
-  func ExpectOnlyMethodThree() {
+  func expectOnlyMethodThree() {
     collaborator.methodThree()
   }
 
-  func ExpectAllThreeMethods() {
+  func expectAllThreeMethods() {
     collaborator.methodOne()
 
     collaborator.methodTwo()
@@ -73,22 +73,23 @@ class Example {
     collaborator.methodThree()
   }
 
-  func ExpectNoMethod() {
+  func expectNoMethod() {
     // call nothing
   }
 
-  func ExpectMethodTwoAndThree() {
+  func expectMethodTwoAndThree() {
     collaborator.methodTwo()
 
     collaborator.methodThree()
     collaborator.methodThree()
   }
 
-  func ExpectMethodTwoAtLeast() {
+  func expectMethodTwoAtLeast() {
     collaborator.methodTwo()
   }
 
   func ExpectOnlyMethodOne() {
     collaborator.methodOne()
   }
+
 }

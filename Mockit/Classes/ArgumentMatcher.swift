@@ -47,6 +47,7 @@ public class Anything: ArgumentMatcher {
   public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return true
   }
+
 }
 
 
@@ -64,4 +65,5 @@ public class Exact: ArgumentMatcher {
   public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return MockMatcher.sharedInstance.match(arguments: args, withArguments: withArgs)
   }
+
 }

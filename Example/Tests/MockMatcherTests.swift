@@ -57,6 +57,7 @@ public class CustomMatcher: TypeMatcher {
         return false
     }
   }
+
 }
 
 
@@ -72,66 +73,67 @@ class MockMatcherTests: XCTestCase {
   }
 
   func testBothNilArgumentsMatch() {
-    //given
+    // Given
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: nil, withArguments: nil)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testNilAndNonNilArgumentsDoNotMatch() {
-    //given
+    // Given
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: nil, withArguments: "Non Nil")
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testNonNilAndNilArgumentsDoNotMatch() {
-    //given
+    // Given
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: 2, withArguments: nil)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testCustomMatcherRegistration() {
-    //given
+    // Given
     let sut = mockMatcher
 
     sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
     let classToMatch = DifferentClassForMatching()
 
-    //when
+    // When
     let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testCustomMatcherUnregistration() {
-    //given
+    // Given
     let sut = mockMatcher
 
     sut.unregister(CustomMatcher.self)
 
     let classToMatch = DifferentClassForMatching()
 
-    //when
+    // When
     let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -141,32 +143,33 @@ class MockMatcherTests: XCTestCase {
 extension MockMatcherTests {
 
   func testSameStringArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = "argument"
     let secondArgument = "argument"
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentStringArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = "argument"
     let secondArgument = "argumentTwo"
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -176,32 +179,33 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testSameBoolArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = true
     let secondArgument = true
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentBoolArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = true
     let secondArgument = false
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -211,32 +215,33 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testSameIntArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = 10
     let secondArgument = 10
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentIntArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = 10
     let secondArgument = 15
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -246,32 +251,33 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testSameDoubleArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = 10.120
     let secondArgument = 10.120
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentDoubleArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = 10.130
     let secondArgument = 10.120
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -281,32 +287,33 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testSameFloatArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = 10.5
     let secondArgument = 10.5
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentFloatArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = 10.6
     let secondArgument = 10.7
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -316,228 +323,229 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyOptionalArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Any?] = []
     let secondArgument: [Any?] = []
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testSameOptionalStringArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [String?] = ["one", "two", nil]
     let secondArgument: [String?] = ["one", "two", nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentOptionalStringArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [String?] = ["one", "two", nil]
     let secondArgument: [String?] = ["one", "three", nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfOptionalStringArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [String?] = ["one", "two", nil]
     let secondArgument: [String?] = ["one", nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
   
   func testSameOptionalIntArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Int?] = [1, 2, nil]
     let secondArgument: [Int?] = [1, 2, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentOptionalIntArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Int?] = [2, 1, nil]
     let secondArgument: [Int?] = [2, 2, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfOptionalIntArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Int?] = [2, 1, nil]
     let secondArgument: [Int?] = [2, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameOptionalBoolArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Bool?] = [true, false, nil]
     let secondArgument: [Bool?] = [true, false, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentOptionalBoolArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Bool?] = [true, false, nil]
     let secondArgument: [Bool?] = [false, true, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfOptionalBoolArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Bool?] = [true, true, nil]
     let secondArgument: [Bool?] = [true, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameOptionalDoubleArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Double?] = [10.120, 10.130, nil]
     let secondArgument: [Double?] = [10.120, 10.130, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentOptionalDoubleArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Double?] = [10.12, 10.5, nil]
     let secondArgument: [Double?] = [10.4, 10.12, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfOptionalDoubleArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Double?] = [10.5, 10.2, nil]
     let secondArgument: [Double?] = [10.5, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameOptionalFloatArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Float?] = [10.5, 10.6, nil]
     let secondArgument: [Float?] = [10.5, 10.6, nil]
 
     let sut = mockMatcher
     
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentOptionalFloatArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Float?] = [10.5, 10.7, nil]
     let secondArgument: [Float?] = [10.4, 10.2, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfOptionalFloatArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument: [Float?] = [10.5, 10.2, nil]
     let secondArgument: [Float?] = [10.5, nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -547,228 +555,229 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = []
     let secondArgument = []
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testSameStringArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = ["one", "two"]
     let secondArgument = ["one", "two"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentStringArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = ["one", "two"]
     let secondArgument = ["one", "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfStringArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = ["one", "two"]
     let secondArgument = ["one"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameIntArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = [1, 2]
     let secondArgument = [1, 2]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentIntArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [2, 1]
     let secondArgument = [2, 2]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfIntArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [2, 1]
     let secondArgument = [2]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameBoolArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = [true, false]
     let secondArgument = [true, false]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentBoolArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [true, false]
     let secondArgument = [false, true]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfBoolArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [true, true]
     let secondArgument = [true]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameDoubleArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = [10.120, 10.130]
     let secondArgument = [10.120, 10.130]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentDoubleArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [10.12, 10.5]
     let secondArgument = [10.4, 10.12]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfDoubleArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [10.5, 10.2]
     let secondArgument = [10.5]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testSameFloatArrayArgumentsMatch() {
-    //given
+    // Given
     let firstArgument = [10.5, 10.6]
     let secondArgument = [10.5, 10.6]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDifferentFloatArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [10.5, 10.7]
     let secondArgument = [10.4, 10.2]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDifferentNumberOfFloatArrayArgumentsDoNotMatch() {
-    //given
+    // Given
     let firstArgument = [10.5, 10.2]
     let secondArgument = [10.5]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -778,228 +787,229 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyDictionaryWithStringKeysArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [String: Any] = [:]
     let secondArgument: [String: Any] = [:]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameIntValuesMatch() {
-    //given
-    let firstArgument = ["one" : 1, "two" : 2, "three" : 3]
-    let secondArgument = ["one" : 1, "two" : 2, "three" : 3]
+    // Given
+    let firstArgument = ["one": 1, "two": 2, "three": 3]
+    let secondArgument = ["one": 1, "two": 2, "three": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentIntValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : 1, "two" : 4, "three" : 7]
-    let secondArgument = ["one" : 1, "two" : 2, "three" : 3]
+    // Given
+    let firstArgument = ["one": 1, "two": 4, "three": 7]
+    let secondArgument = ["one": 1, "two": 2, "three": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameIntValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : 1, "three" : 2, "four" : 3]
-    let secondArgument = ["one" : 1, "two" : 2, "three" : 3]
+    // Given
+    let firstArgument = ["one": 1, "three": 2, "four": 3]
+    let secondArgument = ["one": 1, "two": 2, "three": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentIntValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : 2, "two" : 3, "three" : 4]
-    let secondArgument = ["three" : 1, "two" : 2, "one" : 3]
+    // Given
+    let firstArgument = ["one": 2, "two": 3, "three": 4]
+    let secondArgument = ["three": 1, "two": 2, "one": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyIntValuePairsDoNotMatch() {
-    //given
-    let firstArgument = ["one" : 1, "two" : 2]
-    let secondArgument = ["one" : 1, "two" : 2, "three" : 3]
+    // Given
+    let firstArgument = ["one": 1, "two": 2]
+    let secondArgument = ["one": 1, "two": 2, "three": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameStringValuesMatch() {
-    //given
-    let firstArgument = ["one" : "one", "two" : "two", "three" : "three"]
-    let secondArgument = ["one" : "one", "two" : "two", "three" : "three"]
+    // Given
+    let firstArgument = ["one": "one", "two": "two", "three": "three"]
+    let secondArgument = ["one": "one", "two": "two", "three": "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentStringValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : "one", "two" : "two", "three" : "three"]
-    let secondArgument = ["one" : "two", "two" : "one", "three" : "two"]
+    // Given
+    let firstArgument = ["one": "one", "two": "two", "three": "three"]
+    let secondArgument = ["one": "two", "two": "one", "three": "two"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameStringValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : "one", "three" : "three", "four" : "four"]
-    let secondArgument = ["one" : "one", "two" : "three", "three" : "four"]
+    // Given
+    let firstArgument = ["one": "one", "three": "three", "four": "four"]
+    let secondArgument = ["one": "one", "two": "three", "three": "four"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentStringValuesDoNotMatch() {
-    //given
-    let firstArgument = ["one" : "one", "two" : "three", "three" : "two"]
-    let secondArgument = ["three" : "two", "two" : "one", "one" : "three"]
+    // Given
+    let firstArgument = ["one": "one", "two": "three", "three": "two"]
+    let secondArgument = ["three": "two", "two": "one", "one": "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyStringValuePairsDoNotMatch() {
-    //given
-    let firstArgument = ["one" : "one", "two" : "two"]
-    let secondArgument = ["one" : "one", "two" : "two", "three" : "three"]
+    // Given
+    let firstArgument = ["one": "one", "two": "two"]
+    let secondArgument = ["one": "one", "two": "two", "three": "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameAnyValuesMatch() {
-    //given
-    let firstArgument: [String: Any] = ["one" : "one", "two" : 2, "three" : "three"]
-    let secondArgument: [String: Any] = ["one" : "one", "two" : 2, "three" : "three"]
+    // Given
+    let firstArgument: [String: Any] = ["one": "one", "two": 2, "three": "three"]
+    let secondArgument: [String: Any] = ["one": "one", "two": 2, "three": "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any] = ["one" : "one", "two" : true, "three" : 3]
-    let secondArgument: [String: Any] = ["one" : "two", "two" : false, "three" : 3]
+    // Given
+    let firstArgument: [String: Any] = ["one": "one", "two": true, "three": 3]
+    let secondArgument: [String: Any] = ["one": "two", "two": false, "three": 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any] = ["one" : "one", "three" : "three", "four" : "four"]
-    let secondArgument: [String: Any] = ["one" : "one", "two" : "three", "three" : "four"]
+    // Given
+    let firstArgument: [String: Any] = ["one": "one", "three": "three", "four": "four"]
+    let secondArgument: [String: Any] = ["one": "one", "two": "three", "three": "four"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any] = ["one" : "one", "two" : 1, "three" : "two"]
-    let secondArgument: [String: Any] = ["three" : "two", "two" : 2, "one" : "three"]
+    // Given
+    let firstArgument: [String: Any] = ["one": "one", "two": 1, "three": "two"]
+    let secondArgument: [String: Any] = ["three": "two", "two": 2, "one": "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyAnyValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [String: Any] = ["one" : "one", "two" : 2]
-    let secondArgument: [String: Any] = ["one" : "one", "two" : 2, "three" : true]
+    // Given
+    let firstArgument: [String: Any] = ["one": "one", "two": 2]
+    let secondArgument: [String: Any] = ["one": "one", "two": 2, "three": true]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -1009,228 +1019,229 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyDictionaryWithIntKeysArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Int: Any] = [:]
     let secondArgument: [Int: Any] = [:]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameIntValuesMatch() {
-    //given
-    let firstArgument = [1 : 1, 2 : 2, 3 : 3]
-    let secondArgument = [1 : 1, 2 : 2, 3 : 3]
+    // Given
+    let firstArgument = [1: 1, 2: 2, 3: 3]
+    let secondArgument = [1: 1, 2: 2, 3: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentIntValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : 1, 2 : 4, 3 : 7]
-    let secondArgument = [1 : 1, 2 : 2, 3 : 3]
+    // Given
+    let firstArgument = [1: 1, 2: 4, 3: 7]
+    let secondArgument = [1: 1, 2: 2, 3: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameIntValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : 1, 3 : 2, 4 : 3]
-    let secondArgument = [1 : 1, 2 : 2, 3 : 3]
+    // Given
+    let firstArgument = [1: 1, 3: 2, 4: 3]
+    let secondArgument = [1: 1, 2: 2, 3: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentIntValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : 2, 2 : 3, 3 : 4]
-    let secondArgument = [3 : 1, 2 : 2, 1 : 3]
+    // Given
+    let firstArgument = [1: 2, 2: 3, 3: 4]
+    let secondArgument = [3: 1, 2: 2, 1: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyIntValuePairsDoNotMatch() {
-    //given
-    let firstArgument = [1 : 1, 2 : 2]
-    let secondArgument = [1 : 1, 2 : 2, 3 : 3]
+    // Given
+    let firstArgument = [1: 1, 2: 2]
+    let secondArgument = [1: 1, 2: 2, 3: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameStringValuesMatch() {
-    //given
-    let firstArgument = [1 : "one", 2 : "two", 3 : "three"]
-    let secondArgument = [1 : "one", 2 : "two", 3 : "three"]
+    // Given
+    let firstArgument = [1: "one", 2: "two", 3: "three"]
+    let secondArgument = [1: "one", 2: "two", 3: "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentStringValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : "one", 2 : "two", 3 : "three"]
-    let secondArgument = [1 : "two", 2 : "one", 3 : "two"]
+    // Given
+    let firstArgument = [1: "one", 2: "two", 3: "three"]
+    let secondArgument = [1: "two", 2: "one", 3: "two"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameStringValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : "one", 3 : "three", 4 : "four"]
-    let secondArgument = [1 : "one", 2 : "three", 3 : "four"]
+    // Given
+    let firstArgument = [1: "one", 3: "three", 4: "four"]
+    let secondArgument = [1: "one", 2: "three", 3: "four"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentStringValuesDoNotMatch() {
-    //given
-    let firstArgument = [1 : "one", 2 : "three", 3 : "two"]
-    let secondArgument = [3 : "two", 2 : "one", 1 : "three"]
+    // Given
+    let firstArgument = [1: "one", 2: "three", 3: "two"]
+    let secondArgument = [3: "two", 2: "one", 1: "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyStringValuePairsDoNotMatch() {
-    //given
-    let firstArgument = [1 : "one", 2 : "two"]
-    let secondArgument = [1 : "one", 2 : "two", 3 : "three"]
+    // Given
+    let firstArgument = [1: "one", 2: "two"]
+    let secondArgument = [1: "one", 2: "two", 3: "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameAnyValuesMatch() {
-    //given
-    let firstArgument: [Int: Any] = [1 : "one", 2 : 2, 3 : "three"]
-    let secondArgument: [Int: Any] = [1 : "one", 2 : 2, 3 : "three"]
+    // Given
+    let firstArgument: [Int: Any] = [1: "one", 2: 2, 3: "three"]
+    let secondArgument: [Int: Any] = [1: "one", 2: 2, 3: "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any] = [1 : "one", 2 : true, 3 : 3]
-    let secondArgument: [Int: Any] = [1 : "two", 2 : false, 3 : 3]
+    // Given
+    let firstArgument: [Int: Any] = [1: "one", 2: true, 3: 3]
+    let secondArgument: [Int: Any] = [1: "two", 2: false, 3: 3]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any] = [1 : "one", 3 : "three", 4 : "four"]
-    let secondArgument: [Int: Any] = [1 : "one", 2 : "three", 3 : "four"]
+    // Given
+    let firstArgument: [Int: Any] = [1: "one", 3: "three", 4: "four"]
+    let secondArgument: [Int: Any] = [1: "one", 2: "three", 3: "four"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any] = [1 : "one", 2 : 1, 3 : "two"]
-    let secondArgument: [Int: Any] = [3 : "two", 2 : 2, 1 : "three"]
+    // Given
+    let firstArgument: [Int: Any] = [1: "one", 2: 1, 3: "two"]
+    let secondArgument: [Int: Any] = [3: "two", 2: 2, 1: "three"]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyAnyValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any] = [1 : "one", 2 : 2]
-    let secondArgument: [Int: Any] = [1 : "one", 2 : 2, 3 : true]
+    // Given
+    let firstArgument: [Int: Any] = [1: "one", 2: 2]
+    let secondArgument: [Int: Any] = [1: "one", 2: 2, 3: true]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -1240,228 +1251,229 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyOptionalDictionaryWithStringKeysArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [String: Any?] = [:]
     let secondArgument: [String: Any?] = [:]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalIntValuesMatch() {
-    //given
-    let firstArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
-    let secondArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Int?] = ["one": 1, "two": 2, "three": 3, "four": nil]
+    let secondArgument: [String: Int?] = ["one": 1, "two": 2, "three": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Int?] = ["one" : 1, "two" : 4, "three" : 7, "four" : nil]
-    let secondArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Int?] = ["one": 1, "two": 4, "three": 7, "four": nil]
+    let secondArgument: [String: Int?] = ["one": 1, "two": 2, "three": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Int?] = ["one" : 1, "three" : 2, "four" : 3, "two" : nil]
-    let secondArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Int?] = ["one": 1, "three": 2, "four": 3, "two": nil]
+    let secondArgument: [String: Int?] = ["one": 1, "two": 2, "three": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Int?] = ["one" : 2, "two" : 3, "three" : 4, "four" : nil]
-    let secondArgument: [String: Int?] = ["three" : 1, "two" : 2, "one" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Int?] = ["one": 2, "two": 3, "three": 4, "four": nil]
+    let secondArgument: [String: Int?] = ["three": 1, "two": 2, "one": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalIntValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : nil]
-    let secondArgument: [String: Int?] = ["one" : 1, "two" : 2, "three" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Int?] = ["one": 1, "two": 2, "three": nil]
+    let secondArgument: [String: Int?] = ["one": 1, "two": 2, "three": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalStringValuesMatch() {
-    //given
-    let firstArgument: [String: String?] = ["one" : "one", "two" : "two", "three" : "three", "four" : nil]
-    let secondArgument: [String: String?] = ["one" : "one", "two" : "two", "three" : "three", "four" : nil]
+    // Given
+    let firstArgument: [String: String?] = ["one": "one", "two": "two", "three": "three", "four": nil]
+    let secondArgument: [String: String?] = ["one": "one", "two": "two", "three": "three", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: String?] = ["one" : "one", "two" : "two", "three" : "three", "four" : nil]
-    let secondArgument: [String: String?] = ["one" : "two", "two" : "one", "three" : "two", "four" : nil]
+    // Given
+    let firstArgument: [String: String?] = ["one": "one", "two": "two", "three": "three", "four": nil]
+    let secondArgument: [String: String?] = ["one": "two", "two": "one", "three": "two", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: String?] = ["one" : "one", "three" : "three", "four" : "four", "two" : nil]
-    let secondArgument: [String: String?] = ["one" : "one", "two" : "three", "three" : "four", "four" : nil]
+    // Given
+    let firstArgument: [String: String?] = ["one": "one", "three": "three", "four": "four", "two": nil]
+    let secondArgument: [String: String?] = ["one": "one", "two": "three", "three": "four", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: String?] = ["one" : "one", "two" : "three", "three" : "two", "four" : nil]
-    let secondArgument: [String: String?] = ["three" : "two", "two" : "one", "one" : "three", "four" : nil]
+    // Given
+    let firstArgument: [String: String?] = ["one": "one", "two": "three", "three": "two", "four": nil]
+    let secondArgument: [String: String?] = ["three": "two", "two": "one", "one": "three", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalStringValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [String: String?] = ["one" : "one", "two" : "two", "three" : nil]
-    let secondArgument: [String: String?] = ["one" : "one", "two" : "two", "three" : "three", "four" : nil]
+    // Given
+    let firstArgument: [String: String?] = ["one": "one", "two": "two", "three": nil]
+    let secondArgument: [String: String?] = ["one": "one", "two": "two", "three": "three", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalAnyValuesMatch() {
-    //given
-    let firstArgument: [String: Any?] = ["one" : "one", "two" : 2, "three" : "three", "four" : nil]
-    let secondArgument: [String: Any?] = ["one" : "one", "two" : 2, "three" : "three", "four" : nil]
+    // Given
+    let firstArgument: [String: Any?] = ["one": "one", "two": 2, "three": "three", "four": nil]
+    let secondArgument: [String: Any?] = ["one": "one", "two": 2, "three": "three", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any?] = ["one" : "one", "two" : true, "three" : 3, "four" : nil]
-    let secondArgument: [String: Any?] = ["one" : "two", "two" : false, "three" : 3, "four" : nil]
+    // Given
+    let firstArgument: [String: Any?] = ["one": "one", "two": true, "three": 3, "four": nil]
+    let secondArgument: [String: Any?] = ["one": "two", "two": false, "three": 3, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any?] = ["one" : "one", "three" : "three", "four" : "four", "two" : nil]
-    let secondArgument: [String: Any?] = ["one" : "one", "two" : "three", "three" : "four", "four" : nil]
+    // Given
+    let firstArgument: [String: Any?] = ["one": "one", "three": "three", "four": "four", "two": nil]
+    let secondArgument: [String: Any?] = ["one": "one", "two": "three", "three": "four", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [String: Any?] = ["one" : "one", "two" : 1, "three" : "two", "four" : nil]
-    let secondArgument: [String: Any?] = ["three" : "two", "two" : 2, "one" : "three", "four" : nil]
+    // Given
+    let firstArgument: [String: Any?] = ["one": "one", "two": 1, "three": "two", "four": nil]
+    let secondArgument: [String: Any?] = ["three": "two", "two": 2, "one": "three", "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalAnyValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [String: Any?] = ["one" : "one", "two" : 2, "three" : nil]
-    let secondArgument: [String: Any?] = ["one" : "one", "two" : 2, "three" : true, "four" : nil]
+    // Given
+    let firstArgument: [String: Any?] = ["one": "one", "two": 2, "three": nil]
+    let secondArgument: [String: Any?] = ["one": "one", "two": 2, "three": true, "four": nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }
 
 
@@ -1471,226 +1483,227 @@ extension MockMatcherTests {
 extension MockMatcherTests {
 
   func testEmptyOptionalDictionaryWithIntKeysArgumentsMatch() {
-    //given
+    // Given
     let firstArgument: [Int: Any?] = [:]
     let secondArgument: [Int: Any?] = [:]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalIntValuesMatch() {
-    //given
-    let firstArgument: [Int: Int?] = [1 : 1, 2 : 2, 3 : 3, 4 : nil]
-    let secondArgument: [Int: Int?] = [1 : 1, 2 : 2, 3 : 3, 4 : nil]
+    // Given
+    let firstArgument: [Int: Int?] = [1: 1, 2: 2, 3: 3, 4: nil]
+    let secondArgument: [Int: Int?] = [1: 1, 2: 2, 3: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Int?] = [1 : 1, 2 : 4, 3 : 7, 4: nil]
-    let secondArgument: [Int: Int?] = [1 : 1, 2 : 2, 3 : 3, 4: nil]
+    // Given
+    let firstArgument: [Int: Int?] = [1: 1, 2: 4, 3: 7, 4: nil]
+    let secondArgument: [Int: Int?] = [1: 1, 2: 2, 3: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Int?] = [1 : 1, 3 : 2, 4 : 3, 2: nil]
-    let secondArgument : [Int: Int?] = [1 : 1, 2 : 2, 3 : 3, 4: nil]
+    // Given
+    let firstArgument: [Int: Int?] = [1: 1, 3: 2, 4: 3, 2: nil]
+    let secondArgument: [Int: Int?] = [1: 1, 2: 2, 3: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalIntValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Int?] = [1 : 2, 2 : 3, 3 : 4, 4 : nil]
-    let secondArgument: [Int: Int?] = [3 : 1, 2 : 2, 1 : 3, 4 : nil]
+    // Given
+    let firstArgument: [Int: Int?] = [1: 2, 2: 3, 3: 4, 4: nil]
+    let secondArgument: [Int: Int?] = [3: 1, 2: 2, 1: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalIntValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [Int: Int?] = [1 : 1, 2 : 2, 3 : nil]
-    let secondArgument: [Int: Int?] = [1 : 1, 2 : 2, 3 : 3, 4: nil]
+    // Given
+    let firstArgument: [Int: Int?] = [1: 1, 2: 2, 3: nil]
+    let secondArgument: [Int: Int?] = [1: 1, 2: 2, 3: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalStringValuesMatch() {
-    //given
-    let firstArgument: [Int: String?] = [1 : "one", 2 : "two", 3 : "three", 4 : nil]
-    let secondArgument: [Int: String?] = [1 : "one", 2 : "two", 3 : "three", 4 : nil]
+    // Given
+    let firstArgument: [Int: String?] = [1: "one", 2: "two", 3: "three", 4: nil]
+    let secondArgument: [Int: String?] = [1: "one", 2: "two", 3: "three", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: String?] = [1 : "one", 2 : "two", 3 : "three", 4 : nil]
-    let secondArgument: [Int: String?] = [1 : "two", 2 : "one", 3 : "two", 4 : nil]
+    // Given
+    let firstArgument: [Int: String?] = [1: "one", 2: "two", 3: "three", 4: nil]
+    let secondArgument: [Int: String?] = [1: "two", 2: "one", 3: "two", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: String?] = [1 : "one", 3 : "three", 4 : "four", 2 : nil]
-    let secondArgument: [Int: String?] = [1 : "one", 2 : "three", 3 : "four", 4 : nil]
+    // Given
+    let firstArgument: [Int: String?] = [1: "one", 3: "three", 4: "four", 2: nil]
+    let secondArgument: [Int: String?] = [1: "one", 2: "three", 3: "four", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalStringValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: String?] = [1 : "one", 2 : "three", 3 : "two", 4 : nil]
-    let secondArgument: [Int: String?] = [3 : "two", 2 : "one", 1 : "three", 4 : nil]
+    // Given
+    let firstArgument: [Int: String?] = [1: "one", 2: "three", 3: "two", 4: nil]
+    let secondArgument: [Int: String?] = [3: "two", 2: "one", 1: "three", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalStringValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [Int: String?] = [1 : "one", 2 : "two", 3 : nil]
-    let secondArgument: [Int: String?] = [1 : "one", 2 : "two", 3 : "three", 4 : nil]
+    // Given
+    let firstArgument: [Int: String?] = [1: "one", 2: "two", 3: nil]
+    let secondArgument: [Int: String?] = [1: "one", 2: "two", 3: "three", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalAnyValuesMatch() {
-    //given
-    let firstArgument: [Int: Any?] = [1 : "one", 2 : 2, 3 : "three", 4 : nil]
-    let secondArgument: [Int: Any?] = [1 : "one", 2 : 2, 3 : "three", 4 : nil]
+    // Given
+    let firstArgument: [Int: Any?] = [1: "one", 2: 2, 3: "three", 4: nil]
+    let secondArgument: [Int: Any?] = [1: "one", 2: 2, 3: "three", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertTrue(result)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any?] = [1 : "one", 2 : true, 3 : 3, 4 : nil]
-    let secondArgument: [Int: Any?] = [1 : "two", 2 : false, 3 : 3, 4 : nil]
+    // Given
+    let firstArgument: [Int: Any?] = [1: "one", 2: true, 3: 3, 4: nil]
+    let secondArgument: [Int: Any?] = [1: "two", 2: false, 3: 3, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any?] = [1 : "one", 3 : "three", 4 : "four", 2 : nil]
-    let secondArgument: [Int: Any?] = [1 : "one", 2 : "three", 3 : "four", 4 : nil]
+    // Given
+    let firstArgument: [Int: Any?] = [1: "one", 3: "three", 4: "four", 2: nil]
+    let secondArgument: [Int: Any?] = [1: "one", 2: "three", 3: "four", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalAnyValuesDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any?] = [1 : "one", 2 : 1, 3 : "two", 4 : nil]
-    let secondArgument: [Int: Any?] = [3 : "two", 2 : 2, 1 : "three", 4 : nil]
+    // Given
+    let firstArgument: [Int: Any?] = [1: "one", 2: 1, 3: "two", 4: nil]
+    let secondArgument: [Int: Any?] = [3: "two", 2: 2, 1: "three", 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalAnyValuePairsDoNotMatch() {
-    //given
-    let firstArgument: [Int: Any?] = [1 : "one", 2 : 2, 3 : nil]
-    let secondArgument: [Int: Any?] = [1 : "one", 2 : 2, 3 : true, 4 : nil]
+    // Given
+    let firstArgument: [Int: Any?] = [1: "one", 2: 2, 3: nil]
+    let secondArgument: [Int: Any?] = [1: "one", 2: 2, 3: true, 4: nil]
 
     let sut = mockMatcher
 
-    //when
+    // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 
-    //then
+    // Then
     XCTAssertFalse(result)
   }
+
 }

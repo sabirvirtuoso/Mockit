@@ -71,4 +71,5 @@ public extension Mock {
   func of(returnValue: Any?) -> [Any?]? {
     return callHandler.argumentsOfSpecificCall
   }
+
 }

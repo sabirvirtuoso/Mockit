@@ -32,7 +32,7 @@ import Mockit
 class TestCallHandler: CallHandler {
 
   var argumentsOfSpecificCall: [Any?]?
-  
+
   let testCase: XCTestCase
   var stub: Stub!
 
@@ -47,7 +47,7 @@ class TestCallHandler: CallHandler {
   func when() -> Stub {
     whenCalled = true
     stub = Stub()
-    
+
     return stub
   }
 
@@ -62,9 +62,10 @@ class TestCallHandler: CallHandler {
   func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
     argumentsOfSpecificCall = args
-    
+
     return returnValue
   }
+
 }
 
 
@@ -76,6 +77,7 @@ class TestVerificationMode: VerificationMode {
   func verify(verificationData: VerificationData, mockFailer: MockFailer) {
     // Dummy, do nothing
   }
+
 }
 
 
@@ -105,6 +107,7 @@ class TestMockImplementation: Mock {
   func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
+
 }
 
 
@@ -122,101 +125,102 @@ class MockTests: XCTestCase {
   }
 
   func testWhenIsCalled() {
-    //given
+    // Given
     XCTAssertFalse(handler.whenCalled)
 
-    //when
+    // When
     sut.when()
 
-    //then
+    // Then
     XCTAssertTrue(handler.whenCalled)
   }
 
   func testCallingWhenReturnsCorrectStub() {
-    //given
+    // Given
     XCTAssertNil(handler.stub)
 
-    //when
+    // When
     let stub = sut.when()
 
-    //then
+    // Then
     XCTAssertTrue(stub === handler.stub)
   }
 
   func testVerifyIsCalled() {
-    //given
+    // Given
     XCTAssertFalse(handler.verifyCalled)
 
-    //when
+    // When
     sut.verify(verificationMode: TestVerificationMode())
 
-    //then
+    // Then
     XCTAssertTrue(handler.verifyCalled)
   }
 
   func testCallingVerifyReturnsCorrectMock() {
-    //given
+    // Given
 
-    //when
+    // When
     let mock = sut.verify(verificationMode: TestVerificationMode())
 
-    //then
+    // Then
     XCTAssertTrue((mock as AnyObject) === sut)
   }
 
   func testGetArgsIsCalled() {
-    //given
+    // Given
     XCTAssertFalse(handler.getArgsCalled)
 
-    //when
+    // When
     sut.getArgs(callOrder: 1)
 
-    //then
+    // Then
     XCTAssertTrue(handler.getArgsCalled)
   }
 
   func testCallingGetArgsReturnsCorrectMock() {
-    //given
+    // Given
 
-    //when
+    // When
     let mock = sut.getArgs(callOrder: 1)
 
-    //then
+    // Then
     XCTAssertTrue((mock as AnyObject) === sut)
   }
 
   func testCallingOfReturnsCorrectlyForNonOptionalArguments() {
-    //given
+    // Given
     let testArgumentOne = "testArgument"
     let testArgumentTwo = 0
 
-    //when
+    // When
     let arguments = sut.of(sut.doSomethingWithNonOptionalArguments(testArgumentOne, arg2: testArgumentTwo))
 
-    //then
+    // Then
     XCTAssertEqual((arguments![0] as! String), testArgumentOne)
     XCTAssertEqual((arguments![1] as! Int), testArgumentTwo)
   }
 
   func testCallingOfReturnsCorrectlyForNoArguments() {
-    //given
+    // Given
 
-    //when
+    // When
     let arguments = sut.of(sut.doSomethingWithNoArguments())
 
-    //then
+    // Then
     XCTAssertNil(arguments![0])
   }
 
   func testCallingOfReturnsCorrectlyForSomeOptionalArguments() {
-    //given
+    // Given
     let testArgument = 0
 
-    //when
+    // When
     let arguments = sut.of(sut.doSomethingWithSomeOptionalArguments(nil, arg2: testArgument))
 
-    //then
+    // Then
     XCTAssertNil(arguments![0])
     XCTAssertEqual((arguments![1] as! Int), testArgument)
   }
+
 }

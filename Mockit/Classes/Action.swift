@@ -24,7 +24,7 @@
 import Foundation
 
 /**
- * `Action<T>` is a generic class representing a particular action registered 
+ * `Action<T>` is a generic class representing a particular action registered
  * for a stub. The action may or may not return non nil value. If the return
  * value is not nil, it is of type T.
  */
@@ -45,4 +45,5 @@ public class Action<T> {
   public func providesReturnValue() -> Bool {
     return returnsValue
   }
+
 }

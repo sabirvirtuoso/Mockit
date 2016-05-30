@@ -42,39 +42,39 @@ class ExampleTests: XCTestCase {
   }
 
   func testDoSomething() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.doSomething()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: Once()).voidFunction()
   }
 
   func testDoSomethingWithParameters() {
-    //Given
+    // Given
     mockCollaborator.when().call(withReturnValue: mockCollaborator.function(42, "frood")).thenReturn("hoopy")
 
-    //When
+    // When
     let returnValue = sut.doSomethingWithParamters(42, "frood")
 
-    //Then
+    // Then
     XCTAssertEqual(returnValue, "hoopy")
   }
 
   func testStringDictionary() {
-    //Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello":"Pong"])).thenReturn("ping")
+    // Given
+    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping")
 
-    //When
-    let returnValue = sut.doSomethingWithDictParameters(["Hello":"Pong"])
+    // When
+    let returnValue = sut.doSomethingWithDictParameters(["Hello": "Pong"])
 
-    //Then
+    // Then
     XCTAssertEqual(returnValue, "ping")
   }
 
   func testWithThenDoClosure() {
-    //Given
+    // Given
     mockCollaborator.when().call(withReturnValue: mockCollaborator.voidFunction()).thenDo {
       (args: [Any?]) -> Void in
 
@@ -82,48 +82,48 @@ class ExampleTests: XCTestCase {
       print("===== thenDo closure called =====")
     }
 
-    //When
+    // When
     sut.doSomething()
 
-    //Then...
+    // Then...
   }
 
   func testActionChainingForCorrespondingCalls() {
-    //Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello":"Pong"])).thenReturn("ping", "hoopy")
+    // Given
+    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping", "hoopy")
 
-    //When
-    let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello":"Pong"])
-    let returnValueOfSecondCall = sut.doSomethingWithDictParameters(["Hello":"Pong"])
+    // When
+    let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
+    let returnValueOfSecondCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
 
-    //Then
+    // Then
     XCTAssertEqual(returnValueOfFirstCall, "ping")
     XCTAssertEqual(returnValueOfSecondCall, "hoopy")
   }
 
   func testActionChainingForNonCorrespondingCalls() {
-    //Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello":"Pong"])).thenReturn("hoopy")
+    // Given
+    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("hoopy")
 
-    //When
-    let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello":"Pong"])
-    let returnValueOfSecondCall = sut.doSomethingWithDictParameters(["Hello":"Pong"])
+    // When
+    let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
+    let returnValueOfSecondCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
 
-    //Then
+    // Then
     XCTAssertEqual(returnValueOfFirstCall, "hoopy")
     XCTAssertEqual(returnValueOfSecondCall, "hoopy")
   }
 
   func testGetArgsOfDoSomethingWithParameters() {
-    //Given
+    // Given
     sut.doSomethingWithParamters(42, "frood")
     sut.doSomethingWithParamters(18, "hoopy")
 
-    //When
+    // When
     let argumentsOfFirstCall = mockCollaborator.getArgs(callOrder: 1).of(mockCollaborator.function(AnyValue.int, AnyValue.string))
     let argumentsOfSecondCall = mockCollaborator.getArgs(callOrder: 2).of(mockCollaborator.function(AnyValue.int, AnyValue.string))
 
-    //Then
+    // Then
     XCTAssertEqual(argumentsOfFirstCall![0] as? Int, 42)
     XCTAssertEqual(argumentsOfFirstCall![1] as? String, "frood")
 
@@ -132,70 +132,71 @@ class ExampleTests: XCTestCase {
   }
 
   func testExpectMethodOneAndThree() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectMethodOneAndThree()
 
-    //Then
+    // Then
     (mockCollaborator.verify(verificationMode: Once())).methodOne()
     mockCollaborator.verify(verificationMode: Never()).methodTwo()
     mockCollaborator.verify(verificationMode: Once()).methodThree()
   }
 
   func testExpectMethodOneTwice() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectMethodOneTwice()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: Times(times: 2)).methodOne()
   }
 
   func testExpectOnlyMethodThree() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectOnlyMethodThree()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: Only()).methodThree()
   }
 
   func testExpectAllThreeMethods() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectAllThreeMethods()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: Once()).methodOne()
     mockCollaborator.verify(verificationMode: AtLeastOnce()).methodTwo()
     mockCollaborator.verify(verificationMode: AtMostOnce()).methodThree()
   }
 
   func testExpectNoMethod() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectNoMethod()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: Never()).methodOne()
     mockCollaborator.verify(verificationMode: Never()).methodTwo()
     mockCollaborator.verify(verificationMode: Never()).methodThree()
   }
 
   func testExpectMethodTwoAndThree() {
-    //Given
+    // Given
 
-    //When
+    // When
     sut.ExpectMethodTwoAndThree()
 
-    //Then
+    // Then
     mockCollaborator.verify(verificationMode: AtLeastTimes(times: Times(times: 1))).methodTwo()
     mockCollaborator.verify(verificationMode: Never()).methodOne()
     mockCollaborator.verify(verificationMode: AtMostTimes(times: Times(times: 3))).methodThree()
   }
+
 }

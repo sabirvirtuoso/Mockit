@@ -78,7 +78,7 @@ public class Actionable<T>: ActionPerformer {
   }
 
   private func addAction(action: Action<T>) {
-    actions.append(action);
+    actions.append(action)
   }
 
   public func performActions() -> Any? {
@@ -106,4 +106,5 @@ public class Actionable<T>: ActionPerformer {
 
     return returnValue
   }
+
 }

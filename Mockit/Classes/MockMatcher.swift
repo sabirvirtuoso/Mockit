@@ -25,7 +25,7 @@
 import Foundation
 
 /**
- * `MockMatcher` is used to match expected arguments with actual arguments based on argument types 
+ * `MockMatcher` is used to match expected arguments with actual arguments based on argument types
  * and using custom type matchers if necessary.
  */
 public class MockMatcher {
@@ -51,7 +51,7 @@ public class MockMatcher {
       case (nil, nil): return true
       case (nil, _): return false
       case (_, nil): return false
-      case (_, _) : return matchTypes(arguments: args!, withArguments: withArgs!)
+      case (_, _): return matchTypes(arguments: args!, withArguments: withArgs!)
     }
   }
 
@@ -96,4 +96,5 @@ public class MockMatcher {
 
     return argumentsMatched
   }
+
 }

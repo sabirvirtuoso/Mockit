@@ -40,4 +40,5 @@ public class MockFailerImpl: MockFailer {
   public func doFail(message: String, file: String, line: UInt) {
     testCase.recordFailureWithDescription(message, inFile: file, atLine: line, expected: true)
   }
+
 }

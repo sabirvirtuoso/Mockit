@@ -40,6 +40,7 @@ class TestFailer: MockFailer {
     self.file = file
     self.line = line
   }
+
 }
 
 
@@ -63,6 +64,7 @@ class VerificationModeTests: XCTestCase {
       $0.line = 1
     })
   }
+
 }
 
 
@@ -72,7 +74,7 @@ class VerificationModeTests: XCTestCase {
 extension VerificationModeTests {
 
   func testVerificationModeOnceFailsWhenMethodIsCalledLessThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 0)
     let sut = Once()
 
@@ -80,10 +82,10 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeOnce,
       verificationData.functionName, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
@@ -91,7 +93,7 @@ extension VerificationModeTests {
   }
 
   func testVerificationModeOnceSucceedsWhenMethodIsCalledOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 1)
     let sut = Once()
 
@@ -99,17 +101,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeOnceFailsWhenMethodIsCalledMoreThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = Once()
 
@@ -117,15 +119,16 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeOnce,
       verificationData.functionName, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }
 
 
@@ -135,7 +138,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeAtLeastOnceFailsWhenMethodIsCalledLessThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 0)
     let sut = AtLeastOnce()
 
@@ -143,10 +146,10 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtLeastOnce,
       verificationData.functionName, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
@@ -154,7 +157,7 @@ extension VerificationModeTests {
   }
 
   func testVerificationModeAtLeastOnceSucceedsWhenMethodIsCalledOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 1)
     let sut = AtLeastOnce()
 
@@ -162,17 +165,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtLeastOnceSucceedsWhenMethodIsCalledMoreThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = AtLeastOnce()
 
@@ -180,14 +183,15 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
+
 }
 
 
@@ -197,7 +201,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledLessThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 0)
     let sut = AtMostOnce()
 
@@ -205,17 +209,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtMostOnceSucceedsWhenMethodIsCalledOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 1)
     let sut = AtMostOnce()
 
@@ -223,17 +227,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtMostOnceFailsWhenMethodIsCalledMoreThanOnce() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = AtMostOnce()
 
@@ -241,15 +245,16 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtMostOnce,
       verificationData.functionName, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }
 
 
@@ -259,7 +264,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeTimesSucceedsWhenMethodIsCalledGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = Times(times: 3)
 
@@ -267,17 +272,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeTimesFailsWhenMethodIsCalledLessThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 2)
     let sut = Times(times: 3)
 
@@ -285,10 +290,10 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeTimes,
       verificationData.functionName, 3, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
@@ -296,7 +301,7 @@ extension VerificationModeTests {
   }
 
   func testVerificationModeTimesFailsWhenMethodIsCalledMoreThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 4)
     let sut = Times(times: 3)
 
@@ -304,15 +309,16 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeTimes,
       verificationData.functionName, 3, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }
 
 
@@ -322,7 +328,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeAtLeastTimesSucceedsWhenMethodIsCalledGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = AtLeastTimes(times: Times(times: 3))
 
@@ -330,17 +336,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtLeastTimesFailsWhenMethodIsCalledLessThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 2)
     let sut = AtLeastTimes(times: Times(times: 3))
 
@@ -348,10 +354,10 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtLeastTimes,
       verificationData.functionName, 3, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
@@ -359,7 +365,7 @@ extension VerificationModeTests {
   }
 
   func testVerificationModeAtLeastTimesSucceedsWhenMethodIsCalledMoreThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 4)
     let sut = AtLeastTimes(times: Times(times: 3))
 
@@ -367,14 +373,15 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
+
 }
 
 
@@ -384,7 +391,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 3)
     let sut = AtMostTimes(times: Times(times: 3))
 
@@ -392,17 +399,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtMostTimesSucceedsWhenMethodIsCalledLessThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 2)
     let sut = AtMostTimes(times: Times(times: 3))
 
@@ -410,17 +417,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeAtMostTimesFailsWhenMethodIsCalledMoreThanGivenTimes() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 4)
     let sut = AtMostTimes(times: Times(times: 3))
 
@@ -428,15 +435,16 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeAtMostTimes,
       verificationData.functionName, 3, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }
 
 
@@ -446,7 +454,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeNeverSucceedsWhenMethodIsNotCalled() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 0)
     let sut = Never()
 
@@ -454,17 +462,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeNeverFailsWhenMethodIsCalled() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 1)
     let sut = Never()
 
@@ -472,15 +480,16 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeNever,
       verificationData.functionName, verificationData.timesInvoked))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }
 
 
@@ -490,7 +499,7 @@ extension VerificationModeTests {
 extension VerificationModeTests {
 
   func testVerificationModeOnlySucceedsWhenMethodIsOnlyCalled() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 2, calledOnly: true)
     let sut = Only()
 
@@ -498,17 +507,17 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertNil(mockFailer.message)
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
   }
 
   func testVerificationModeOnlyFailsWhenMethodIsNotOnlyCalled() {
-    //given
+    // Given
     let verificationData = dummyVerificationData(timesInvoked: 1, calledOnly: false)
     let sut = Only()
 
@@ -516,13 +525,14 @@ extension VerificationModeTests {
     XCTAssertNil(mockFailer.file)
     XCTAssertNil(mockFailer.line)
 
-    //when
+    // When
     sut.verify(verificationData, mockFailer: mockFailer)
 
-    //then
+    // Then
     XCTAssertEqual(mockFailer.message, String(format: StringConstants.FailureMessages.verificationModeOnly,
       verificationData.functionName))
     XCTAssertEqual(mockFailer.file, "thisFile")
     XCTAssertEqual(mockFailer.line, 1)
   }
+
 }

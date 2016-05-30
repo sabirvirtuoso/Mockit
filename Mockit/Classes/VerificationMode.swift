@@ -52,6 +52,7 @@ public class Once: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -73,6 +74,7 @@ public class AtLeastOnce: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -94,6 +96,7 @@ public class AtMostOnce: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -117,6 +120,7 @@ public class Times: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -140,6 +144,7 @@ public class AtLeastTimes: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -163,6 +168,7 @@ public class AtMostTimes: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -184,6 +190,7 @@ public class Never: VerificationMode {
       return
     }
   }
+
 }
 
 
@@ -205,4 +212,5 @@ public class Only: VerificationMode {
       return
     }
   }
+
 }

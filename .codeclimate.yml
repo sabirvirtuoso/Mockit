@@ -3,7 +3,7 @@ engines:
     enabled: true
     checks:
       forced-type-cast:
-	enabled: false
+        enabled: false
   duplication:
     enabled: true
     config:

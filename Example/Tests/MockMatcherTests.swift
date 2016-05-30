@@ -26,6 +26,40 @@ import XCTest
 import Mockit
 
 
+// MARK:- This class will match OK
+
+
+class DifferentClassForMatching {
+
+}
+
+
+// MARK:- This class will not match
+
+
+class AnotherDifferentClassForMatching {
+
+}
+
+
+// MARK:- Custom Type Matcher
+
+
+public class CustomMatcher: TypeMatcher {
+
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+    switch (arg, withArg) {
+      case ( _ as DifferentClassForMatching, _ as DifferentClassForMatching):
+        return true
+      case ( _ as AnotherDifferentClassForMatching, _ as AnotherDifferentClassForMatching):
+        return false
+      default:
+        return false
+    }
+  }
+}
+
+
 // MARK:- Test cases for `MockMatcher`
 
 
@@ -65,6 +99,35 @@ class MockMatcherTests: XCTestCase {
 
     //when
     let result = sut.match(arguments: 2, withArguments: nil)
+
+    //then
+    XCTAssertFalse(result)
+  }
+
+  func testCustomMatcherRegistration() {
+    //given
+    let sut = mockMatcher
+
+    sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
+    let classToMatch = DifferentClassForMatching()
+
+    //when
+    let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
+
+    //then
+    XCTAssertTrue(result)
+  }
+
+  func testCustomMatcherUnregistration() {
+    //given
+    let sut = mockMatcher
+
+    sut.unregister(CustomMatcher.self)
+
+    let classToMatch = DifferentClassForMatching()
+
+    //when
+    let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
 
     //then
     XCTAssertFalse(result)

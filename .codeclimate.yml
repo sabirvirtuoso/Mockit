@@ -1,0 +1,20 @@
+engines:
+  tailor:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+       - swift
+fixme:
+    enabled: true
+ratings:
+  paths: 
+  - Mockit/Classes/**
+  - Example/Tests/**
+  - Example/Mockit/**
+  - “**.swift”
+exclude_paths: 
+- Example/Mockit/Base.lproj/**
+- Example/Mockit/Image.xcassets/*
+- Example/Mockit/Info.plist

@@ -13,7 +13,7 @@ before_install: gem install xcpretty cocoapods slather -N
 # - pod install --project-directory=Example
 
 script:
-- set -o pipefail && xcodebuild test -workspace Example/Mockit.xcworkspace -scheme Mockit_Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/Mockit.xcworkspace -scheme Mockit_Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test | xcpretty -c
 - pod lib lint --quick
 
 after_success: slather

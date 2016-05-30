@@ -1,4 +1,7 @@
 ci_service: travis_ci
 coverage_service: coveralls
+binary_basename: Mockit
+scheme: Mockit
+workspace: Example/Mockit.xcworkspace
 xcodeproj: Example/Mockit.xcodeproj
-source_directory: Mockit
+source_directory: Mockit/Classes

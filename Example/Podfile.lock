@@ -1,5 +1,5 @@
 PODS:
-  - Mockit (0.1.0)
+  - Mockit (1.0.1)
 
 DEPENDENCIES:
   - Mockit (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Mockit: c24d20c18831df2ea4bab8155fff122fab3eb52f
+  Mockit: 84837fbafedc45ab48f045856066b0262350bd57
 
-PODFILE CHECKSUM: afda2f318d5a4f7d1925a9e8694c07b1815eb9a9
+PODFILE CHECKSUM: 72771b6b8143a9d577ccad7fe17b9735fd02d9c4
 
 COCOAPODS: 1.0.0

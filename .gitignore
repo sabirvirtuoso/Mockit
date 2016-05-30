@@ -19,6 +19,9 @@ DerivedData
 *.hmap
 *.ipa
 
+# AppCode
+Example/.idea/
+
 # Bundler
 .bundle
 

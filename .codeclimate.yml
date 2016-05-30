@@ -18,3 +18,9 @@ exclude_paths:
 - Example/Mockit/Base.lproj/**
 - Example/Mockit/Image.xcassets/*
 - Example/Mockit/Info.plist
+- Example/Pods/**
+- Example/Mockit.xcodeproj/**
+- Example/Podfile**
+- LICENSE
+- README.md
+- Mockit.podspec

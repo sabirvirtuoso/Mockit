@@ -32,13 +32,13 @@ import XCTest
 public class CallHandlerImpl: CallHandler {
 
   public var argumentsOfSpecificCall: [Any?]?
-  
+
   private let mockFailer: MockFailer
 
   // this is the stub which is currenly being configured or called
   private var stub: Stub!
   private var stubs = [Stub]()
-  
+
   private var state = State.None
   private var verificationMode: VerificationMode!
 
@@ -56,7 +56,7 @@ public class CallHandlerImpl: CallHandler {
   public func when() -> Stub {
     transtion(toState: .When)
     stub = Stub()
-    
+
     return stub
   }
 
@@ -73,10 +73,10 @@ public class CallHandlerImpl: CallHandler {
     callOrder = order
     transtion(toState: .GetArgs)
   }
-  
+
   public func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
-    switch(state) {
+    switch state {
       case .None:
         recordCallHistory(ofFunction: function, withArgs: args)
 
@@ -103,6 +103,7 @@ public class CallHandlerImpl: CallHandler {
   private func transtion(toState state: State) {
     self.state = state
   }
+
 }
 
 
@@ -132,6 +133,7 @@ extension CallHandlerImpl {
   private func match(stub: Stub, withFunctionName functionName: String, andArgs args: [Any?]) -> Bool {
     return stub.satisfyStub(withFunctionName: functionName) && stub.satisfyStub(withActualArgs: args)
   }
+
 }
 
 
@@ -145,6 +147,7 @@ extension CallHandlerImpl {
 
     stubs.append(stub)
   }
+
 }
 
 
@@ -184,6 +187,7 @@ extension CallHandlerImpl {
 
     return callHistory.count == 1
   }
+
 }
 
 
@@ -203,4 +207,5 @@ extension CallHandlerImpl {
 
     argumentsOfSpecificCall = arguments[callOrder - 1]
   }
+
 }

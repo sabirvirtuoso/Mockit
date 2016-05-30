@@ -377,7 +377,7 @@ extension MockMatcherTests {
     // Then
     XCTAssertFalse(result)
   }
-  
+
   func testSameOptionalIntArrayArgumentsMatch() {
     // Given
     let firstArgument: [Int?] = [1, 2, nil]
@@ -510,7 +510,7 @@ extension MockMatcherTests {
     let secondArgument: [Float?] = [10.5, 10.6, nil]
 
     let sut = mockMatcher
-    
+
     // When
     let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
 

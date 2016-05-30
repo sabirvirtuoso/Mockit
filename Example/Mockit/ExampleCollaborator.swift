@@ -52,5 +52,5 @@ class ExampleCollaborator {
   func methodThree() {
     print("Method Three invoked")
   }
-  
+
 }

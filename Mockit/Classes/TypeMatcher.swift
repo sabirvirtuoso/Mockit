@@ -148,7 +148,7 @@ public class OptionalArrayMatcher: TypeMatcher {
       return false
     }
 
-    return Array(zip(array, withArray)).filter() {
+    return Array(zip(array, withArray)).filter {
       MockMatcher.sharedInstance.match(arguments: $0, withArguments: $1)
     }.count == array.count
   }
@@ -185,7 +185,7 @@ public class NonOptionalArrayMatcher: TypeMatcher {
       return false
     }
 
-    return Array(zip(array, withArray)).filter() {
+    return Array(zip(array, withArray)).filter {
       MockMatcher.sharedInstance.match(arguments: $0, withArguments: $1)
     }.count == array.count
   }
@@ -233,11 +233,11 @@ public class OptionalDictionaryMatcher: TypeMatcher {
     var firstDictionaryKeys = Array<T1>()
     var secondDictionaryKeys = Array<T1>()
 
-    dictionary.keys.forEach() { (key) -> () in
+    dictionary.keys.forEach { (key) -> () in
       firstDictionaryKeys.append(key)
     }
 
-    withDictionary.keys.forEach() { (key) -> () in
+    withDictionary.keys.forEach { (key) -> () in
       secondDictionaryKeys.append(key)
     }
 
@@ -245,7 +245,7 @@ public class OptionalDictionaryMatcher: TypeMatcher {
       return false
     }
 
-    return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter() {
+    return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter {
       MockMatcher.sharedInstance.match(arguments: dictionary[$0]!, withArguments: withDictionary[$1]!)
     }.count == firstDictionaryKeys.count
   }
@@ -293,11 +293,11 @@ public class NonOptionalDictionaryMatcher: TypeMatcher {
     var firstDictionaryKeys = Array<T1>()
     var secondDictionaryKeys = Array<T1>()
 
-    dictionary.keys.forEach() { (key) -> () in
+    dictionary.keys.forEach { (key) -> () in
       firstDictionaryKeys.append(key)
     }
 
-    withDictionary.keys.forEach() { (key) -> () in
+    withDictionary.keys.forEach { (key) -> () in
       secondDictionaryKeys.append(key)
     }
 
@@ -305,7 +305,7 @@ public class NonOptionalDictionaryMatcher: TypeMatcher {
       return false
     }
 
-    return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter() {
+    return Array(zip(firstDictionaryKeys, secondDictionaryKeys)).filter {
       MockMatcher.sharedInstance.match(arguments: dictionary[$0], withArguments: withDictionary[$1])
     }.count == firstDictionaryKeys.count
   }

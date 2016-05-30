@@ -459,7 +459,7 @@ extension StubTests {
     var flag = false
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       flag = true
@@ -485,7 +485,7 @@ extension StubTests {
     var array = [Bool]()
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       array.append(true)
@@ -516,15 +516,15 @@ extension StubTests {
     var array = [0, 0, 0]
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       array[0] = 1
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array[1] = 2
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array[2] = 3
@@ -562,15 +562,15 @@ extension StubTests {
     var array = [0, 0, 0]
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       array[0] = 1
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array[1] = 2
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array[2] = 3
@@ -606,15 +606,15 @@ extension StubTests {
     var array = [Bool]()
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       array.append(true)
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array.append(true)
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array.append(true)
@@ -657,7 +657,7 @@ extension StubTests {
     let dummyReturnValue = 13
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
@@ -680,7 +680,7 @@ extension StubTests {
     let dummyReturnValue = 13
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
@@ -707,15 +707,15 @@ extension StubTests {
     let dummyReturnValue = 13
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 3
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 4
@@ -746,15 +746,15 @@ extension StubTests {
     let dummyReturnValue = 13
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 3
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 4
@@ -783,15 +783,15 @@ extension StubTests {
     let dummyReturnValue = 13
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 3
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 4
@@ -834,11 +834,11 @@ extension StubTests {
     var flag = false
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenReturn(42).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenReturn(42).thenDo {
       (args: [Any?]) -> Void in
 
       flag = true
-    }.thenAnswer() {
+    }.thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2
@@ -874,11 +874,11 @@ extension StubTests {
     var flag = false
 
     sut.acceptStub(withFunctionName: functionName, andExpectedArgs: args)
-    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo() {
+    let actionable = sut.call(withReturnValue: dummyReturnValue).thenDo {
       (args: [Any?]) -> Void in
 
       flag = true
-    }.thenReturn(42, 17).thenAnswer() {
+    }.thenReturn(42, 17).thenAnswer {
       (args: [Any?]) -> Int in
 
       return (args[0] as! Int) * 2

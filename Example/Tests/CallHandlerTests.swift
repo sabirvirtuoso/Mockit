@@ -52,6 +52,7 @@ class MockImplementation: Mock {
   func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
+
 }
 
 
@@ -69,6 +70,7 @@ class Failer: MockFailer {
     self.file = file
     self.line = line
   }
+
 }
 
 
@@ -122,7 +124,7 @@ extension CallHandlerTests {
     // Given
     var flag = false
 
-    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo() {
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo {
       (args: [Any?]) -> Void in
 
       flag = true
@@ -139,11 +141,11 @@ extension CallHandlerTests {
     // Given
     var array = [0, 0]
 
-    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo() {
+    mockImplementation.when().call(withReturnValue: mockImplementation.doSomethingWithSomeOptionalArguments(nil, arg2: 1)).thenDo {
       (args: [Any?]) -> Void in
 
       array[0] = 1
-    }.thenDo() {
+    }.thenDo {
       (args: [Any?]) -> Void in
 
       array[1] = 2

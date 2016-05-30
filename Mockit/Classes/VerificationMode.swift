@@ -40,7 +40,7 @@ public protocol VerificationMode {
 public class Once: VerificationMode {
 
   public init() {
-  
+
   }
 
   public func verify(verificationData: VerificationData, mockFailer: MockFailer) {

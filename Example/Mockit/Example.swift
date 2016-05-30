@@ -88,7 +88,7 @@ class Example {
     collaborator.methodTwo()
   }
 
-  func ExpectOnlyMethodOne() {
+  func expectOnlyMethodOne() {
     collaborator.methodOne()
   }
 

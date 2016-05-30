@@ -65,7 +65,7 @@ public class MockMatcher {
     typeMatchers[typeKey] = typeMatcher
   }
 
-  public func unregister(type: Any, typeMatcher: TypeMatcher) {
+  public func unregister(type: Any) {
     let typeKey = String(type)
 
     guard typeExists(forKey: typeKey) else {

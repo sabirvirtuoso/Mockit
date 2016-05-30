@@ -135,7 +135,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectMethodOneAndThree()
+    sut.expectMethodOneAndThree()
 
     // Then
     (mockCollaborator.verify(verificationMode: Once())).methodOne()
@@ -147,7 +147,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectMethodOneTwice()
+    sut.expectMethodOneTwice()
 
     // Then
     mockCollaborator.verify(verificationMode: Times(times: 2)).methodOne()
@@ -157,7 +157,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectOnlyMethodThree()
+    sut.expectOnlyMethodThree()
 
     // Then
     mockCollaborator.verify(verificationMode: Only()).methodThree()
@@ -167,7 +167,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectAllThreeMethods()
+    sut.expectAllThreeMethods()
 
     // Then
     mockCollaborator.verify(verificationMode: Once()).methodOne()
@@ -179,7 +179,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectNoMethod()
+    sut.expectNoMethod()
 
     // Then
     mockCollaborator.verify(verificationMode: Never()).methodOne()
@@ -191,7 +191,7 @@ class ExampleTests: XCTestCase {
     // Given
 
     // When
-    sut.ExpectMethodTwoAndThree()
+    sut.expectMethodTwoAndThree()
 
     // Then
     mockCollaborator.verify(verificationMode: AtLeastTimes(times: Times(times: 1))).methodTwo()

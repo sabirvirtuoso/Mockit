@@ -8,7 +8,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
 
 ![Mockit GIF](Mockit.png)
-_Photo courtesy of [www.mockit.co.uk/about.html](http://www.mockit.co.uk/about.html)_
 
 ## Introduction
 

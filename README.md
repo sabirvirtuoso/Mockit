@@ -7,7 +7,21 @@
 [![License](https://img.shields.io/cocoapods/l/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
 [![Platform](https://img.shields.io/cocoapods/p/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
 
-## Example
+![Mockit GIF](Mockit.png)
+
+## Introduction
+
+`Mockit` is a **Tasty mocking framework for unit tests in Swift 2.2**. It's at an early stage of development, but its current features are almost completely usable.
+
+`Mockit` is a mocking framework that tastes brilliant. It lets you write beautiful tests with a clean & simple API. Tests written using `Mockit` are very readable and they produce clean verification errors. It's inspired by the famous mocking framework for Java - [Mockito](http://mockito.org/).
+
+## Documentation
+
+`Mockit` is yet to be documented fully but it comes with a sample project that lets you try all its features and become familiar with the API. You can find it in `Mockit.xcworkspace`. 
+
+There's an example test file called ```ExampleTests.swift```. Look there for some tests that can be run. This tests a class ```Example``` against a mocked collaborator ```ExampleCollaborator```. 
+
+File an issue if you have any question.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 

@@ -42,7 +42,7 @@ class AnotherDifferentClassForMatching {
 }
 
 
-// MARK:- Custom Type Matcher
+// MARK:- Custom Type Matchers
 
 
 public class CustomMatcher: TypeMatcher {
@@ -55,6 +55,21 @@ public class CustomMatcher: TypeMatcher {
         return false
       default:
         return false
+    }
+  }
+
+}
+
+public class AnotherCustomMatcher: TypeMatcher {
+
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+    switch (arg, withArg) {
+    case ( _ as AnotherDifferentClassForMatching, _ as AnotherDifferentClassForMatching):
+      return true
+    case ( _ as DifferentClassForMatching, _ as DifferentClassForMatching):
+      return false
+    default:
+      return false
     }
   }
 
@@ -105,7 +120,20 @@ class MockMatcherTests: XCTestCase {
     XCTAssertFalse(result)
   }
 
-  func testCustomMatcherRegistration() {
+  func testCustomMatcherRegistrationFailsIfCustomTypeAlreadyExists() {
+    // Given
+    let sut = mockMatcher
+
+    sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
+
+    // When
+    let registered = sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
+
+    // Then
+    XCTAssertFalse(registered)
+  }
+
+  func testSuccessfulCustomMatcherRegistration() {
     // Given
     let sut = mockMatcher
 
@@ -119,13 +147,24 @@ class MockMatcherTests: XCTestCase {
     XCTAssertTrue(result)
   }
 
-  func testCustomMatcherUnregistration() {
+  func testCustomMatcherUnRegistrationFailsIfCustomTypeDoesNotExist() {
+    // Given
+    let sut = mockMatcher
+
+    // When
+    let unregistered = sut.unregister(AnotherCustomMatcher.self)
+
+    // Then
+    XCTAssertFalse(unregistered)
+  }
+
+  func testSuccessfulCustomMatcherUnregistration() {
     // Given
     let sut = mockMatcher
 
     sut.unregister(CustomMatcher.self)
 
-    let classToMatch = DifferentClassForMatching()
+    let classToMatch = AnotherDifferentClassForMatching()
 
     // When
     let result = sut.match(arguments: classToMatch, withArguments: classToMatch)

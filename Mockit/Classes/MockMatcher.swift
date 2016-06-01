@@ -55,24 +55,26 @@ public class MockMatcher {
     }
   }
 
-  public func register(type: Any, typeMatcher: TypeMatcher) {
+  public func register(type: Any, typeMatcher: TypeMatcher) -> Bool {
     let typeKey = String(type)
 
     guard !typeExists(forKey: typeKey) else {
-      fatalError("Failed to register \(typeKey). It already exists and is registered.")
+      return false
     }
 
     typeMatchers[typeKey] = typeMatcher
+
+    return true
   }
 
-  public func unregister(type: Any) {
+  public func unregister(type: Any) -> Bool {
     let typeKey = String(type)
 
     guard typeExists(forKey: typeKey) else {
-      fatalError("Failed to unregister \(typeKey). It does not exist or is not registered yet.")
+      return false
     }
 
-    typeMatchers.removeValueForKey(typeKey)
+    return true
   }
 
   private func typeExists(forKey typeKey: String) -> Bool {

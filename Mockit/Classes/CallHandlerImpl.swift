@@ -67,7 +67,9 @@ public class CallHandlerImpl: CallHandler {
 
   public func getArgs(callOrder order: Int) {
     guard order > 0 else {
-      fatalError("Call Order of a method must be greater than 0")
+      mockFailer.doFail("Call Order of a method must be greater than 0", file: "", line: 0)
+
+      return
     }
 
     callOrder = order
@@ -198,11 +200,15 @@ extension CallHandlerImpl {
 
   private func assignArguments(ofFunction functionName: String) {
     guard let arguments = callHistory[functionName] else {
-      fatalError("No arguments are recorded for method \(functionName)")
+      mockFailer.doFail("No arguments are recorded for method \(functionName)", file: "", line: 0)
+
+      return
     }
 
     guard callOrder <= arguments.count else {
-      fatalError("Call Order for method \(functionName) is greater than number of times method is called")
+      mockFailer.doFail("Call Order for method \(functionName) is greater than number of times method is called", file: "", line: 0)
+
+      return
     }
 
     argumentsOfSpecificCall = arguments[callOrder - 1]

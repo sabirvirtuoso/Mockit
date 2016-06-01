@@ -561,6 +561,55 @@ extension CallHandlerTests {
 
 extension CallHandlerTests {
 
+  func testGetArgsFailsWhenCallOrderIsZero() {
+    // Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    // When
+    mockImplementation.getArgs(callOrder: 0).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    // Then
+    XCTAssertEqual(failer.message, "Call Order of a method must be greater than 0")
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testGetArgsFailsWhenCallOrderIsNonZeroButMethodIsNeverCalled() {
+    // Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    // When
+    mockImplementation.getArgs(callOrder: 2).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    // Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
+  func testGetArgsFailsWhenCallOrderIsGreaterThanNumberOfTimesMethodIsCalled() {
+    // Given
+    XCTAssertNil(failer.message)
+    XCTAssertNil(failer.file)
+    XCTAssertNil(failer.line)
+
+    mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 1)
+
+    // When
+    mockImplementation.getArgs(callOrder: 2).of(mockImplementation.doSomethingWithNonOptionalArguments(AnyValue.string, arg2: AnyValue.int))
+
+    // Then
+    XCTAssertNotNil(failer.message)
+    XCTAssertNotNil(failer.file)
+    XCTAssertNotNil(failer.line)
+  }
+
   func testGetArgsReturnsCorrectNonNilArgumentsWhenMethodIsCalledOnce() {
     // Given
     mockImplementation.doSomethingWithNonOptionalArguments("one", arg2: 2)

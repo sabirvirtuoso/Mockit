@@ -120,19 +120,6 @@ class MockMatcherTests: XCTestCase {
     XCTAssertFalse(result)
   }
 
-  func testCustomMatcherRegistrationFailsIfCustomTypeAlreadyExists() {
-    // Given
-    let sut = mockMatcher
-
-    sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
-
-    // When
-    let registered = sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
-
-    // Then
-    XCTAssertFalse(registered)
-  }
-
   func testSuccessfulCustomMatcherRegistration() {
     // Given
     let sut = mockMatcher
@@ -147,24 +134,13 @@ class MockMatcherTests: XCTestCase {
     XCTAssertTrue(result)
   }
 
-  func testCustomMatcherUnRegistrationFailsIfCustomTypeDoesNotExist() {
-    // Given
-    let sut = mockMatcher
-
-    // When
-    let unregistered = sut.unregister(AnotherCustomMatcher.self)
-
-    // Then
-    XCTAssertFalse(unregistered)
-  }
-
   func testSuccessfulCustomMatcherUnregistration() {
     // Given
     let sut = mockMatcher
 
     sut.unregister(CustomMatcher.self)
 
-    let classToMatch = AnotherDifferentClassForMatching()
+    let classToMatch = DifferentClassForMatching()
 
     // When
     let result = sut.match(arguments: classToMatch, withArguments: classToMatch)

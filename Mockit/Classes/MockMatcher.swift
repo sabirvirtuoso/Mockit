@@ -55,26 +55,20 @@ public class MockMatcher {
     }
   }
 
-  public func register(type: Any, typeMatcher: TypeMatcher) -> Bool {
+  public func register(type: Any, typeMatcher: TypeMatcher) {
     let typeKey = String(type)
 
-    guard !typeExists(forKey: typeKey) else {
-      return false
-    }
-
     typeMatchers[typeKey] = typeMatcher
-
-    return true
   }
 
-  public func unregister(type: Any) -> Bool {
+  public func unregister(type: Any) {
     let typeKey = String(type)
 
     guard typeExists(forKey: typeKey) else {
-      return false
+      return
     }
 
-    return true
+    typeMatchers.removeValueForKey(typeKey)
   }
 
   private func typeExists(forKey typeKey: String) -> Bool {

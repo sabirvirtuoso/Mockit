@@ -29,21 +29,21 @@ import XCTest
 // MARK:- Call Handler implementation
 
 
-public class CallHandlerImpl: CallHandler {
+open class CallHandlerImpl: CallHandler {
 
-  public var argumentsOfSpecificCall: [Any?]?
+  open var argumentsOfSpecificCall: [Any?]?
 
-  private let mockFailer: MockFailer
+  fileprivate let mockFailer: MockFailer
 
   // this is the stub which is currenly being configured or called
-  private var stub: Stub!
-  private var stubs = [Stub]()
+  fileprivate var stub: Stub!
+  fileprivate var stubs = [Stub]()
 
-  private var state = State.None
-  private var verificationMode: VerificationMode!
+  fileprivate var state = State.none
+  fileprivate var verificationMode: VerificationMode!
 
-  private var callHistory = [String: [[Any?]]]()
-  private var callOrder = 1
+  fileprivate var callHistory = [String: [[Any?]]]()
+  fileprivate var callOrder = 1
 
   public init(withTestCase testCase: XCTestCase) {
     mockFailer = MockFailerImpl(withTestCase: testCase)
@@ -53,19 +53,19 @@ public class CallHandlerImpl: CallHandler {
     mockFailer = failer
   }
 
-  public func when() -> Stub {
-    transtion(toState: .When)
+  open func when() -> Stub {
+    transtion(toState: .when)
     stub = Stub()
 
     return stub
   }
 
-  public func verify(verificationMode mode: VerificationMode) {
+  open func verify(verificationMode mode: VerificationMode) {
     verificationMode = mode
-    transtion(toState: .Verify)
+    transtion(toState: .verify)
   }
 
-  public func getArgs(callOrder order: Int) {
+  open func getArgs(callOrder order: Int) {
     guard order > 0 else {
       mockFailer.doFail("Call Order of a method must be greater than 0", file: "", line: 0)
 
@@ -73,36 +73,36 @@ public class CallHandlerImpl: CallHandler {
     }
 
     callOrder = order
-    transtion(toState: .GetArgs)
+    transtion(toState: .getArgs)
   }
 
-  public func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+  open func accept(_ returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
     switch state {
-      case .None:
+      case .none:
         recordCallHistory(ofFunction: function, withArgs: args)
 
         if stubCalled(ofFunction: function, withArgs: args) {
             return stub.performActions()
         }
-      case .When:
+      case .when:
         registerStub(ofFunction: function, withArgs: args)
 
-        transtion(toState: .None)
-      case .Verify:
+        transtion(toState: .none)
+      case .verify:
         verifyCall(ofFunction: function, atFile: file, inLine: line)
 
-        transtion(toState: .None)
-      case .GetArgs:
+        transtion(toState: .none)
+      case .getArgs:
         assignArguments(ofFunction: function)
 
-        transtion(toState: .None)
+        transtion(toState: .none)
     }
 
     return returnValue
   }
 
-  private func transtion(toState state: State) {
+  fileprivate func transtion(toState state: State) {
     self.state = state
   }
 
@@ -114,13 +114,13 @@ public class CallHandlerImpl: CallHandler {
 
 extension CallHandlerImpl {
 
-  private func recordCallHistory(ofFunction function: String, withArgs args: [Any?]) {
+  fileprivate func recordCallHistory(ofFunction function: String, withArgs args: [Any?]) {
     callHistory[function] = callHistory[function] ?? []
 
     callHistory[function]!.append(args)
   }
 
-  private func stubCalled(ofFunction function: String, withArgs args: [Any?]) -> Bool {
+  fileprivate func stubCalled(ofFunction function: String, withArgs args: [Any?]) -> Bool {
     for stub in stubs {
       if match(stub, withFunctionName: function, andArgs: args) {
         self.stub = stub
@@ -132,7 +132,7 @@ extension CallHandlerImpl {
     return false
   }
 
-  private func match(stub: Stub, withFunctionName functionName: String, andArgs args: [Any?]) -> Bool {
+  fileprivate func match(_ stub: Stub, withFunctionName functionName: String, andArgs args: [Any?]) -> Bool {
     return stub.satisfyStub(withFunctionName: functionName) && stub.satisfyStub(withActualArgs: args)
   }
 
@@ -144,7 +144,7 @@ extension CallHandlerImpl {
 
 extension CallHandlerImpl {
 
-  private func registerStub(ofFunction function: String, withArgs args: [Any?]) {
+  fileprivate func registerStub(ofFunction function: String, withArgs args: [Any?]) {
     stub.acceptStub(withFunctionName: function, andExpectedArgs: args)
 
     stubs.append(stub)
@@ -158,7 +158,7 @@ extension CallHandlerImpl {
 
 extension CallHandlerImpl {
 
-  private func verifyCall(ofFunction function: String, atFile file: String,
+  fileprivate func verifyCall(ofFunction function: String, atFile file: String,
                                      inLine line: UInt) {
     let timesCalled = timesInvoked(function)
     let calledOnly = invokedOnly(function)
@@ -174,7 +174,7 @@ extension CallHandlerImpl {
     verificationMode.verify(verificationData, mockFailer: mockFailer)
   }
 
-  private func timesInvoked(function: String) -> Int {
+  fileprivate func timesInvoked(_ function: String) -> Int {
     guard let arguments = callHistory[function] else {
       return 0
     }
@@ -182,7 +182,7 @@ extension CallHandlerImpl {
     return arguments.count
   }
 
-  private func invokedOnly(function: String) -> Bool {
+  fileprivate func invokedOnly(_ function: String) -> Bool {
     guard let _ = callHistory[function] else {
       return false
     }
@@ -198,7 +198,7 @@ extension CallHandlerImpl {
 
 extension CallHandlerImpl {
 
-  private func assignArguments(ofFunction functionName: String) {
+  fileprivate func assignArguments(ofFunction functionName: String) {
     guard let arguments = callHistory[functionName] else {
       mockFailer.doFail("No arguments are recorded for method \(functionName)", file: "", line: 0)
 

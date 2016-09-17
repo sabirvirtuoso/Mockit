@@ -29,7 +29,7 @@ import Foundation
  */
 public protocol VerificationMode {
 
-  func verify(verificationData: VerificationData, mockFailer: MockFailer)
+  func verify(_ verificationData: VerificationData, mockFailer: MockFailer)
 
 }
 
@@ -37,13 +37,13 @@ public protocol VerificationMode {
 // MARK:- Custom Verification Mode `Once` implementation
 
 
-public class Once: VerificationMode {
+open class Once: VerificationMode {
 
   public init() {
 
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked == 1 else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeOnce,
                                         verificationData.functionName, verificationData.timesInvoked)
@@ -59,13 +59,13 @@ public class Once: VerificationMode {
 // MARK:- Custom Verification Mode `AtLeastOnce` implementation
 
 
-public class AtLeastOnce: VerificationMode {
+open class AtLeastOnce: VerificationMode {
 
   public init() {
 
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked >= 1 else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtLeastOnce,
                           verificationData.functionName, verificationData.timesInvoked)
@@ -81,13 +81,13 @@ public class AtLeastOnce: VerificationMode {
 // MARK:- Custom Verification Mode `AtMostOnce` implementation
 
 
-public class AtMostOnce: VerificationMode {
+open class AtMostOnce: VerificationMode {
 
   public init() {
 
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked <= 1 else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtMostOnce,
                                  verificationData.functionName, verificationData.timesInvoked)
@@ -103,7 +103,7 @@ public class AtMostOnce: VerificationMode {
 // MARK:- Custom Verification Mode `Times` implementation
 
 
-public class Times: VerificationMode {
+open class Times: VerificationMode {
 
   var times = 0
 
@@ -111,7 +111,7 @@ public class Times: VerificationMode {
     self.times = times
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked == times else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeTimes,
                                  verificationData.functionName, times, verificationData.timesInvoked)
@@ -127,7 +127,7 @@ public class Times: VerificationMode {
 // MARK:- Custom Verification Mode `AtLeastTimes` implementation
 
 
-public class AtLeastTimes: VerificationMode {
+open class AtLeastTimes: VerificationMode {
 
   var times = 0
 
@@ -135,7 +135,7 @@ public class AtLeastTimes: VerificationMode {
     self.times = times.times
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked >= times else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtLeastTimes,
                                  verificationData.functionName, times, verificationData.timesInvoked)
@@ -151,7 +151,7 @@ public class AtLeastTimes: VerificationMode {
 // MARK:- Custom Verification Mode `AtMostTimes` implementation
 
 
-public class AtMostTimes: VerificationMode {
+open class AtMostTimes: VerificationMode {
 
   var times = 0
 
@@ -159,7 +159,7 @@ public class AtMostTimes: VerificationMode {
     self.times = times.times
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked <= times else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeAtMostTimes,
                                  verificationData.functionName, times, verificationData.timesInvoked)
@@ -175,13 +175,13 @@ public class AtMostTimes: VerificationMode {
 // MARK:- Custom Verification Mode `Never` implementation
 
 
-public class Never: VerificationMode {
+open class Never: VerificationMode {
 
   public init() {
 
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.timesInvoked == 0 else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeNever,
                                  verificationData.functionName, verificationData.timesInvoked)
@@ -197,13 +197,13 @@ public class Never: VerificationMode {
 // MARK:- Custom Verification Mode `Only` implementation
 
 
-public class Only: VerificationMode {
+open class Only: VerificationMode {
 
   public init() {
 
   }
 
-  public func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  open func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     guard verificationData.calledOnly else {
       let failerMessage = String(format: StringConstants.FailureMessages.verificationModeOnly,
                                  verificationData.functionName)

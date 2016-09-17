@@ -41,12 +41,12 @@ class Example {
     collaborator.voidFunction()
   }
 
-  func doSomethingWithParamters(int: Int, _ string: String) -> String {
+  func doSomethingWithParamters(_ int: Int, _ string: String) -> String {
     // test will fail if this call isn't made
     return collaborator.function(int, string)
   }
 
-  func doSomethingWithDictParameters(dict: Dictionary<String, String>) -> String {
+  func doSomethingWithDictParameters(_ dict: Dictionary<String, String>) -> String {
     return collaborator.stringDictFunction(dict)
   }
 

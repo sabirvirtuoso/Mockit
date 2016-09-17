@@ -43,8 +43,4 @@ public struct AnyValue {
   public static let int = 0
   public static let double: Double = 0
   public static let float: Float = 0
-
-  public static let array = []
-  public static let dictionary = [:]
-
 }

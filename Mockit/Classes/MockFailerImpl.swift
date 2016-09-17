@@ -29,7 +29,7 @@ import XCTest
 // MARK:- MockFailer implementation
 
 
-public class MockFailerImpl: MockFailer {
+open class MockFailerImpl: MockFailer {
 
   let testCase: XCTestCase
 
@@ -37,8 +37,8 @@ public class MockFailerImpl: MockFailer {
     self.testCase = testCase
   }
 
-  public func doFail(message: String, file: String, line: UInt) {
-    testCase.recordFailureWithDescription(message, inFile: file, atLine: line, expected: true)
+  open func doFail(_ message: String, file: String, line: UInt) {
+    testCase.recordFailure(withDescription: message, inFile: file, atLine: line, expected: true)
   }
 
 }

@@ -28,25 +28,25 @@ import Foundation
  * `MockMatcher` is used to match expected arguments with actual arguments based on argument types
  * and using custom type matchers if necessary.
  */
-public class MockMatcher {
+open class MockMatcher {
 
-  public static let sharedInstance = MockMatcher()
+  open static let sharedInstance = MockMatcher()
 
-  private var typeMatchers = [String: TypeMatcher]()
+  fileprivate var typeMatchers = [String: TypeMatcher]()
 
-  private init() {
-    typeMatchers[String(OptionalArrayMatcher.self)] = OptionalArrayMatcher()
-    typeMatchers[String(NonOptionalArrayMatcher.self)] = NonOptionalArrayMatcher()
-    typeMatchers[String(OptionalDictionaryMatcher.self)] = OptionalDictionaryMatcher()
-    typeMatchers[String(NonOptionalDictionaryMatcher.self)] = NonOptionalDictionaryMatcher()
-    typeMatchers[String(StringMatcher.self)] = StringMatcher()
-    typeMatchers[String(IntMatcher.self)] = IntMatcher()
-    typeMatchers[String(DoubleMatcher.self)] = DoubleMatcher()
-    typeMatchers[String(FloatMatcher.self)] = FloatMatcher()
-    typeMatchers[String(BoolMatcher.self)] = BoolMatcher()
+  fileprivate init() {
+    typeMatchers[String(describing: OptionalArrayMatcher.self)] = OptionalArrayMatcher()
+    typeMatchers[String(describing: NonOptionalArrayMatcher.self)] = NonOptionalArrayMatcher()
+    typeMatchers[String(describing: OptionalDictionaryMatcher.self)] = OptionalDictionaryMatcher()
+    typeMatchers[String(describing: NonOptionalDictionaryMatcher.self)] = NonOptionalDictionaryMatcher()
+    typeMatchers[String(describing: StringMatcher.self)] = StringMatcher()
+    typeMatchers[String(describing: IntMatcher.self)] = IntMatcher()
+    typeMatchers[String(describing: DoubleMatcher.self)] = DoubleMatcher()
+    typeMatchers[String(describing: FloatMatcher.self)] = FloatMatcher()
+    typeMatchers[String(describing: BoolMatcher.self)] = BoolMatcher()
   }
 
-  public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
+  open func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     switch(args, withArgs) {
       case (nil, nil): return true
       case (nil, _): return false
@@ -55,23 +55,23 @@ public class MockMatcher {
     }
   }
 
-  public func register(type: Any, typeMatcher: TypeMatcher) {
-    let typeKey = String(type)
+  open func register(_ type: Any, typeMatcher: TypeMatcher) {
+    let typeKey = String(describing: type)
 
     typeMatchers[typeKey] = typeMatcher
   }
 
-  public func unregister(type: Any) {
-    let typeKey = String(type)
+  open func unregister(_ type: Any) {
+    let typeKey = String(describing: type)
 
     guard typeExists(forKey: typeKey) else {
       return
     }
 
-    typeMatchers.removeValueForKey(typeKey)
+    typeMatchers.removeValue(forKey: typeKey)
   }
 
-  private func typeExists(forKey typeKey: String) -> Bool {
+  fileprivate func typeExists(forKey typeKey: String) -> Bool {
     if let _ = typeMatchers[typeKey] {
       return true
     }
@@ -79,7 +79,7 @@ public class MockMatcher {
     return false
   }
 
-  private func matchTypes(arguments args: Any, withArguments withArgs: Any) -> Bool {
+  fileprivate func matchTypes(arguments args: Any, withArguments withArgs: Any) -> Bool {
     var argumentsMatched = false
 
     for (_, typeMatcher) in typeMatchers {

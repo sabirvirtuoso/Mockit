@@ -27,20 +27,20 @@ import Foundation
  * `Actionable<T>` is responsible for registering actions on a particular stub and
  * performing them when a real call is made.
  */
-public class Actionable<T>: ActionPerformer {
+open class Actionable<T>: ActionPerformer {
 
-  private var actions = [Action<T>]()
+  fileprivate var actions = [Action<T>]()
 
-  private weak var stub: Stub!
+  fileprivate weak var stub: Stub!
 
-  private let dummyReturnValue: T
+  fileprivate let dummyReturnValue: T
 
   init(ofStub stub: Stub, withReturnValue dummyReturnValue: T) {
     self.stub = stub
     self.dummyReturnValue = dummyReturnValue
   }
 
-  public func thenReturn(values: T...) -> Actionable<T> {
+  open func thenReturn(_ values: T...) -> Actionable<T> {
     for value in values {
       let actionBlock = { () -> T in
         return value
@@ -53,9 +53,9 @@ public class Actionable<T>: ActionPerformer {
     return self
   }
 
-  public func thenDo(closure: (args: [Any?]) -> Void) -> Actionable<T> {
+  open func thenDo(_ closure: @escaping (_ args: [Any?]) -> Void) -> Actionable<T> {
     let actionBlock = { [unowned self] () -> T in
-      closure(args: self.stub.actualArgs)
+      closure(self.stub.actualArgs)
 
       return self.dummyReturnValue
     }
@@ -66,9 +66,9 @@ public class Actionable<T>: ActionPerformer {
     return self
   }
 
-  public func thenAnswer(closure: (args: [Any?]) -> T) -> Actionable<T> {
+  open func thenAnswer(_ closure: @escaping (_ args: [Any?]) -> T) -> Actionable<T> {
     let actionBlock = { [unowned self] () -> T in
-      return closure(args: self.stub.actualArgs)
+      return closure(self.stub.actualArgs)
     }
 
     let action = Action(withBlock: actionBlock, returnsValue: true)
@@ -77,11 +77,11 @@ public class Actionable<T>: ActionPerformer {
     return self
   }
 
-  private func addAction(action: Action<T>) {
+  fileprivate func addAction(_ action: Action<T>) {
     actions.append(action)
   }
 
-  public func performActions() -> Any? {
+  open func performActions() -> Any? {
     guard actions.count > 0 else {
       return dummyReturnValue
     }
@@ -91,11 +91,11 @@ public class Actionable<T>: ActionPerformer {
     return performAction(action)
   }
 
-  private func indexOfAction() -> Int {
+  fileprivate func indexOfAction() -> Int {
     return stub.callCount > actions.count ? actions.count - 1 : stub.callCount - 1
   }
 
-  private func performAction(action: Action<T>) -> Any? {
+  fileprivate func performAction(_ action: Action<T>) -> Any? {
     var returnValue: Any?
 
     if action.providesReturnValue() {

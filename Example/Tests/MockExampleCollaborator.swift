@@ -48,11 +48,11 @@ class MockExampleCollaborator: ExampleCollaborator, Mock {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
-  override func function(int: Int, _ string: String) -> String {
+  override func function(_ int: Int, _ string: String) -> String {
     return callHandler.accept("", ofFunction: #function, atFile: #file, inLine: #line, withArgs: int, string) as! String
   }
 
-  override func stringDictFunction(dict: Dictionary<String, String>) -> String {
+  override func stringDictFunction(_ dict: Dictionary<String, String>) -> String {
     return callHandler.accept("", ofFunction: #function, atFile: #file, inLine: #line, withArgs: dict) as! String
   }
 

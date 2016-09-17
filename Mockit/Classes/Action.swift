@@ -28,21 +28,21 @@ import Foundation
  * for a stub. The action may or may not return non nil value. If the return
  * value is not nil, it is of type T.
  */
-public class Action<T> {
+open class Action<T> {
 
-  private var closure: () -> T
-  private var returnsValue: Bool
+  fileprivate var closure: () -> T
+  fileprivate var returnsValue: Bool
 
-  public init(withBlock closure: () -> T, returnsValue: Bool = false) {
+  public init(withBlock closure: @escaping () -> T, returnsValue: Bool = false) {
     self.closure = closure
     self.returnsValue = returnsValue
   }
 
-  public func performAction() -> Any? {
+  open func performAction() -> Any? {
     return closure()
   }
 
-  public func providesReturnValue() -> Bool {
+  open func providesReturnValue() -> Bool {
     return returnsValue
   }
 

@@ -45,9 +45,9 @@ class AnotherDifferentClassForMatching {
 // MARK:- Custom Type Matchers
 
 
-public class CustomMatcher: TypeMatcher {
+open class CustomMatcher: TypeMatcher {
 
-  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case ( _ as DifferentClassForMatching, _ as DifferentClassForMatching):
         return true
@@ -60,9 +60,9 @@ public class CustomMatcher: TypeMatcher {
 
 }
 
-public class AnotherCustomMatcher: TypeMatcher {
+open class AnotherCustomMatcher: TypeMatcher {
 
-  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
     case ( _ as AnotherDifferentClassForMatching, _ as AnotherDifferentClassForMatching):
       return true
@@ -92,10 +92,10 @@ class MockMatcherTests: XCTestCase {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: nil, withArguments: nil)
+    let result = sut?.match(arguments: nil, withArguments: nil)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testNilAndNonNilArgumentsDoNotMatch() {
@@ -103,10 +103,10 @@ class MockMatcherTests: XCTestCase {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: nil, withArguments: "Non Nil")
+    let result = sut?.match(arguments: nil, withArguments: "Non Nil")
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testNonNilAndNilArgumentsDoNotMatch() {
@@ -114,39 +114,39 @@ class MockMatcherTests: XCTestCase {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: 2, withArguments: nil)
+    let result = sut?.match(arguments: 2, withArguments: nil)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSuccessfulCustomMatcherRegistration() {
     // Given
     let sut = mockMatcher
 
-    sut.register(CustomMatcher.self, typeMatcher: CustomMatcher())
+    sut?.register(CustomMatcher.self, typeMatcher: CustomMatcher())
     let classToMatch = DifferentClassForMatching()
 
     // When
-    let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
+    let result = sut?.match(arguments: classToMatch, withArguments: classToMatch)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testSuccessfulCustomMatcherUnregistration() {
     // Given
     let sut = mockMatcher
 
-    sut.unregister(CustomMatcher.self)
+    sut?.unregister(CustomMatcher.self)
 
     let classToMatch = DifferentClassForMatching()
 
     // When
-    let result = sut.match(arguments: classToMatch, withArguments: classToMatch)
+    let result = sut?.match(arguments: classToMatch, withArguments: classToMatch)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -165,10 +165,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentStringArgumentsDoNotMatch() {
@@ -179,10 +179,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -201,10 +201,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentBoolArgumentsDoNotMatch() {
@@ -215,10 +215,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -237,10 +237,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentIntArgumentsDoNotMatch() {
@@ -251,10 +251,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -273,10 +273,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentDoubleArgumentsDoNotMatch() {
@@ -287,10 +287,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -309,10 +309,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentFloatArgumentsDoNotMatch() {
@@ -323,10 +323,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -345,10 +345,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testSameOptionalStringArrayArgumentsMatch() {
@@ -359,10 +359,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentOptionalStringArrayArgumentsDoNotMatch() {
@@ -373,10 +373,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfOptionalStringArrayArgumentsDoNotMatch() {
@@ -387,10 +387,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameOptionalIntArrayArgumentsMatch() {
@@ -401,10 +401,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentOptionalIntArrayArgumentsDoNotMatch() {
@@ -415,10 +415,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfOptionalIntArrayArgumentsDoNotMatch() {
@@ -429,10 +429,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameOptionalBoolArrayArgumentsMatch() {
@@ -443,10 +443,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentOptionalBoolArrayArgumentsDoNotMatch() {
@@ -457,10 +457,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfOptionalBoolArrayArgumentsDoNotMatch() {
@@ -471,10 +471,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameOptionalDoubleArrayArgumentsMatch() {
@@ -485,10 +485,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentOptionalDoubleArrayArgumentsDoNotMatch() {
@@ -499,10 +499,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfOptionalDoubleArrayArgumentsDoNotMatch() {
@@ -513,10 +513,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameOptionalFloatArrayArgumentsMatch() {
@@ -527,10 +527,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentOptionalFloatArrayArgumentsDoNotMatch() {
@@ -541,10 +541,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfOptionalFloatArrayArgumentsDoNotMatch() {
@@ -555,10 +555,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -571,16 +571,16 @@ extension MockMatcherTests {
 
   func testEmptyArrayArgumentsMatch() {
     // Given
-    let firstArgument = []
-    let secondArgument = []
+    let firstArgument: [Any] = []
+    let secondArgument: [Any] = []
 
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testSameStringArrayArgumentsMatch() {
@@ -591,10 +591,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentStringArrayArgumentsDoNotMatch() {
@@ -605,10 +605,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfStringArrayArgumentsDoNotMatch() {
@@ -619,10 +619,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameIntArrayArgumentsMatch() {
@@ -633,10 +633,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentIntArrayArgumentsDoNotMatch() {
@@ -647,10 +647,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfIntArrayArgumentsDoNotMatch() {
@@ -661,10 +661,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameBoolArrayArgumentsMatch() {
@@ -675,10 +675,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentBoolArrayArgumentsDoNotMatch() {
@@ -689,10 +689,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfBoolArrayArgumentsDoNotMatch() {
@@ -703,10 +703,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameDoubleArrayArgumentsMatch() {
@@ -717,10 +717,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentDoubleArrayArgumentsDoNotMatch() {
@@ -731,10 +731,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfDoubleArrayArgumentsDoNotMatch() {
@@ -745,10 +745,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testSameFloatArrayArgumentsMatch() {
@@ -759,10 +759,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDifferentFloatArrayArgumentsDoNotMatch() {
@@ -773,10 +773,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDifferentNumberOfFloatArrayArgumentsDoNotMatch() {
@@ -787,10 +787,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -809,10 +809,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameIntValuesMatch() {
@@ -823,10 +823,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentIntValuesDoNotMatch() {
@@ -837,10 +837,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameIntValuesDoNotMatch() {
@@ -851,10 +851,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentIntValuesDoNotMatch() {
@@ -865,10 +865,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyIntValuePairsDoNotMatch() {
@@ -879,10 +879,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameStringValuesMatch() {
@@ -893,10 +893,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentStringValuesDoNotMatch() {
@@ -907,10 +907,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameStringValuesDoNotMatch() {
@@ -921,10 +921,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentStringValuesDoNotMatch() {
@@ -935,10 +935,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyStringValuePairsDoNotMatch() {
@@ -949,10 +949,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameAnyValuesMatch() {
@@ -963,10 +963,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentAnyValuesDoNotMatch() {
@@ -977,10 +977,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameAnyValuesDoNotMatch() {
@@ -991,10 +991,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentAnyValuesDoNotMatch() {
@@ -1005,10 +1005,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyAnyValuePairsDoNotMatch() {
@@ -1019,10 +1019,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -1041,10 +1041,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameIntValuesMatch() {
@@ -1055,10 +1055,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentIntValuesDoNotMatch() {
@@ -1069,10 +1069,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameIntValuesDoNotMatch() {
@@ -1083,10 +1083,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentIntValuesDoNotMatch() {
@@ -1097,10 +1097,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyIntValuePairsDoNotMatch() {
@@ -1111,10 +1111,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameStringValuesMatch() {
@@ -1125,10 +1125,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentStringValuesDoNotMatch() {
@@ -1139,10 +1139,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameStringValuesDoNotMatch() {
@@ -1153,10 +1153,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentStringValuesDoNotMatch() {
@@ -1167,10 +1167,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyStringValuePairsDoNotMatch() {
@@ -1181,10 +1181,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameAnyValuesMatch() {
@@ -1195,10 +1195,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentAnyValuesDoNotMatch() {
@@ -1209,10 +1209,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameAnyValuesDoNotMatch() {
@@ -1223,10 +1223,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentAnyValuesDoNotMatch() {
@@ -1237,10 +1237,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyAnyValuePairsDoNotMatch() {
@@ -1251,10 +1251,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -1273,10 +1273,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalIntValuesMatch() {
@@ -1287,10 +1287,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalIntValuesDoNotMatch() {
@@ -1301,10 +1301,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalIntValuesDoNotMatch() {
@@ -1315,10 +1315,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalIntValuesDoNotMatch() {
@@ -1329,10 +1329,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalIntValuePairsDoNotMatch() {
@@ -1343,10 +1343,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalStringValuesMatch() {
@@ -1357,10 +1357,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalStringValuesDoNotMatch() {
@@ -1371,10 +1371,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalStringValuesDoNotMatch() {
@@ -1385,10 +1385,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalStringValuesDoNotMatch() {
@@ -1399,10 +1399,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalStringValuePairsDoNotMatch() {
@@ -1413,10 +1413,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameStringKeysAndSameOptionalAnyValuesMatch() {
@@ -1427,10 +1427,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameStringKeysAndDifferentOptionalAnyValuesDoNotMatch() {
@@ -1441,10 +1441,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndSameOptionalAnyValuesDoNotMatch() {
@@ -1455,10 +1455,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentStringKeysAndDifferentOptionalAnyValuesDoNotMatch() {
@@ -1469,10 +1469,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfStringKeyOptionalAnyValuePairsDoNotMatch() {
@@ -1483,10 +1483,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }
@@ -1505,10 +1505,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalIntValuesMatch() {
@@ -1519,10 +1519,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalIntValuesDoNotMatch() {
@@ -1533,10 +1533,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalIntValuesDoNotMatch() {
@@ -1547,10 +1547,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalIntValuesDoNotMatch() {
@@ -1561,10 +1561,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalIntValuePairsDoNotMatch() {
@@ -1575,10 +1575,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalStringValuesMatch() {
@@ -1589,10 +1589,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalStringValuesDoNotMatch() {
@@ -1603,10 +1603,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalStringValuesDoNotMatch() {
@@ -1617,10 +1617,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalStringValuesDoNotMatch() {
@@ -1631,10 +1631,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalStringValuePairsDoNotMatch() {
@@ -1645,10 +1645,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithSameIntKeysAndSameOptionalAnyValuesMatch() {
@@ -1659,10 +1659,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertTrue(result)
+    XCTAssertTrue(result!)
   }
 
   func testDictionaryWithSameIntKeysAndDifferentOptionalAnyValuesDoNotMatch() {
@@ -1673,10 +1673,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndSameOptionalAnyValuesDoNotMatch() {
@@ -1687,10 +1687,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentIntKeysAndDifferentOptionalAnyValuesDoNotMatch() {
@@ -1701,10 +1701,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
   func testDictionaryWithDifferentNumberOfIntKeyOptionalAnyValuePairsDoNotMatch() {
@@ -1715,10 +1715,10 @@ extension MockMatcherTests {
     let sut = mockMatcher
 
     // When
-    let result = sut.match(arguments: firstArgument, withArguments: secondArgument)
+    let result = sut?.match(arguments: firstArgument, withArguments: secondArgument)
 
     // Then
-    XCTAssertFalse(result)
+    XCTAssertFalse(result!)
   }
 
 }

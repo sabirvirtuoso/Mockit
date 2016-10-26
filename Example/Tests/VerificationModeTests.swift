@@ -35,7 +35,7 @@ class TestFailer: MockFailer {
   var file: String?
   var line: UInt?
 
-  func doFail(message: String, file: String, line: UInt) {
+  func doFail(_ message: String, file: String, line: UInt) {
     self.message = message
     self.file = file
     self.line = line
@@ -55,7 +55,7 @@ class VerificationModeTests: XCTestCase {
     mockFailer = TestFailer()
   }
 
-  private func dummyVerificationData(timesInvoked times: Int, calledOnly: Bool = false) -> VerificationData {
+  fileprivate func dummyVerificationData(timesInvoked times: Int, calledOnly: Bool = false) -> VerificationData {
     return VerificationData(build: {
       $0.functionName = "testFunction"
       $0.timesInvoked = times

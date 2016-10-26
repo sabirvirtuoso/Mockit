@@ -33,6 +33,6 @@ import Foundation
  */
 public enum State {
 
-  case None, When, Verify, GetArgs
+  case none, when, verify, getArgs
 
 }

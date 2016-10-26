@@ -33,11 +33,11 @@ class ExampleCollaborator {
   func voidFunction() {
   }
 
-  func function(int: Int, _ string: String) -> String {
+  func function(_ int: Int, _ string: String) -> String {
     return ""
   }
 
-  func stringDictFunction(dict: [String: String]) -> String {
+  func stringDictFunction(_ dict: [String: String]) -> String {
     return ""
   }
 

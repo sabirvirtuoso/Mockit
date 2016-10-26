@@ -42,7 +42,7 @@ public protocol Mock {
 
   func getArgs(callOrder order: Int) -> InstanceType
 
-  func of(returnValue: Any?) -> [Any?]?
+  func of(_ returnValue: Any?) -> [Any?]?
 
 }
 
@@ -68,7 +68,7 @@ public extension Mock {
     return instanceType()
   }
 
-  func of(returnValue: Any?) -> [Any?]? {
+  func of(_ returnValue: Any?) -> [Any?]? {
     return callHandler.argumentsOfSpecificCall
   }
 

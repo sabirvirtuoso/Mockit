@@ -38,13 +38,13 @@ public protocol ArgumentMatcher {
 /**
  * `Anything` does not match arguments and will unconditionally return true
  */
-public class Anything: ArgumentMatcher {
+open class Anything: ArgumentMatcher {
 
   public init() {
 
   }
 
-  public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
+  open func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return true
   }
 
@@ -56,13 +56,13 @@ public class Anything: ArgumentMatcher {
 /**
  * `Exact` exactly matches arguments
  */
-public class Exact: ArgumentMatcher {
+open class Exact: ArgumentMatcher {
 
   public init() {
 
   }
 
-  public func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
+  open func match(arguments args: Any?, withArguments withArgs: Any?) -> Bool {
     return MockMatcher.sharedInstance.match(arguments: args, withArguments: withArgs)
   }
 

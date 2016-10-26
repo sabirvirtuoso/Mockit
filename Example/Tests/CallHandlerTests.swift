@@ -41,7 +41,7 @@ class MockImplementation: Mock {
     return self
   }
 
-  func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) -> Int {
+  func doSomethingWithNonOptionalArguments(_ arg1: String, arg2: Int) -> Int {
     return callHandler.accept(0, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2) as! Int
   }
 
@@ -49,7 +49,7 @@ class MockImplementation: Mock {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
-  func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
+  func doSomethingWithSomeOptionalArguments(_ arg1: String?, arg2: Int) {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
 
@@ -65,7 +65,7 @@ class Failer: MockFailer {
   var file: String?
   var line: UInt?
 
-  func doFail(message: String, file: String, line: UInt) {
+  func doFail(_ message: String, file: String, line: UInt) {
     self.message = message
     self.file = file
     self.line = line

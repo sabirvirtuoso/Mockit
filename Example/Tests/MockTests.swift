@@ -59,7 +59,7 @@ class TestCallHandler: CallHandler {
     getArgsCalled = true
   }
 
-  func accept(returnValue: Any?, ofFunction function: String, atFile file: String,
+  func accept(_ returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
     argumentsOfSpecificCall = args
 
@@ -74,7 +74,7 @@ class TestCallHandler: CallHandler {
 
 class TestVerificationMode: VerificationMode {
 
-  func verify(verificationData: VerificationData, mockFailer: MockFailer) {
+  func verify(_ verificationData: VerificationData, mockFailer: MockFailer) {
     // Dummy, do nothing
   }
 
@@ -96,7 +96,7 @@ class TestMockImplementation: Mock {
     return self
   }
 
-  func doSomethingWithNonOptionalArguments(arg1: String, arg2: Int) -> Int {
+  func doSomethingWithNonOptionalArguments(_ arg1: String, arg2: Int) -> Int {
     return callHandler.accept(0, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2) as! Int
   }
 
@@ -104,7 +104,7 @@ class TestMockImplementation: Mock {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
-  func doSomethingWithSomeOptionalArguments(arg1: String?, arg2: Int) {
+  func doSomethingWithSomeOptionalArguments(_ arg1: String?, arg2: Int) {
     callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
 

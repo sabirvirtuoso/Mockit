@@ -28,22 +28,22 @@ import Foundation
  * `Stub` is used to record details of stub registration as well as performing necessary actions on a stub
  * when an actual call is made
  */
-public class Stub {
+open class Stub {
 
-  public var actualArgs = [Any?]()
-  public var callCount = 0
+  open var actualArgs = [Any?]()
+  open var callCount = 0
 
-  private var expectedArgs = [Any?]()
-  private var functionName: String!
-  private var argumentMatchers = [ArgumentMatcher]()
+  fileprivate var expectedArgs = [Any?]()
+  fileprivate var functionName: String!
+  fileprivate var argumentMatchers = [ArgumentMatcher]()
 
-  private var actionPerformer: ActionPerformer!
+  fileprivate var actionPerformer: ActionPerformer!
 
   public init() {
 
   }
 
-  public func call<T: Any>(withReturnValue returnValue: T?,
+  open func call<T: Any>(withReturnValue returnValue: T?,
                    andArgumentMatching argumentMatchers: [ArgumentMatcher] = []) -> Actionable<T?> {
     self.argumentMatchers = argumentMatchers
 
@@ -57,16 +57,16 @@ public class Stub {
     return actionable
   }
 
-  public func acceptStub(withFunctionName functionName: String, andExpectedArgs expectedArgs: [Any?]) {
+  open func acceptStub(withFunctionName functionName: String, andExpectedArgs expectedArgs: [Any?]) {
     self.functionName = functionName
     self.expectedArgs = expectedArgs
   }
 
-  public func satisfyStub(withFunctionName functionName: String) -> Bool {
+  open func satisfyStub(withFunctionName functionName: String) -> Bool {
     return self.functionName == functionName
   }
 
-  public func satisfyStub(withActualArgs actualArgs: [Any?]) -> Bool {
+  open func satisfyStub(withActualArgs actualArgs: [Any?]) -> Bool {
     callCount += 1
     self.actualArgs = actualArgs
 
@@ -77,10 +77,10 @@ public class Stub {
     return satisfyArgumentMatcher()
   }
 
-  private func satisfyArgumentMatcher() -> Bool {
+  fileprivate func satisfyArgumentMatcher() -> Bool {
     var argumentsMatched = true
 
-    for (index, argumentMatcher) in argumentMatchers.enumerate() {
+    for (index, argumentMatcher) in argumentMatchers.enumerated() {
       if !argumentMatcher.match(arguments: expectedArgs[index], withArguments: actualArgs[index]) {
         argumentsMatched = false
 
@@ -91,11 +91,11 @@ public class Stub {
     return argumentsMatched
   }
 
-  public func performActions() -> Any? {
+  open func performActions() -> Any? {
     return actionPerformer.performActions()
   }
 
-  private func assertArgumentMatcherCount() -> Bool {
+  fileprivate func assertArgumentMatcherCount() -> Bool {
     if argumentMatchers.count > 0 && argumentMatchers.count != expectedArgs.count {
       return false
     }

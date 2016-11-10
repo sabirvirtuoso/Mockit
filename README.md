@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
 [![License](https://img.shields.io/cocoapods/l/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
 [![Platform](https://img.shields.io/cocoapods/p/Mockit.svg?style=flat)](http://cocoapods.org/pods/Mockit)
-[![Swift Version](https://img.shields.io/badge/Swift-2.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift Version](https://img.shields.io/badge/Swift-3.0-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
 ![Mockit GIF](Mockit.png)
 

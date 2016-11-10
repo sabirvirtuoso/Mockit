@@ -101,11 +101,11 @@ class TestMockImplementation: Mock {
   }
 
   func doSomethingWithNoArguments() {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
   func doSomethingWithSomeOptionalArguments(_ arg1: String?, arg2: Int) {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: arg1, arg2)
   }
 
 }
@@ -129,7 +129,7 @@ class MockTests: XCTestCase {
     XCTAssertFalse(handler.whenCalled)
 
     // When
-    sut.when()
+    let _ = sut.when()
 
     // Then
     XCTAssertTrue(handler.whenCalled)
@@ -151,7 +151,7 @@ class MockTests: XCTestCase {
     XCTAssertFalse(handler.verifyCalled)
 
     // When
-    sut.verify(verificationMode: TestVerificationMode())
+    let _ = sut.verify(verificationMode: TestVerificationMode())
 
     // Then
     XCTAssertTrue(handler.verifyCalled)
@@ -172,7 +172,7 @@ class MockTests: XCTestCase {
     XCTAssertFalse(handler.getArgsCalled)
 
     // When
-    sut.getArgs(callOrder: 1)
+    let _ = sut.getArgs(callOrder: 1)
 
     // Then
     XCTAssertTrue(handler.getArgsCalled)

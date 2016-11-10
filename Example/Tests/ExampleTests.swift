@@ -53,7 +53,7 @@ class ExampleTests: XCTestCase {
 
   func testDoSomethingWithParameters() {
     // Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.function(42, "frood")).thenReturn("hoopy")
+    let _ = mockCollaborator.when().call(withReturnValue: mockCollaborator.function(42, "frood")).thenReturn("hoopy")
 
     // When
     let returnValue = sut.doSomethingWithParamters(42, "frood")
@@ -64,7 +64,7 @@ class ExampleTests: XCTestCase {
 
   func testStringDictionary() {
     // Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping")
+    let _ = mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping")
 
     // When
     let returnValue = sut.doSomethingWithDictParameters(["Hello": "Pong"])
@@ -75,7 +75,7 @@ class ExampleTests: XCTestCase {
 
   func testWithThenDoClosure() {
     // Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.voidFunction()).thenDo {
+    let _ = mockCollaborator.when().call(withReturnValue: mockCollaborator.voidFunction()).thenDo {
       (args: [Any?]) -> Void in
 
       // if the call is received, this closure will be executed
@@ -90,7 +90,7 @@ class ExampleTests: XCTestCase {
 
   func testActionChainingForCorrespondingCalls() {
     // Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping", "hoopy")
+    let _ = mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("ping", "hoopy")
 
     // When
     let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
@@ -103,7 +103,7 @@ class ExampleTests: XCTestCase {
 
   func testActionChainingForNonCorrespondingCalls() {
     // Given
-    mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("hoopy")
+    let _ = mockCollaborator.when().call(withReturnValue: mockCollaborator.stringDictFunction(["Hello": "Pong"])).thenReturn("hoopy")
 
     // When
     let returnValueOfFirstCall = sut.doSomethingWithDictParameters(["Hello": "Pong"])
@@ -116,8 +116,8 @@ class ExampleTests: XCTestCase {
 
   func testGetArgsOfDoSomethingWithParameters() {
     // Given
-    sut.doSomethingWithParamters(42, "frood")
-    sut.doSomethingWithParamters(18, "hoopy")
+    let _ = sut.doSomethingWithParamters(42, "frood")
+    let _ = sut.doSomethingWithParamters(18, "hoopy")
 
     // When
     let argumentsOfFirstCall = mockCollaborator.getArgs(callOrder: 1).of(mockCollaborator.function(AnyValue.int, AnyValue.string))

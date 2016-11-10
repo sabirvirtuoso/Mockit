@@ -101,7 +101,7 @@ open class Actionable<T>: ActionPerformer {
     if action.providesReturnValue() {
       returnValue = action.performAction()
     } else {
-      action.performAction()
+      let _ = action.performAction()
     }
 
     return returnValue

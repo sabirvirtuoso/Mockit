@@ -197,7 +197,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Anything(), Anything()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Anything(), Anything()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 
@@ -215,7 +215,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Exact(), Exact()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Exact(), Exact()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 
@@ -233,7 +233,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Exact(), Anything()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Exact(), Anything()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 
@@ -251,7 +251,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Anything(), Exact()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Anything(), Exact()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 
@@ -269,7 +269,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Exact(), Anything(), Exact()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Anything(), Exact(), Anything(), Exact()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 
@@ -287,7 +287,7 @@ class StubTests: XCTestCase {
 
     // When
     sut?.acceptStub(withFunctionName: functionName, andExpectedArgs: expectedArgs)
-    sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Anything(), Exact(), Exact()])
+    let _ = sut?.call(withReturnValue: 13, andArgumentMatching: [Exact(), Anything(), Exact(), Exact()])
 
     let matched = (sut?.satisfyStub(withFunctionName: functionName))! && (sut?.satisfyStub(withActualArgs: actualArgs))!
 

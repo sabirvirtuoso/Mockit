@@ -45,7 +45,7 @@ class MockExampleCollaborator: ExampleCollaborator, Mock {
   }
 
   override func voidFunction() {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
   override func function(_ int: Int, _ string: String) -> String {
@@ -57,15 +57,15 @@ class MockExampleCollaborator: ExampleCollaborator, Mock {
   }
 
   override func methodOne() {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
   override func methodTwo() {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
   override func methodThree() {
-    callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
+    let _ = callHandler.accept(nil, ofFunction: #function, atFile: #file, inLine: #line, withArgs: nil)
   }
 
 }

@@ -60,12 +60,12 @@ open class CallHandlerImpl: CallHandler {
     return stub
   }
 
-  open func verify(verificationMode mode: VerificationMode) {
+  open func verify(verificationMode mode: VerificationMode = Once()) {
     verificationMode = mode
     transtion(toState: .verify)
   }
 
-  open func getArgs(callOrder order: Int) {
+  open func getArgs(callOrder order: Int = 1) {
     guard order > 0 else {
       mockFailer.doFail("Call Order of a method must be greater than 0", file: "", line: 0)
 

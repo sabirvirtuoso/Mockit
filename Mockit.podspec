@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Mockit"
-  s.version          = "1.2.0"
+  s.version          = "1.3.0"
   s.summary          = "Mocking framework for unit tests written in Swift."
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Mockit is a first attempt at a mocking/stubbing framework for Swift 2.2. It's API is inspired by "Mockito", the famous mocking framework for Java. Mockit is in the very earliest stage of development, but its current features are almost completely usable.
+Mockit is a first attempt at a mocking/stubbing framework for Swift 3.0. It's API is inspired by "Mockito", the famous mocking framework for Java. Mockit is in the very earliest stage of development, but its current features are almost completely usable.
                        DESC
 
   s.homepage         = "https://github.com/sabirvirtuoso/Mockit"
@@ -28,7 +28,7 @@ Mockit is a first attempt at a mocking/stubbing framework for Swift 2.2. It's AP
   s.source           = { :git => "https://github.com/sabirvirtuoso/Mockit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://www.facebook.com/syed.musawi'
 
-  s.platform     = :ios, '9.0'
+  s.platform     = :ios, '10.0'
   s.requires_arc = true
 
   s.source_files = 'Mockit/Classes/**/*'

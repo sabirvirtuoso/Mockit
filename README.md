@@ -12,7 +12,7 @@
 
 ## Introduction
 
-`Mockit` is a **Tasty mocking framework for unit tests in Swift 2.2**. It's at an early stage of development, but its current features are almost completely usable.
+`Mockit` is a **Tasty mocking framework for unit tests in Swift 3.0**. It's at an early stage of development, but its current features are almost completely usable.
 
 `Mockit` is a mocking framework that tastes brilliant. It lets you write beautiful tests with a clean & simple API. Tests written using `Mockit` are very readable and they produce clean verification errors. It's inspired by the famous mocking framework for Java - [Mockito](http://mockito.org/).
 
@@ -215,12 +215,12 @@ mockCollaborator.verify(verificationMode: AtMostTimes(times: Times(times: 3))).m
 ```
 ## Requirements
 
-* Xcode 7+
+* Xcode 8+
 * XCTest
 
 ## Installation
 
-Mockit is built with Swift 2.2.
+Mockit is built with Swift 3.0.
 
 #### CocoaPods
 
@@ -228,7 +228,7 @@ Mockit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Mockit', '1.2.0'
+pod 'Mockit', '1.3.0'
 ```
 
 #### Manually

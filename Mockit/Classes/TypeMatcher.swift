@@ -37,9 +37,9 @@ public protocol TypeMatcher {
 // MARK:- `String` matcher implementation
 
 
-open class StringMatcher: TypeMatcher {
+public class StringMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as String, let secondArg as String):
         return firstArg == secondArg
@@ -54,9 +54,9 @@ open class StringMatcher: TypeMatcher {
 // MARK:- `Bool` matcher implementation
 
 
-open class BoolMatcher: TypeMatcher {
+public class BoolMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Bool, let secondArg as Bool):
         return firstArg == secondArg
@@ -71,9 +71,9 @@ open class BoolMatcher: TypeMatcher {
 // MARK:- `Int` matcher implementation
 
 
-open class IntMatcher: TypeMatcher {
+public class IntMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Int, let secondArg as Int):
         return firstArg == secondArg
@@ -88,9 +88,9 @@ open class IntMatcher: TypeMatcher {
 // MARK:- `Double` matcher implementation
 
 
-open class DoubleMatcher: TypeMatcher {
+public class DoubleMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Double, let secondArg as Double):
         return firstArg == secondArg
@@ -105,9 +105,9 @@ open class DoubleMatcher: TypeMatcher {
 // MARK:- `Float` matcher implementation
 
 
-open class FloatMatcher: TypeMatcher {
+public class FloatMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Float, let secondArg as Float):
         return firstArg == secondArg
@@ -122,9 +122,9 @@ open class FloatMatcher: TypeMatcher {
 // MARK:- `OptionalArray` matcher implementation
 
 
-open class OptionalArrayMatcher: TypeMatcher {
+public class OptionalArrayMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
     case (let firstArg as Array<Any?>, let secondArg as Array<Any?>):
       return match(firstArg, withArray: secondArg)
@@ -159,9 +159,9 @@ open class OptionalArrayMatcher: TypeMatcher {
 // MARK:- `NonOptionalArray` matcher implementation
 
 
-open class NonOptionalArrayMatcher: TypeMatcher {
+public class NonOptionalArrayMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Array<Any>, let secondArg as Array<Any>):
         return match(firstArg, withArray: secondArg)
@@ -196,9 +196,9 @@ open class NonOptionalArrayMatcher: TypeMatcher {
 // MARK:- `OptionalDictionary` matcher implementation
 
 
-open class OptionalDictionaryMatcher: TypeMatcher {
+public class OptionalDictionaryMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Dictionary<String, Any?>, let secondArg as Dictionary<String, Any?>):
         return match(firstArg, withDictionary: secondArg)
@@ -256,9 +256,9 @@ open class OptionalDictionaryMatcher: TypeMatcher {
 // MARK:- `NonOptionalDictionary` matcher implementation
 
 
-open class NonOptionalDictionaryMatcher: TypeMatcher {
+public class NonOptionalDictionaryMatcher: TypeMatcher {
 
-  open func match(argument arg: Any, withArgument withArg: Any) -> Bool {
+  public func match(argument arg: Any, withArgument withArg: Any) -> Bool {
     switch (arg, withArg) {
       case (let firstArg as Dictionary<String, Any>, let secondArg as Dictionary<String, Any>):
         return match(firstArg, withDictionary: secondArg)

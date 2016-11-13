@@ -27,13 +27,13 @@ import Foundation
 /**
  * A class to hold verification data of a specific method call.
  */
-open class VerificationData {
+public class VerificationData {
 
-  open var functionName = ""
-  open var timesInvoked = 0
-  open var calledOnly = false
-  open var file = ""
-  open var line: UInt = 0
+  public var functionName = ""
+  public var timesInvoked = 0
+  public var calledOnly = false
+  public var file = ""
+  public var line: UInt = 0
 
   public typealias buildVerificationDataClosure = (VerificationData) -> Void
 

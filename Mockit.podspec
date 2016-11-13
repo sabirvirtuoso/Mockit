@@ -28,7 +28,7 @@ Mockit is a first attempt at a mocking/stubbing framework for Swift 3.0. It's AP
   s.source           = { :git => "https://github.com/sabirvirtuoso/Mockit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://www.facebook.com/syed.musawi'
 
-  s.platform     = :ios, '10.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.source_files = 'Mockit/Classes/**/*'

@@ -76,6 +76,7 @@ open class CallHandlerImpl: CallHandler {
     transtion(toState: .getArgs)
   }
 
+  @discardableResult
   open func accept(_ returnValue: Any?, ofFunction function: String, atFile file: String,
                      inLine line: UInt, withArgs args: Any?...) -> Any? {
     switch state {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Mockit"
-  s.version          = "1.3.3"
+  s.version          = "1.3.4"
   s.summary          = "Mocking framework for unit tests written in Swift."
 
 # This description is used to generate tags and improve search results.

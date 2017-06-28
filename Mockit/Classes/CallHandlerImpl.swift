@@ -39,7 +39,7 @@ open class CallHandlerImpl: CallHandler {
   fileprivate var stub: Stub!
   fileprivate var stubs = [Stub]()
 
-  fileprivate var state = State.none
+  public var state = State.none
   fileprivate var verificationMode: VerificationMode!
 
   fileprivate var callHistory = [String: [[Any?]]]()

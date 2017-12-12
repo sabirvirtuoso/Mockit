@@ -33,7 +33,7 @@ public class VerificationData {
   public var timesInvoked = 0
   public var calledOnly = false
   public var file = ""
-  public var line: UInt = 0
+  public var line: Int = 0
 
   public typealias buildVerificationDataClosure = (VerificationData) -> Void
 

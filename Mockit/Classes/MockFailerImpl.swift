@@ -37,7 +37,7 @@ open class MockFailerImpl: MockFailer {
     self.testCase = testCase
   }
 
-  open func doFail(_ message: String, file: String, line: UInt) {
+  open func doFail(_ message: String, file: String, line: Int) {
     testCase.recordFailure(withDescription: message, inFile: file, atLine: line, expected: true)
   }
 

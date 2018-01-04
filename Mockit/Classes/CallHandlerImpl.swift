@@ -78,7 +78,7 @@ open class CallHandlerImpl: CallHandler {
 
   @discardableResult
   open func accept(_ returnValue: Any?, ofFunction function: String, atFile file: String,
-                     inLine line: UInt, withArgs args: Any?...) -> Any? {
+                     inLine line: Int, withArgs args: Any?...) -> Any? {
     switch state {
       case .none:
         recordCallHistory(ofFunction: function, withArgs: args)
@@ -160,7 +160,7 @@ extension CallHandlerImpl {
 extension CallHandlerImpl {
 
   fileprivate func verifyCall(ofFunction function: String, atFile file: String,
-                                     inLine line: UInt) {
+                                     inLine line: Int) {
     let timesCalled = timesInvoked(function)
     let calledOnly = invokedOnly(function)
 

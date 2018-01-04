@@ -63,9 +63,9 @@ class Failer: MockFailer {
 
   var message: String?
   var file: String?
-  var line: UInt?
+  var line: Int?
 
-  func doFail(_ message: String, file: String, line: UInt) {
+  func doFail(_ message: String, file: String, line: Int) {
     self.message = message
     self.file = file
     self.line = line

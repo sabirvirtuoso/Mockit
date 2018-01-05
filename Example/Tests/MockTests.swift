@@ -60,7 +60,7 @@ class TestCallHandler: CallHandler {
   }
 
   func accept(_ returnValue: Any?, ofFunction function: String, atFile file: String,
-                     inLine line: UInt, withArgs args: Any?...) -> Any? {
+                     inLine line: Int, withArgs args: Any?...) -> Any? {
     argumentsOfSpecificCall = args
 
     return returnValue

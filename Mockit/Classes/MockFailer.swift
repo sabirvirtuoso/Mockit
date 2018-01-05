@@ -29,6 +29,6 @@ import Foundation
  */
 public protocol MockFailer {
 
-  func doFail(_ message: String, file: String, line: UInt)
+  func doFail(_ message: String, file: String, line: Int)
 
 }

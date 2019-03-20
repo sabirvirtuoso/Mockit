@@ -48,7 +48,9 @@ open class Stub {
     self.argumentMatchers = argumentMatchers
 
     guard assertArgumentMatcherCount() else {
-      fatalError("There is a mismatch between number of expected arguments and its corresponding matcher")
+      fatalError("There is a mismatch between the number of expected arguments (\(expectedArgs.count))"
+        + " and its corresponding matcher (\(argumentMatchers.count))"
+        + " in function '\(functionName ?? "?")'")
     }
 
     let actionable = Actionable(ofStub: self, withReturnValue: returnValue)

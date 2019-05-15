@@ -30,7 +30,7 @@ import Foundation
  */
 open class MockMatcher {
 
-  open static let sharedInstance = MockMatcher()
+  public static let sharedInstance = MockMatcher()
 
   fileprivate var typeMatchers = [String: TypeMatcher]()
 
